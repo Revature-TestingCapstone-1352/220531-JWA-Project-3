@@ -11,3 +11,5 @@ public class GameGalaxyBackendApplication {
 	}
 
 }
+
+//WOWROEJQWTGRWAOT$@#!%!$TWQEF
