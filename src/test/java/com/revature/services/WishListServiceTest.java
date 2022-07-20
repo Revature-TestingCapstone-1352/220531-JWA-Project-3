@@ -40,12 +40,9 @@ public class WishListServiceTest {
 
     // === Testing addFavoriteGame ===
 
-    @Test
-    public void afg_invalidUserInputs_nullValues_null() {
-        // Input Data
-        Game inputGame = null;
-        User inputUser = null;
-
+    @ParameterizedTest
+    @MethodSource("get_dafg_invalidUserInputs")
+    public void afg_invalidUserInputs_nullValues_null(Game inputGame, User inputUser) {
         // Mocking DAO
         when(mockWishListDAO.save(null)).thenReturn(null); // Can't save a wishlist with null values
 
@@ -54,6 +51,18 @@ public class WishListServiceTest {
 
         // Assertions
         assertEquals(null, actualResult);
+    }
+    private static Stream<Arguments> get_dafg_invalidUserInputs() {
+        // Data
+        Game inputGame = new Game();
+        inputGame.setGameID(1); // Assumes game with id of 1 exists
+        User inputUser = new User();
+        inputUser.setId(1); // Assumes user with id of 1 exists
+        List<Arguments> arguments = new ArrayList<Arguments>();
+        arguments.add(Arguments.of(inputGame, null));
+        arguments.add(Arguments.of(null, inputUser));
+        arguments.add(Arguments.of(null, null));
+        return arguments.stream();
     }
 
     @ParameterizedTest
@@ -254,7 +263,6 @@ public class WishListServiceTest {
         // Assertions
         assertEquals(false, actualResult);
     }
-
     private static Stream<Arguments> get_dfg_invalidUserInputs() {
         // Data
         User inputUser = new User();
