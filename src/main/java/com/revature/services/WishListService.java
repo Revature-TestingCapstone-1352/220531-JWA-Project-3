@@ -26,13 +26,15 @@ public class WishListService {
 	}
 	
 		
-	public void addFavouriteGame(Game game,User user) {
+	public WishList addFavouriteGame(Game game,User user) {
 		
 		WishList wishlist = new WishList();
 		
 		wishlist.setUserId(user.getId());
 		wishlist.setGameID(game.getGameID());
-		wishListDao.save(wishlist);
+		WishList result = wishListDao.save(wishlist);
+		
+		return result;
 	}
 	
 	public List<Game> getFavGames(User user) {
@@ -47,13 +49,15 @@ public class WishListService {
 		return favList;
 	}
 	
-	public void deleteFavGame(User user, int gameID) {
+	public boolean deleteFavGame(User user, int gameID) {
 		List<WishList> wishlist = wishListDao.findByUserId(user.getId());
 		for(WishList wish : wishlist) {
 			if(wish.getGameID()!=0 && wish.getGameID()==(gameID)) {
-				wishListDao.delete(wish);
+				 wishListDao.delete(wish);
 			} 
 		}
+		
+		return true;
 	}
 	
 	

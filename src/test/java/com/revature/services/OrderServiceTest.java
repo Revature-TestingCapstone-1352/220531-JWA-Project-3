@@ -24,6 +24,8 @@ public class OrderServiceTest {
 	@Autowired
 	private UserService userService;
 	
+	
+	
 	@Test
 	public void testgetAllOrders() {
 		List<Order> orders = orderService.getAllOrders();
