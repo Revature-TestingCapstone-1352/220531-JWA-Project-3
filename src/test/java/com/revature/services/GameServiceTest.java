@@ -27,6 +27,7 @@ public class GameServiceTest {
 		int gamesNumber = games.get().size();
 		assertEquals(1, gamesNumber);
 	}
+	//2nd test for find by name
 
 	@Test
 	public void testgetAllGames() {
@@ -42,4 +43,5 @@ public class GameServiceTest {
 		Optional<Game> game = gameService.getById(2);
 		assertEquals("Evochron Mercenary", game.get().getName());
 	}
+	//2nd test for find by id
 }

@@ -31,4 +31,8 @@ public class WishListServiceTest {
 		Game game = allWish.get(0);
 		assertEquals(game.getName(), "Demigod");
 	}
+	//test 2 for get gav games
+	//negative test where it fails to get a game that's not on the list
+	
+	//add test for add favorite game and delete fav game - TR
 }

@@ -22,6 +22,7 @@ public class UserServiceTest {
 		User user = userService.getUserByUsername("paul");
 		assertEquals("paulkita@gmail.com", user.geteMail());
 	}
+	//2nd test for get user by username with a different username
 	
 	@Test
 	public void testlogin() {
@@ -29,6 +30,7 @@ public class UserServiceTest {
         User loggedUser = userService.login(user);
         assertEquals(loggedUser, user);
     }
+	//testLogin2 ?
 	
 	@Test
 	public void testupdate() {
@@ -36,6 +38,10 @@ public class UserServiceTest {
 		User userToUpdate = userService.update(user);
 		assertEquals("email@email.com", userToUpdate.geteMail());
 	}
+	
+	//Negative tests?
+	
+	//test register - TR
 	
 }
 
