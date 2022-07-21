@@ -2,6 +2,7 @@ package com.revature.services;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
@@ -67,20 +68,25 @@ public class GameServiceTest {
 		mockGameList.get().add(mockGame);
 
 		when(mockGameDao.findByName(testName)).thenReturn(mockGameList);
-		assertEquals(mockGameList, mockGameDao.findByName(testName));
+		assertEquals(mockGameList, gameService.getByName(testName));
 	}
 
 	@Test
 	public void testSearchGamesByInvalidName() {
+
 		String testName = "Test Game Name";
-		Optional<List<Game>> mockGameList = Optional.of(new ArrayList<Game>());
+		List<Game> testList = new ArrayList<Game>();
+		Optional<List<Game>> mockGameList = Optional.of(testList);
 		Game mockGame = new Game();
 		mockGame.setName(testName);
-		mockGameList.get().add(mockGame);
+//		mockGameList.get().add(mockGame);
+//		testList.add(mockGame);
 
-		when(mockGameDao.findByName(testName)).thenReturn(mockGameList);
-		assertNotEquals(mockGameDao.findByName("Junk"), mockGameDao.findByName(testName));
-//		assertTrue(mockGameDao.findByName("Junk").isEmpty());
+		when(mockGameDao.findByName("Junk")).thenReturn(mockGameList);
+		Optional<List<Game>> result = gameService.getByName("Junk");
+		System.out.println(result == null);
+		System.out.println(result.toString());
+		assertTrue(gameService.getByName("Junk").get().isEmpty());
 	}
 
 	@Test
@@ -97,7 +103,7 @@ public class GameServiceTest {
 		mockGameList.add(game3);
 
 		when(mockGameDao.findAll()).thenReturn(mockGameList);
-		assertEquals(mockGameList.size(), mockGameDao.findAll().size());
+		assertEquals(mockGameList.size(), gameService.getAllGames().size());
 
 	}
 
@@ -110,7 +116,7 @@ public class GameServiceTest {
 		mockGameList.get().add(mockGame.get());
 
 		when(mockGameDao.findById(mockId)).thenReturn(mockGame);
-		assertEquals(mockGame, mockGameDao.findById(mockId));
+		assertEquals(mockGame, gameService.getById(mockId));
 	}
 
 	@Test
@@ -122,6 +128,6 @@ public class GameServiceTest {
 
 		when(mockGameDao.findById(anyInt())).thenReturn(mockGame);
 
-		assertNotEquals(-1, mockGameDao.findById(anyInt()).get().getGameID());
+		assertNotEquals(-1, gameService.getById(anyInt()).get().getGameID());
 	}
 }
