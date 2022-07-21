@@ -40,12 +40,9 @@ public class WishListServiceTest {
 
     // === Testing addFavoriteGame ===
 
-    @Test
-    public void afg_invalidUserInputs_nullValues_null() {
-        // Input Data
-        Game inputGame = null;
-        User inputUser = null;
-
+    @ParameterizedTest
+    @MethodSource("get_dafg_invalidUserInputs")
+    public void afg_invalidUserInputs_nullValues_null(Game inputGame, User inputUser) {
         // Mocking DAO
         when(mockWishListDAO.save(null)).thenReturn(null); // Can't save a wishlist with null values
 
@@ -54,6 +51,18 @@ public class WishListServiceTest {
 
         // Assertions
         assertEquals(null, actualResult);
+    }
+    private static Stream<Arguments> get_dafg_invalidUserInputs() {
+        // Data
+        Game inputGame = new Game();
+        inputGame.setGameID(1); // Assumes game with id of 1 exists
+        User inputUser = new User();
+        inputUser.setId(1); // Assumes user with id of 1 exists
+        List<Arguments> arguments = new ArrayList<Arguments>();
+        arguments.add(Arguments.of(inputGame, null));
+        arguments.add(Arguments.of(null, inputUser));
+        arguments.add(Arguments.of(null, null));
+        return arguments.stream();
     }
 
     @ParameterizedTest
@@ -254,7 +263,6 @@ public class WishListServiceTest {
         // Assertions
         assertEquals(false, actualResult);
     }
-
     private static Stream<Arguments> get_dfg_invalidUserInputs() {
         // Data
         User inputUser = new User();
@@ -314,6 +322,34 @@ public class WishListServiceTest {
         expectedWishListList.add(expectedWishList);
         when(mockWishListDAO.findByUserId(inputUser.getId())).thenReturn(expectedWishListList); // Found wishlist list associated with user
 //        when(mockWishListDAO.delete(expectedWishList)).thenReturn(false); // Not possible -> delete returns nothing (void)
+
+        // Running test
+        boolean actualResult = wishListService.deleteFavGame(inputUser, inputGameID);
+
+        // Assertions
+        assertEquals(false, actualResult);
+    }
+    
+    @Test
+    public void dfg_gameNotAssociatedWithUserWishlist_false() {
+        // Input Data
+        User inputUser = new User();
+        inputUser.setId(1); // Assumes that user id of 1 exists
+        int inputGameID = 5; // Assumes game with id of 5 exists
+        
+        // Tertiary Data
+        int gameId1 = 1;
+        int gameId2 = 2;
+
+        // Mocking DAO
+        List<WishList> expectedWishListList = new ArrayList<WishList>();
+        WishList expectedWishList1 = new WishList();
+        WishList expectedWishList2 = new WishList();
+        expectedWishList1.setGameID(gameId1);
+        expectedWishList2.setGameID(gameId2);
+        expectedWishListList.add(expectedWishList1);
+        expectedWishListList.add(expectedWishList2);
+        when(mockWishListDAO.findByUserId(inputUser.getId())).thenReturn(expectedWishListList); // Found wishlist list associated with user
 
         // Running test
         boolean actualResult = wishListService.deleteFavGame(inputUser, inputGameID);
