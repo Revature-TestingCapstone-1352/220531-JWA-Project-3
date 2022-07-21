@@ -11,8 +11,8 @@ import { Order } from '../models/order';
 })
 export class CartService {
 
-  //cartUrl:string = 'http://localhost:8087/cart/';
-  cartUrl:string = 'http://34.224.99.20:8087/cart/';
+  cartUrl:string = 'http://localhost:8087/cart/';
+  // cartUrl:string = 'http://34.224.99.20:8087/cart/';
 
   constructor(private http:HttpClient) { }
 
