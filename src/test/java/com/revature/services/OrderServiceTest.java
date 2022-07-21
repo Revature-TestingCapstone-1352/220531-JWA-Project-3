@@ -219,9 +219,9 @@ public class OrderServiceTest {
 		
 		when(MockOrderDao.save(order)).thenReturn(order);
 		
-		List<Order> ActualOrders = orderService.getOrdersByUser(user);
+		Order ActualOrder = orderService.addOrder(order, user);
 		
-		assertNotEquals(ActualOrders, order);
+		assertEquals(ActualOrder, order);
 		
 		
 	}
@@ -236,9 +236,9 @@ public class OrderServiceTest {
 		
 		when(MockOrderDao.save(order)).thenReturn(null);
 		
-		List<Order> ActualOrders = orderService.getOrdersByUser(user);
+		Order ActualOrder = orderService.addOrder(order, user);
 		
-		assertEquals(ActualOrders, null);
+		assertEquals(ActualOrder, null);
 		
 	}
 	@Test
@@ -248,9 +248,9 @@ public class OrderServiceTest {
 		
 		when(MockOrderDao.save(order)).thenReturn(null);
 		
-		List<Order> ActualOrders = orderService.getOrdersByUser(user);
+		Order ActualOrder = orderService.addOrder(order, user);
 		
-		assertEquals(ActualOrders, null);
+		assertEquals(ActualOrder, null);
 		
 		
 	}

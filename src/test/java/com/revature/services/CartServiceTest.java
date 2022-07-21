@@ -116,6 +116,4 @@ public class CartServiceTest {
 		assertEquals(null, cart.getGame());
 	}
 	
-
->>>>>>> 509e471c997acb1e0215246b560f2a0eeefa567d
 }
