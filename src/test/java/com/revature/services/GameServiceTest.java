@@ -19,45 +19,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.revature.models.Game;
 import com.revature.repositories.GameDAO;
 
-//@SpringBootTest
-//@ContextConfiguration(classes = GameGalaxyBackendApplication.class)
 @ExtendWith(MockitoExtension.class)
 public class GameServiceTest {
 
-//	@Autowired
 	@InjectMocks
 	private GameService gameService;
 
 	@Mock
 	private GameDAO mockGameDao;
-
-//	@Test
-//	public void testfindByName() {
-//
-//		Optional<List<Game>> games = gameService.getByName("Syberia");
-//		int gamesNumber = games.get().size();
-//		assertEquals(1, gamesNumber);
-//	}
-
-//	@Test
-//	public void testgetAllGames() {
-//
-//		List<Game> games = gameService.getAllGames();
-//		int gamesNumber = games.size();
-//		assertEquals(221, gamesNumber);
-//	}
-
-//	@Test
-//	public void testfindById() {
-//
-//		Optional<Game> game = gameService.getById(2);
-//		assertEquals("Evochron Mercenary", game.get().getName());
-//	}
-
-	/*
-	 * Search Games by name. Search Games by invalid name. Find All Games. Find Game
-	 * by valid ID. Find Game by invalid ID.
-	 */
 
 	@Test
 	public void testSearchGamesByValidName() {
@@ -68,6 +37,7 @@ public class GameServiceTest {
 		mockGameList.get().add(mockGame);
 
 		when(mockGameDao.findByName(testName)).thenReturn(mockGameList);
+
 		assertEquals(mockGameList, gameService.getByName(testName));
 	}
 
@@ -79,19 +49,15 @@ public class GameServiceTest {
 		Optional<List<Game>> mockGameList = Optional.of(testList);
 		Game mockGame = new Game();
 		mockGame.setName(testName);
-//		mockGameList.get().add(mockGame);
-//		testList.add(mockGame);
 
 		when(mockGameDao.findByName("Junk")).thenReturn(mockGameList);
-		Optional<List<Game>> result = gameService.getByName("Junk");
-		System.out.println(result == null);
-		System.out.println(result.toString());
+
 		assertTrue(gameService.getByName("Junk").get().isEmpty());
 	}
 
 	@Test
 	public void testFindAllGames() {
-		List<Game> mockGameList = new ArrayList();
+		List<Game> mockGameList = new ArrayList<Game>();
 		Game game1 = new Game();
 		game1.setGameID(1);
 		mockGameList.add(game1);
@@ -103,8 +69,8 @@ public class GameServiceTest {
 		mockGameList.add(game3);
 
 		when(mockGameDao.findAll()).thenReturn(mockGameList);
-		assertEquals(mockGameList.size(), gameService.getAllGames().size());
 
+		assertEquals(mockGameList.size(), gameService.getAllGames().size());
 	}
 
 	@Test
@@ -116,6 +82,7 @@ public class GameServiceTest {
 		mockGameList.get().add(mockGame.get());
 
 		when(mockGameDao.findById(mockId)).thenReturn(mockGame);
+
 		assertEquals(mockGame, gameService.getById(mockId));
 	}
 
