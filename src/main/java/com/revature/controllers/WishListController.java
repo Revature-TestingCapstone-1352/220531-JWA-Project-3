@@ -55,7 +55,7 @@ public class WishListController {
         	System.out.println("smth");
             User user = (User)session.getAttribute("user");
             List<Game> list = wishListService.getFavGames(user);
-            return ResponseEntity.status(200).body(list); 
+            return ResponseEntity.status(200).body(list);
         }
         return null;
     }
