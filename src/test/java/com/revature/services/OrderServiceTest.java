@@ -118,10 +118,6 @@ public class OrderServiceTest {
 		List<Order> orders = orderService.getOrdersByUser(user);
 		assertEquals(orders, null);
 	}
-<<<<<<< HEAD
-=======
-
->>>>>>> backend_team_2
 	@Test
 	public void testgetOrderByUser3() { //get all orders but the user doesn't exist
 		User user = MockUserService.getUserByUsername("LoginUserTest");
