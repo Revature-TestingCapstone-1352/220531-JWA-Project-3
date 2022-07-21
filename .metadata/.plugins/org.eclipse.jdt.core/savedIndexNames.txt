@@ -1,1 +1,0 @@
-INDEX VERSION 1.131+C:\Users\kacor\Documents\Revature\GitHub\220531-JWA-Project-3\.metadata\.plugins\org.eclipse.jdt.core
