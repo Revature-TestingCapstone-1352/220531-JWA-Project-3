@@ -27,6 +27,7 @@ import com.revature.repositories.WishListDAO;
 @ExtendWith(MockitoExtension.class)
 public class WishListServiceTest {
 
+	
     // Service to test
     @InjectMocks
     private static WishListService wishListService;
@@ -379,4 +380,5 @@ public class WishListServiceTest {
         // Assertions
         assertEquals(true, actualResult);
     }
+
 }
