@@ -346,7 +346,7 @@ public class WishListServiceTest {
         WishList expectedWishList1 = new WishList();
         WishList expectedWishList2 = new WishList();
         expectedWishList1.setGameID(gameId1);
-        expectedWishList2.setGameID(gameId1);
+        expectedWishList2.setGameID(gameId2);
         expectedWishListList.add(expectedWishList1);
         expectedWishListList.add(expectedWishList2);
         when(mockWishListDAO.findByUserId(inputUser.getId())).thenReturn(expectedWishListList); // Found wishlist list associated with user
