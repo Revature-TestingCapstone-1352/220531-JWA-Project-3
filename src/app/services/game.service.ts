@@ -14,7 +14,7 @@ export class GameService {
 
   favUrl: string = 'http://localhost:8087/wishlist/';
   // favUrl: string = 'http://34.224.99.20:8087/wishlist/';
-
+ 
   cartGames:Game[] = [];
 
   constructor(private http: HttpClient) { }
