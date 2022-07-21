@@ -67,7 +67,7 @@ public class OrderServiceTest {
 		
 		assertEquals(expectedOrders, actualOrders);
 	}
-	
+
 	@Test
 	public void testgetOrderById() { //get order with valid id
 		java.util.Date utilDate = new java.util.Date();
@@ -81,14 +81,14 @@ public class OrderServiceTest {
 		Optional<Order> ActualOrder = Optional.ofNullable(orderService.getByOrderId(0));
 		assertEquals(expectedOrder, ActualOrder);
 	}
-	
+
 	@Test
 	public void testgetOrderById2() { //get null with invalid id
 		int invalidId = -1;
 		Order actualOrder = orderService.getByOrderId(invalidId);
 		assertEquals(actualOrder, null);
 	}
-	
+
 	@Test
 	public void testgetOrderByUser() { //get all orders of a user
 		java.util.Date utilDate = new java.util.Date();
@@ -118,13 +118,17 @@ public class OrderServiceTest {
 		List<Order> orders = orderService.getOrdersByUser(user);
 		assertEquals(orders, null);
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> backend_team_2
 	@Test
 	public void testgetOrderByUser3() { //get all orders but the user doesn't exist
 		User user = MockUserService.getUserByUsername("LoginUserTest");
 		List<Order> orders = orderService.getOrdersByUser(user);
 		assertEquals(orders, null);
 	}
-	
+
 	@Test
 	public void testupdateOrder() {
 		java.util.Date utilDate = new java.util.Date();

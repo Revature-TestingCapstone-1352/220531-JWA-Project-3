@@ -7,7 +7,10 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+<<<<<<< HEAD
 import java.util.stream.Stream;
+=======
+>>>>>>> backend_team_2
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

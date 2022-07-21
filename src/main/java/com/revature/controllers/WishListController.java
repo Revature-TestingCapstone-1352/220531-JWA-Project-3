@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -48,7 +49,7 @@ public class WishListController {
         }
         return ResponseEntity.status(403).build();
     }
-    
+
     @GetMapping
     public ResponseEntity<List<Game>> getFavGames(HttpSession session){
         if(session.getAttribute("logged in")!=null && (Boolean)session.getAttribute("logged in")) {
