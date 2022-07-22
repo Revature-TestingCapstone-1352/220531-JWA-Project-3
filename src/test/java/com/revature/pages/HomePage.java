@@ -28,7 +28,9 @@ public class HomePage {
   private By addWishListButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[1]");
 	private By gamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
   private By searchBar = By.xpath("/html/body/app-root/app-store/nav/input");
-	public void clickAdd()
+  private By checkoutPage = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[4]/a");
+  
+  public void clickAdd()
 	{
 		driver.findElement(addWishListButton).click();
 	}
@@ -54,6 +56,9 @@ public class HomePage {
 		return searchBar;
 	}
 
+	public By getCheckoutPage() {
+		return checkoutPage;
+	}
 	
 
 }
