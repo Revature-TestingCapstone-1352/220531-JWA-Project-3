@@ -13,7 +13,7 @@ public class CartPageStepImpl {
 	//This is where the driver will execute these tests.
 	
 		private static WebDriver driver = GameRunner.driver;
-		private static CartPage cartPage = GameRunner.cartPage;
+//		private static CartPage cartPage = GameRunner.cartPage;
 		
 		
 		@Test
@@ -36,8 +36,8 @@ public class CartPageStepImpl {
 			int millies = 800;
 			driver.wait(millies);
 			
-			WebElement navBtn = cartPage.navCartButton;
-			navBtn.click();
+//			WebElement navBtn = cartPage.navCartButton;
+//			navBtn.click();
 //			driver.wait(millies)
 //			driver.wait(millies ,ExpectedConditions.elementToBeClickable(By.xpath(navCartButtonPath))).click();
 //			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(navCartButtonPath))).click();

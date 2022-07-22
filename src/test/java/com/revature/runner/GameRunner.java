@@ -5,6 +5,7 @@ import java.io.File;
 import java.time.Duration;
 
 import org.junit.Test;
+import org.junit.platform.suite.api.Suite;
 //import org.junit.jupiter.api.AfterAll;
 //import org.junit.jupiter.api.BeforeAll;
 //import org.junit.Test;
@@ -33,7 +34,7 @@ import io.cucumber.java.BeforeAll;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
-//@Suite
+@Suite
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/chromedriver.exe", glue = "com.revature.steps" )
 public class GameRunner {
@@ -45,7 +46,7 @@ public class GameRunner {
 
 	// we'll need a driver and an instance of our WikiPage POM
 	public static CartPage cartPage;
-	public static CartPageStepImpl cartPageSteps;
+//	public static CartPageStepImpl cartPageSteps;
 
 	public static CheckoutPage checkoutPage;
 	public static HomePage homePage;
@@ -58,19 +59,24 @@ public class GameRunner {
 		
 		driver = new ChromeDriver();
 		
-		//ADD YOUR WEB PAGES HERE
-		cartPage = new CartPage(driver);
+		
+		CheckoutPage checkoutPage;
+		HomePage homePage;
+		CartPage cartPage;
 
-		checkoutPage = new CheckoutPage(driver);
-		homePage = new HomePage(driver);
+//		//ADD YOUR WEB PAGES HERE
+//		cartPage = new CartPage(driver);
+//
+//		checkoutPage = new CheckoutPage(driver);
+//		homePage = new HomePage(driver);
 	}
 	
 	
 	
-	@Test
-	public void canClickCartButton() throws InterruptedException {
-		cartPageSteps.randoTesto();
-	}
+//	@Test
+//	public void canClickCartButton() throws InterruptedException {
+//		cartPageSteps.randoTesto();
+//	}
 	
 	
 	@AfterAll

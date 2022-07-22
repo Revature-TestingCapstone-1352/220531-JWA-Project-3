@@ -35,8 +35,14 @@ public class HomePage {
 	// ---------------------------------------------------------------------
 	private WebElement gamesDisplayed = driver.findElement(By.xpath("/html/body/app-root/app-store/div/div/div[2]/div"));
 	
+	public By searchBar = By.xpath("/html/body/app-root/app-store/nav/input");
+	
 	public boolean areDisplayed() {
 		return gamesDisplayed.isDisplayed();
+	}
+	
+	public void searchFor (String input) {
+		driver.findElement(searchBar).sendKeys(input);
 	}
 	
 	private List<WebElement> twentyFour = gamesDisplayed.findElements(By.xpath("./child::*"));
