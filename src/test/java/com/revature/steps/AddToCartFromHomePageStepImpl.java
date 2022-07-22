@@ -25,8 +25,8 @@ public class AddToCartFromHomePageStepImpl {
 	
 	@Given("the User is on the home page")
 	public void the_user_is_on_the_home_page() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get("http://localhost:4200");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
   	}
 	
 	@When("the User clicks on Add To Cart on a game")
