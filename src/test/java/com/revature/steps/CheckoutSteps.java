@@ -21,7 +21,7 @@ import io.cucumber.java.en.When;
 
 public class CheckoutSteps {
 	public static WebDriver driver = GameRunner.driver;
-//	public static CheckoutPage checkoutPage = GameRunner.checkoutPage;
+	public static CheckoutPage checkoutPage = GameRunner.checkoutPage;
 	
 	public void loginForCheckout(String username, String password) {
 		/*

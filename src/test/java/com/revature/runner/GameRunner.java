@@ -39,11 +39,11 @@ public class GameRunner {
 	public static  WebDriver driver;
 
 	public static LoginPage loginPage;
-  public static CheckoutPage checkoutPage;
+	public static CheckoutPage checkoutPage;
 	public static WishListPage wishListPage;
 	public static HomePage homePage;
 
-	public  WebDriver getDriver() 
+	public  WebDriver getDriver() //what is this for? when is it used?
   {
 		
 		File chrome = new File("src/test/resources/chromedriver.exe");

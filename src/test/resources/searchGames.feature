@@ -22,6 +22,7 @@ Feature: Search Games
   @tag1
   Scenario: Search for Good Game
     Given The user is on the homepage
+    And the games are displayed
     When I search for "Dawn of"
     Then The first game should be "Warhammer 40,000: Dawn of War II: Retribution"
 
