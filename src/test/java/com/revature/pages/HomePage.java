@@ -30,27 +30,26 @@ public class HomePage {
 	
 	
 	//TEMP until LoginPage is setup ----------------------------------------
-//	private By loginLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[6]/a");
-//	private By uNameField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[1]/input");
-//	private By pKeyField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[2]/input");
-//	private By loginButton = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[3]/button");
-//		
-//	public void loginForHomePage(String username, String password) {
-//		driver.findElement(loginLink).click();
-//		driver.findElement(uNameField).sendKeys(username);
-//		driver.findElement(pKeyField).sendKeys(password);
-//		driver.findElement(loginButton).click();
-//	}
+	private By loginLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[6]/a");
+	private By uNameField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[1]/input");
+	private By pKeyField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[2]/input");
+	private By loginButton = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[3]/button");
 	// ---------------------------------------------------------------------
-//	private WebElement gamesDisplayed = driver.findElement(By.xpath("/html/body/app-root/app-store/div/div/div[2]/div"));
-//	
-//	public boolean areDisplayed() {
-//		return gamesDisplayed.isDisplayed();
-//	}
-//	
-//	private List<WebElement> twentyFour = gamesDisplayed.findElements(By.xpath("./child::*"));
-//	
-//	public int areThereTwentyFour() {
-//		return twentyFour.size();
-//	}
+	private By gamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
+
+	public By getLoginLink() {
+		return loginLink;
+	}
+	public By getuNameField() {
+		return uNameField;
+	}
+	public By getpKeyField() {
+		return pKeyField;
+	}
+	public By getLoginButton() {
+		return loginButton;
+	}
+	public By getGamesDisplayed() {
+		return gamesDisplayed;
+	}
 }
