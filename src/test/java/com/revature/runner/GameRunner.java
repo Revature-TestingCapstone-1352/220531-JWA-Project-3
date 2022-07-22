@@ -1,41 +1,32 @@
 package com.revature.runner;
 
 import java.io.File;
-//import io.cucumber.junit.*;
 import java.time.Duration;
 
 import org.junit.Test;
-//import org.junit.jupiter.api.AfterAll;
-//import org.junit.jupiter.api.BeforeAll;
-//import org.junit.Test;
-//import org.junit.platform.suite.api.Suite;
-//import org.junit.jupiter.api.AfterAll;
-//import org.junit.jupiter.api.BeforeAll;
-//import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.suite.api.Suite;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.By;
-//import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.revature.pages.CartPage;
-//import com.revature.pages.WikiPage;
 import com.revature.steps.CartPageStepImpl;
 import com.revature.pages.CheckoutPage;
 import com.revature.pages.HomePage;
-
-//
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
-//@Suite
+//@CucumberOptions(features = "src/test/resources/chromedriver.exe", glue = "com.revature.steps" )
+@Suite
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources/chromedriver.exe", glue = "com.revature.steps" )
+//@CucumberOptions(features = "Features" )
+
+
+@CucumberOptions(features = "src/test/resources/",
+plugin = {"pretty", "html:target/cucumber/bagextra"},
+glue = "com.revature.steps",
+extraGlue = "io.tpd.springbootcucumber.bagcommons")
 public class GameRunner {
 	
 	
@@ -45,7 +36,7 @@ public class GameRunner {
 
 	// we'll need a driver and an instance of our WikiPage POM
 	public static CartPage cartPage;
-	public static CartPageStepImpl cartPageSteps;
+	
 
 	public static CheckoutPage checkoutPage;
 	public static HomePage homePage;
@@ -61,21 +52,23 @@ public class GameRunner {
 		//ADD YOUR WEB PAGES HERE
 		cartPage = new CartPage(driver);
 
-		checkoutPage = new CheckoutPage(driver);
-		homePage = new HomePage(driver);
+//		checkoutPage = new CheckoutPage(driver);
+//		homePage = new HomePage(driver);
+		
+		
+		// THIS WILL TAKE ALL TESTS TO THE HOME PAGE BEFORE ALL TESTS.
+	
+
+
+		
 	}
 	
-	
-	
-	@Test
-	public void canClickCartButton() throws InterruptedException {
-		cartPageSteps.randoTesto();
-	}
+
 	
 	
 	@AfterAll
 	public static void teardown() {
-		driver.quit();
+//		driver.quit();
 	}
 	
 	

@@ -38,6 +38,7 @@ public class CheckoutPage {
 	private String emptyCartText = driver.findElement(emptyCart).getText();
 	
 	public void addToCart() {
+		
 		driver.findElement(addToCart).click();
 		driver.findElement(viewCart).click();
 	}
