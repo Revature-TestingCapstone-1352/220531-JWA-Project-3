@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import com.revature.pages.HomePage;
 
 //
 import io.cucumber.java.AfterAll;
@@ -24,17 +25,14 @@ import io.cucumber.junit.CucumberOptions;
 @Suite
 public class GameRunner {
 	
-	
-	
-	// we'll need a driver and an instance of our WikiPage POM
-	public static  WebDriver driver;
-
+	public static WebDriver driver;
+	public static HomePage homePage;
 
 	public  WebDriver getDriver() {
 		
 		File chrome = new File("src/test/resources/chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver",chrome.getAbsolutePath());
-//		
+		
 		driver = new ChromeDriver();
 		return driver;
 	}
@@ -50,7 +48,7 @@ public class GameRunner {
 		driver = new ChromeDriver();
 		
 		//ADD YOUR WEB PAGES HERE
-
+		homePage = new HomePage(driver);
 	}
 	
 	@AfterAll
