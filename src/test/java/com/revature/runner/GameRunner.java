@@ -24,6 +24,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.revature.pages.CartPage;
 //import com.revature.pages.WikiPage;
 import com.revature.steps.CartPageStepImpl;
+import com.revature.pages.CheckoutPage;
+import com.revature.pages.HomePage;
 
 //
 import io.cucumber.java.AfterAll;
@@ -40,9 +42,13 @@ public class GameRunner {
 	
 	// we'll need a driver and an instance of our WikiPage POM
 	public static  WebDriver driver;
+
 	// we'll need a driver and an instance of our WikiPage POM
 	public static CartPage cartPage;
 	public static CartPageStepImpl cartPageSteps;
+
+	public static CheckoutPage checkoutPage;
+	public static HomePage homePage;
 
 
 	@BeforeAll //@BeforeClass is JUnit 4
@@ -55,6 +61,8 @@ public class GameRunner {
 		//ADD YOUR WEB PAGES HERE
 		cartPage = new CartPage(driver);
 
+		checkoutPage = new CheckoutPage(driver);
+		homePage = new HomePage(driver);
 	}
 	
 	
