@@ -24,10 +24,12 @@ public class CartPageStepImpl {
 		private static WebDriver driver = GameRunner.driver;
 		private static CartPage cartPage = GameRunner.cartPage;
 		
+
 		@Given("User is on the HomePage")
 		public void user_is_on_the_home_page() {
 			driver.get("http://localhost:4200");
 	        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
 		}
 		
 		@When("User clicks the Cart button")

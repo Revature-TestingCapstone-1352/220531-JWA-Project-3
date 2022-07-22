@@ -27,10 +27,12 @@ public class HomePage {
 	private By loginButton = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[3]/button");
   private By addWishListButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[1]");
 	private By gamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
-  public void clickAdd()
+  private By searchBar = By.xpath("/html/body/app-root/app-store/nav/input");
+	public void clickAdd()
 	{
 		driver.findElement(addWishListButton).click();
 	}
+
 
 	public By getLoginLink() {
 		return loginLink;
@@ -46,6 +48,12 @@ public class HomePage {
 	}
 	public By getGamesDisplayed() {
 		return gamesDisplayed;
+
 	}
+	public By getSearchBar() {
+		return searchBar;
+	}
+
+	
 
 }
