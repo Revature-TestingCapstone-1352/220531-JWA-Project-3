@@ -1,11 +1,20 @@
 package com.revature.steps;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.time.Duration;
+
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.revature.pages.CartPage;
 import com.revature.runner.GameRunner;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 
 
@@ -15,33 +24,26 @@ public class CartPageStepImpl {
 		private static WebDriver driver = GameRunner.driver;
 		private static CartPage cartPage = GameRunner.cartPage;
 		
-		
-		@Test
-		public void randoTesto() throws InterruptedException {
-//			File chrome = new File("src/test/resources/chromedriver.exe");
-//			System.setProperty("webdriver.chrome.driver",chrome.getAbsolutePath());
-			
-//			WebDriver driver = new ChromeDriver();
-			
-//			System.out.println("I ran here");
-			driver.get("http://localhost:4200/");
-			System.out.println("I instantiated");
-			
-			
-//			String navCartButtonPath = "/html/body/app-root/router-outlet/app-nav-bar/ul/li[3]/a";
-//			String shoppingCartEmptyMessagePath = "/html/body/app-root/app-cart/div[1]/h4";
-//			String addToCartButtonPath = "//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[2]";
-//			String cartTablePath ="/html/body/app-root/app-cart/div/div/div[2]/table/tbody";
-//					cartTblRemoveButtonsPath =
-			int millies = 800;
-			driver.wait(millies);
-			
-			WebElement navBtn = cartPage.navCartButton;
-			navBtn.click();
-//			driver.wait(millies)
-//			driver.wait(millies ,ExpectedConditions.elementToBeClickable(By.xpath(navCartButtonPath))).click();
-//			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(navCartButtonPath))).click();
-//			WebElement web = driver.findElement(By.xpath(navCartButtonPath));
-//			web.click();
+		@Given("User is on the HomePage")
+		public void user_is_on_the_home_page() {
+			driver.get("http://localhost:4200");
+	        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		}
+		
+		@When("User clicks the Cart button")
+		public void user_clicks_the_cart_button() {
+			// Write code here that turns the phrase above into concrete actions
+			 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+			 driver.findElement(cartPage.navCartButton).click();
+		}
+		
+		@Then("User should be on the Cart page")
+		public void user_should_be_on_the_cart_page() {
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+			String theURL = driver.getCurrentUrl();
+			assertEquals("http://localhost:4200/cart",theURL);
+		}
+		
+		
+
 }

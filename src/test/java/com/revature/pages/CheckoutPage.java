@@ -32,8 +32,11 @@ public class CheckoutPage {
 	private By emptyCart = By.xpath("/html/body/app-root/app-cart/div[1]/h4");
 	//private String emptyCartText = driver.findElement(emptyCart).getText();
 	
+
+
 	public By getThankYou() {
 		return thankYouOrder;
+
 	}
 	
 	public By getEmptyCart() {
