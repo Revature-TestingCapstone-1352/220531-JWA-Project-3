@@ -6,16 +6,9 @@ import java.time.Duration;
 
 import org.junit.Test;
 import org.junit.platform.suite.api.Suite;
-//import org.junit.jupiter.api.AfterAll;
-//import org.junit.jupiter.api.BeforeAll;
-//import org.junit.Test;
-//import org.junit.platform.suite.api.Suite;
-//import org.junit.jupiter.api.AfterAll;
-//import org.junit.jupiter.api.BeforeAll;
-//import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.junit.runner.RunWith;
-import org.openqa.selenium.By;
-//import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,8 +20,9 @@ import com.revature.pages.CartPage;
 import com.revature.steps.CartPageStepImpl;
 import com.revature.pages.CheckoutPage;
 import com.revature.pages.HomePage;
+import com.revature.pages.LoginPage;
+import com.revature.pages.WishListPage;
 
-//
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.junit.Cucumber;
@@ -44,13 +38,21 @@ public class GameRunner {
 	// we'll need a driver and an instance of our WikiPage POM
 	public static  WebDriver driver;
 
-	// we'll need a driver and an instance of our WikiPage POM
-	public static CartPage cartPage;
-//	public static CartPageStepImpl cartPageSteps;
-
-	public static CheckoutPage checkoutPage;
+	public static LoginPage loginPage;
+  public static CheckoutPage checkoutPage;
+	public static WishListPage wishListPage;
 	public static HomePage homePage;
 
+	public  WebDriver getDriver() 
+  {
+		
+		File chrome = new File("src/test/resources/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",chrome.getAbsolutePath());
+		driver = new ChromeDriver();
+		
+		
+		return driver;
+	}
 
 	@BeforeAll //@BeforeClass is JUnit 4
 	public static void setup() {
@@ -59,16 +61,16 @@ public class GameRunner {
 		
 		driver = new ChromeDriver();
 		
-		
-		CheckoutPage checkoutPage;
-		HomePage homePage;
-		CartPage cartPage;
 
-//		//ADD YOUR WEB PAGES HERE
-//		cartPage = new CartPage(driver);
-//
-//		checkoutPage = new CheckoutPage(driver);
-//		homePage = new HomePage(driver);
+		checkoutPage = new CheckoutPage(driver);
+		loginPage = new LoginPage(driver);
+		wishListPage = new WishListPage(driver);
+		homePage = new HomePage(driver);
+		
+		//ADD YOUR WEB PAGES HERE
+		driver.get("http://localhost:4200");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+
 	}
 	
 	
@@ -80,7 +82,8 @@ public class GameRunner {
 	
 	
 	@AfterAll
-	public static void teardown() {
+	public static void teardown() 
+  {
 		driver.quit();
 	}
 	
