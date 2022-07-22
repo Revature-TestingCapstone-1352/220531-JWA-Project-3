@@ -21,30 +21,36 @@ public class HomePage {
 	}
 	
 	public By firstAddToCartButton = By.xpath("//*[@id=\"games\"]/div/div[1]/div/div[4]/div/button[2]");
+	public By cartButton = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[3]/a");
+	
+	public CartPage goToCartPage() {
+		driver.findElement(cartButton).click();
+		return new CartPage(driver);
+	}
 	
 	
 	//TEMP until LoginPage is setup ----------------------------------------
-	private By loginLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[6]/a");
-	private By uNameField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[1]/input");
-	private By pKeyField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[2]/input");
-	private By loginButton = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[3]/button");
-		
-	public void loginForHomePage(String username, String password) {
-		driver.findElement(loginLink).click();
-		driver.findElement(uNameField).sendKeys(username);
-		driver.findElement(pKeyField).sendKeys(password);
-		driver.findElement(loginButton).click();
-	}
+//	private By loginLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[6]/a");
+//	private By uNameField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[1]/input");
+//	private By pKeyField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[2]/input");
+//	private By loginButton = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[3]/button");
+//		
+//	public void loginForHomePage(String username, String password) {
+//		driver.findElement(loginLink).click();
+//		driver.findElement(uNameField).sendKeys(username);
+//		driver.findElement(pKeyField).sendKeys(password);
+//		driver.findElement(loginButton).click();
+//	}
 	// ---------------------------------------------------------------------
-	private WebElement gamesDisplayed = driver.findElement(By.xpath("/html/body/app-root/app-store/div/div/div[2]/div"));
-	
-	public boolean areDisplayed() {
-		return gamesDisplayed.isDisplayed();
-	}
-	
-	private List<WebElement> twentyFour = gamesDisplayed.findElements(By.xpath("./child::*"));
-	
-	public int areThereTwentyFour() {
-		return twentyFour.size();
-	}
+//	private WebElement gamesDisplayed = driver.findElement(By.xpath("/html/body/app-root/app-store/div/div/div[2]/div"));
+//	
+//	public boolean areDisplayed() {
+//		return gamesDisplayed.isDisplayed();
+//	}
+//	
+//	private List<WebElement> twentyFour = gamesDisplayed.findElements(By.xpath("./child::*"));
+//	
+//	public int areThereTwentyFour() {
+//		return twentyFour.size();
+//	}
 }
