@@ -12,6 +12,8 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import com.revature.pages.LoginPage;
+import com.revature.pages.WishListPage;
 
 //
 import io.cucumber.java.AfterAll;
@@ -28,6 +30,8 @@ public class GameRunner {
 	
 	// we'll need a driver and an instance of our WikiPage POM
 	public static  WebDriver driver;
+	public static LoginPage loginPage;
+	public static WishListPage wishListPage;
 
 
 	public  WebDriver getDriver() {
@@ -36,6 +40,8 @@ public class GameRunner {
 		System.setProperty("webdriver.chrome.driver",chrome.getAbsolutePath());
 //		
 		driver = new ChromeDriver();
+		
+		
 		return driver;
 	}
 
@@ -48,6 +54,9 @@ public class GameRunner {
 		System.setProperty("webdriver.chrome.driver",chrome.getAbsolutePath());
 		
 		driver = new ChromeDriver();
+		
+		loginPage = new LoginPage(driver);
+		wishListPage = new WishListPage(driver);
 		
 		//ADD YOUR WEB PAGES HERE
 
