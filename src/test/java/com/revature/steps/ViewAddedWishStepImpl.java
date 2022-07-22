@@ -35,13 +35,15 @@ public class ViewAddedWishStepImpl
 	@When("they type in a valid {string} and {string}")
 	public void they_type_in_a_valid_and(String username, String Password)
 	{
+		homePage.goToLogin();
 		loginPage.loginValidUser(username, Password);
 	}
 	
 	@When("they go to the Home Page they should be able to click add to wishlist on an item")
 	public void they_go_to_the_home_page_they_should_be_able_to_click_add_to_wishlist_on_an_item()
 	{
-		homePage.clickAdd();
+		homePage.addWish();
+		homePage.goToWish();
 	}
 	
 	@Then("view that item on the wishlist page")
