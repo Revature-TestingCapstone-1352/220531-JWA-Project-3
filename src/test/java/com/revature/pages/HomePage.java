@@ -20,7 +20,7 @@ public class HomePage {
 		//PageFactory.initElements(driver, this);
 	}
 	
-	//TEMP until LoginPage is setup ----------------------------------------
+	//TEMP until LoginPage is setup 
 	private By loginLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[6]/a");
 	private By uNameField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[1]/input");
 	private By pKeyField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[2]/input");
