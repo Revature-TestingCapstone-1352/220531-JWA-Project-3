@@ -21,12 +21,6 @@ public class CheckoutPage {
 	private By loginButton = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[3]/button");
 	
 	
-	public void loginForCheckout(String username, String password) {
-		driver.findElement(loginLink).click();
-		driver.findElement(uNameField).sendKeys(username);
-		driver.findElement(pKeyField).sendKeys(password);
-		driver.findElement(loginButton).click();
-	}
 	// ---------------------------------------------------------------------
 	
 	private By addToCart = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div/div[1]/div/div[4]/div/button[2]");
