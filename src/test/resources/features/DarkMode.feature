@@ -7,6 +7,5 @@ Feature: Dark Mode
 
   Scenario: Light mode turns background light
     Given that a user is on the HomePage and background is dark
-    When the User clicks the darkLightButton
+    When the User clicks the darkLightButton again
     Then the HomePage background color will change to light
-
