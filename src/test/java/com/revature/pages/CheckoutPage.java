@@ -20,12 +20,7 @@ public class CheckoutPage {
 	private By pKeyField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[2]/input");
 	private By loginButton = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[3]/button");
 	
-	public void loginForCheckout(String username, String password) {
-		driver.findElement(loginLink).click();
-		driver.findElement(uNameField).sendKeys(username);
-		driver.findElement(pKeyField).sendKeys(password);
-		driver.findElement(loginButton).click();
-	}
+	
 	// ---------------------------------------------------------------------
 	
 	private By addToCart = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div/div[1]/div/div[4]/div/button[2]");
@@ -33,30 +28,50 @@ public class CheckoutPage {
 	private By proceedToCheckout = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/div/button");
 	private By orderButton = By.id("btnOrder");
 	private By thankYouOrder = By.xpath("/html/body/app-root/app-checkout/div/h4");
-	private String thankYouText = driver.findElement(thankYouOrder).getText();
+	//private String thankYouText = driver.findElement(thankYouOrder).getText();
 	private By emptyCart = By.xpath("/html/body/app-root/app-cart/div[1]/h4");
-	private String emptyCartText = driver.findElement(emptyCart).getText();
+	//private String emptyCartText = driver.findElement(emptyCart).getText();
 	
-	public void addToCart() {
-		
-		driver.findElement(addToCart).click();
-		driver.findElement(viewCart).click();
+
+
+	public By getThankYou() {
+		return thankYouOrder;
+
 	}
 	
-	public void viewCart() {
-		driver.findElement(viewCart).click();
+	public By getEmptyCart() {
+		return emptyCart;
+	}
+
+	public By getLoginLink() {
+		return loginLink;
+	}
+
+	public By getuNameField() {
+		return uNameField;
+	}
+
+	public By getpKeyField() {
+		return pKeyField;
+	}
+
+	public By getLoginButton() {
+		return loginButton;
+	}
+
+	public By getViewCart() {
+		return viewCart;
 	}
 	
-	public void proceedToCheckout() {
-		driver.findElement(proceedToCheckout).click();
-		driver.findElement(orderButton).click();
+	public By getAddToCart() {
+		return addToCart;
 	}
-	
-	public String successfulOrderText() {
-		return thankYouText;
+
+	public By getProceedToCheckout() {
+		return proceedToCheckout;
 	}
-	
-	public String emptyCartString() {
-		return emptyCartText;
+
+	public By getOrderButton() {
+		return orderButton;
 	}
 }

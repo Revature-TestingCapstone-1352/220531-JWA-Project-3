@@ -3,6 +3,7 @@ package com.revature.steps;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -23,19 +24,36 @@ public class ProductDisplaySteps {
 	public static WebDriver driver = GameRunner.driver;
 	public static HomePage homePage = GameRunner.homePage;
 	
+	public void loginForHomePage(String username, String password) {
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(homePage.getLoginLink()));
+		driver.findElement(homePage.getLoginLink()).click();
+		new WebDriverWait(driver, Duration.ofSeconds(3));
+		driver.findElement(homePage.getuNameField()).sendKeys(username);
+		new WebDriverWait(driver, Duration.ofSeconds(3));
+		driver.findElement(homePage.getpKeyField()).sendKeys(password);
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(homePage.getLoginButton()));
+		driver.findElement(homePage.getLoginButton()).click();
+	}
+	
 	@Given("a User is on the Store Page")
 	public void a_user_is_on_the_store_page() {
-	    homePage.loginForHomePage("joshua_test", "test_joshua");
+		driver.get("http://localhost:4200");
+		new WebDriverWait(driver, Duration.ofSeconds(3));
+		loginForHomePage("joshua_test", "test_joshua");
 	}
 
 	@When("the games are displayed")
 	public void the_games_are_displayed() {
-	    assertEquals(homePage.areDisplayed(), true);
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(homePage.getGamesDisplayed()));
+	    WebElement isDisplayedPre = driver.findElement(homePage.getGamesDisplayed());
+	    boolean isDisplayed = isDisplayedPre.isDisplayed();
+		assertEquals(isDisplayed, true);
 	}
 
 	@Then("there should be a maximum of twenty-four games displayed per page")
 	public void maximum_of_twentyfour_games() {
-	    assertEquals(homePage.areThereTwentyFour(), 24);
+		List<WebElement> twentyFour = driver.findElement(homePage.getGamesDisplayed()).findElements(By.xpath("./child::*"));
+		assertEquals(twentyFour.size(), 25);
 	}
 
 	@Given("a User is on the Store Page again")

@@ -39,7 +39,7 @@ public class CartPage {
 	
 	public void loginThenNavigateToCart() {
 		
-		hp.loginForHomePage("joshua_test", "test_joshua");
+//		hp.loginForHomePage("joshua_test", "test_joshua");
 		driver.findElement(navCartButton).click();
 	}
 	
