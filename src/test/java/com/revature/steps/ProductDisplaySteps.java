@@ -21,24 +21,21 @@ import io.cucumber.java.en.When;
 
 public class ProductDisplaySteps {
 	public static WebDriver driver = GameRunner.driver;
-	public static HomePage checkoutPage = GameRunner.homePage;
+	public static HomePage homePage = GameRunner.homePage;
 	
 	@Given("a User is on the Store Page")
 	public void a_user_is_on_the_store_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    homePage.loginForHomePage("joshua_test", "test_joshua");
 	}
 
 	@When("the games are displayed")
 	public void the_games_are_displayed() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assertEquals(homePage.areDisplayed(), true);
 	}
 
 	@Then("there should be a maximum of twenty-four games displayed per page")
 	public void maximum_of_twentyfour_games() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assertEquals(homePage.areThereTwentyFour(), 24);
 	}
 
 	@Given("a User is on the Store Page again")
