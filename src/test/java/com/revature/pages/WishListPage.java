@@ -1,6 +1,10 @@
 package com.revature.pages;
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WishListPage 
 {
@@ -19,6 +23,8 @@ public class WishListPage
 	
 	public String findGameName()
 	{
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(driver.findElement(gameNameBy)));
+		
 		return driver.findElement(gameNameBy).getText();
 	}
 

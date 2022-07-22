@@ -2,6 +2,7 @@ package com.revature.runner;
 
 import java.io.File;
 //import io.cucumber.junit.*;
+import java.time.Duration;
 
 import org.junit.platform.suite.api.Suite;
 //import org.junit.jupiter.api.AfterAll;
@@ -12,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import com.revature.pages.HomePage;
 import com.revature.pages.LoginPage;
 import com.revature.pages.WishListPage;
 
@@ -32,6 +34,7 @@ public class GameRunner {
 	public static  WebDriver driver;
 	public static LoginPage loginPage;
 	public static WishListPage wishListPage;
+	public static HomePage homePage;
 
 
 	public  WebDriver getDriver() {
@@ -57,8 +60,12 @@ public class GameRunner {
 		
 		loginPage = new LoginPage(driver);
 		wishListPage = new WishListPage(driver);
+		homePage = new HomePage(driver);
 		
 		//ADD YOUR WEB PAGES HERE
+		driver.get("http://localhost:4200");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+
 
 	}
 	
