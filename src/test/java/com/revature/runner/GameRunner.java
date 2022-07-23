@@ -12,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import com.revature.pages.CheckoutPage;
 import com.revature.pages.HomePage;
 import com.revature.pages.LoginPage;
+import com.revature.pages.UserInfoPage;
 import com.revature.pages.WishListPage;
 
 import io.cucumber.java.AfterAll;
@@ -32,6 +33,11 @@ public class GameRunner {
   public static CheckoutPage checkoutPage;
 	public static WishListPage wishListPage;
 	public static HomePage homePage;
+	
+	// khellil code
+	public static UserInfoPage userInfoPage;
+	
+	// ==========
 
 	public  WebDriver getDriver() 
   {
@@ -58,6 +64,7 @@ public class GameRunner {
 		loginPage = new LoginPage(driver);
 		wishListPage = new WishListPage(driver);
 		homePage = new HomePage(driver);
+		userInfoPage = new UserInfoPage(driver);
 		
 		//ADD YOUR WEB PAGES HERE
 		driver.get("http://localhost:4200");
