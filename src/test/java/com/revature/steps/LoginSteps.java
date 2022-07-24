@@ -74,8 +74,7 @@ public class LoginSteps {
 
 	@When("a user clicks the logout button")
 	public void a_user_clicks_the_logout_button() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    loginPage.logout();
 	}
 
 	@When("a user goes to the cart page")
