@@ -61,15 +61,15 @@ public class CheckoutSteps {
 	@Given("that a User has an Item in their Cart and is viewing their Cart")
 	public void that_a_user_has_an_item_in_their_cart_and_is_viewing_their_cart() {
 	    driver.get("http://localhost:4200");
-	    new WebDriverWait(driver, Duration.ofSeconds(3));
+	    new WebDriverWait(driver, Duration.ofSeconds(5));
 		loginForCheckout("joshua_test", "test_joshua");
-		new WebDriverWait(driver, Duration.ofSeconds(3));
+		new WebDriverWait(driver, Duration.ofSeconds(5));
 		addToCart();
 	}
 
 	@When("the User clicks the Proceed to Checkout button, then the Place Order button")
 	public void the_user_clicks_the_proceed_to_checkout_button_then_the_place_order_button() {
-		new WebDriverWait(driver, Duration.ofSeconds(3));
+		new WebDriverWait(driver, Duration.ofSeconds(5));
 	    proceedToCheckout();
 	}
 
@@ -83,15 +83,15 @@ public class CheckoutSteps {
 	@Given("that a User has an empty Cart and is viewing their Cart")
 	public void that_a_user_has_an_empty_cart_and_is_viewing_their_cart() {
 		driver.get("http://localhost:4200");
-		new WebDriverWait(driver, Duration.ofSeconds(3));
+		new WebDriverWait(driver, Duration.ofSeconds(5));
 		loginForCheckout("joshua_test", "test_joshua");
-		new WebDriverWait(driver, Duration.ofSeconds(3));
+		new WebDriverWait(driver, Duration.ofSeconds(5));
 		viewCart();
 	}
 
 	@When("the User tries to Checkout")
 	public void the_user_tries_to_checkout() {
-	    new WebDriverWait(driver, Duration.ofSeconds(3));
+	    new WebDriverWait(driver, Duration.ofSeconds(5));
 	}
 
 	@Then("the Cart Page will display that the Cart is empty and the Proceed to Checkout will not be displayed")
