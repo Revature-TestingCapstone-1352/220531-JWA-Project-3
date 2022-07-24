@@ -1,12 +1,19 @@
 package com.revature.steps;
 
+import static org.junit.Assert.*;
+
+import com.revature.pages.LoginPage;
+import com.revature.pages.RegisterPage;
+import com.revature.runner.GameRunner;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class LoginSteps {
 
-	
+	private LoginPage loginPage = GameRunner.loginPage;
+	RegisterPage registerPage = null;
 	
 	@Given("the user is on the login page")
 	public void the_user_is_on_the_login_page() {
@@ -14,14 +21,8 @@ public class LoginSteps {
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@When("the user enters valid credentials")
+	@When("the user enters valid credentials to log in")
 	public void the_user_enters_valid_credentials() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@When("the user clicks the log in button")
-	public void the_user_clicks_the_log_in_button() {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
@@ -34,32 +35,30 @@ public class LoginSteps {
 
 	@Then("the user is logged in")
 	public void the_user_is_logged_in() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assertTrue(loginPage.isLoggedIn());
 	}
 
-	@When("the user enters invalid credentials")
+	@When("the user enters invalid credentials to log in")
 	public void the_user_enters_invalid_credentials() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		registerPage = loginPage.loginInvalidUser("TestNotAUser", "TestNotAPass");
 	}
 
 	@Then("the user is redirected to the registration page")
 	public void the_user_is_redirected_to_the_registration_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assertTrue(registerPage.isOnThePage());
 	}
 
 	@Then("the user is not logged in")
 	public void the_user_is_not_logged_in() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assertFalse(loginPage.isLoggedIn());
+	    
 	}
 
 	@Given("a user is logged in")
 	public void a_user_is_logged_in() {
 	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    //assertTrue(loginPage.isLoggedIn());
+		throw new io.cucumber.java.PendingException();
 	}
 
 	@Given("a user has added a game to their cart")
