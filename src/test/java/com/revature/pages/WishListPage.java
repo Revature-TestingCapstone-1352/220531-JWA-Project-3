@@ -16,16 +16,41 @@ public class WishListPage
 	
 	private By addToCartBy = By.xpath("//*[@id=\"games\"]/div/div/div/div[4]/div/button[2]/span");
 	
+	private By loginLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[6]/a");
+	private By uNameField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[1]/input");
+	private By pKeyField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[2]/input");
+	private By loginButton = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[3]/button");
+	
 	public WishListPage(WebDriver driver)
 	{
 		this.driver = driver;
 	}
 	
-	public String findGameName()
-	{
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(driver.findElement(gameNameBy)));
-		
-		return driver.findElement(gameNameBy).getText();
+	public By getLoginLink() {
+		return loginLink;
 	}
 
+	public By getuNameField() {
+		return uNameField;
+	}
+
+	public By getpKeyField() {
+		return pKeyField;
+	}
+
+	public By getLoginButton() {
+		return loginButton;
+	}
+
+	public By getGameNameBy() {
+		return gameNameBy;
+	}
+
+	public By getRemoveFromBy() {
+		return removeFromBy;
+	}
+
+	public By getAddToCartBy() {
+		return addToCartBy;
+	}
 }
