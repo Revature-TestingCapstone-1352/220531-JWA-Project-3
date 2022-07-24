@@ -20,14 +20,16 @@ Feature: Login
 
   @SuccessfulLogin
   Scenario: User can log in
-	 Given the user is on the login page
+	 Given the user is already logged out
+	 And the user is on the login page
 	 When the user enters valid credentials to log in
 	 Then the user is redirected to the store page
 	 And the user is logged in
   
   @UnsuccessfulLogin
   Scenario: User cannot log in without creds
-	 Given the user is on the login page
+	 Given the user is already logged out
+	 And the user is on the login page
 	 When the user enters invalid credentials to log in
 	 Then the user is redirected to the registration page
 	 And the user is not logged in

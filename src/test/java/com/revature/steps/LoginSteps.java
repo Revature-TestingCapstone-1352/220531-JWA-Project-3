@@ -2,6 +2,7 @@ package com.revature.steps;
 
 import static org.junit.Assert.*;
 
+import com.revature.pages.HomePage;
 import com.revature.pages.LoginPage;
 import com.revature.pages.RegisterPage;
 import com.revature.runner.GameRunner;
@@ -13,24 +14,22 @@ import io.cucumber.java.en.When;
 public class LoginSteps {
 
 	private LoginPage loginPage = GameRunner.loginPage;
-	RegisterPage registerPage = null;
+	private RegisterPage registerPage = null;
+	private HomePage homePage = null;
 	
 	@Given("the user is on the login page")
 	public void the_user_is_on_the_login_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    loginPage.toLoginPage();
 	}
 
 	@When("the user enters valid credentials to log in")
 	public void the_user_enters_valid_credentials() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    homePage = loginPage.loginValidUser("TestUser", "TestPass");
 	}
 
 	@Then("the user is redirected to the store page")
 	public void the_user_is_redirected_to_the_store_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assertTrue(homePage.onHomePage());
 	}
 
 	@Then("the user is logged in")
@@ -51,12 +50,12 @@ public class LoginSteps {
 	@Then("the user is not logged in")
 	public void the_user_is_not_logged_in() {
 		assertFalse(loginPage.isLoggedIn());
-	    
 	}
 
 	@Given("a user is logged in")
 	public void a_user_is_logged_in() {
-	    // Write code here that turns the phrase above into concrete actions
+	    
+		// Write code here that turns the phrase above into concrete actions
 	    //assertTrue(loginPage.isLoggedIn());
 		throw new io.cucumber.java.PendingException();
 	}
@@ -131,6 +130,11 @@ public class LoginSteps {
 	public void the_user_information_page_should_be_empty() {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
+	}
+	
+	@Given("the user is already logged out")
+	public void the_user_is_already_logged_out() {
+	    loginPage.initialLogout();
 	}
 	
 	
