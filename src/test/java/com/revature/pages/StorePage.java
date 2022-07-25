@@ -1,6 +1,9 @@
 package com.revature.pages;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
@@ -21,6 +24,9 @@ public class StorePage {
 	private By verypositive = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[5]");
 	private By overwhelminglypositive = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[6]");
 	
+	private By gamesdiv = By.xpath("/html/body/app-root/app-store/div/div/div[2]");
+	
+	
 	private By negativebox = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[1]/label/span");
 	private By mixedbox = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[2]/label/span");
 	private By positivebox = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[3]/label/span");
@@ -30,7 +36,17 @@ public class StorePage {
 	
 	
 	public void clickAdd()  {	
+	driver.findElement(negativebox).click();
+	driver.findElement(mixedbox).click();
+	driver.findElement(positivebox).click();
+	driver.findElement(mostlypositivebox).click();
+	driver.findElement(verypositivebox).click();
+	driver.findElement(overwhelminglypositivebox).click();
+	}
 	
+	public int checkinggamesdivafteruncheckedboxes() {
+		List<WebElement> gamesdivunchecked = driver.findElements(gamesdiv);
+		return gamesdivunchecked.size();
 	}
 	
 	public void clickNegativeBox() {

@@ -18,22 +18,20 @@ public class FilterRatingImpl {
 	private static WebDriver driver = GameRunner.driver;
 	private static StorePage storePage = GameRunner.storePage;
 	
-	@Given("User is on the HomePage")
-	public void user_is_on_the_home_page() {
-		driver.get("http://localhost:4200");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-	}
+//	@Given("User is on the HomePage")
+//	public void user_is_on_the_home_page() {
+//		driver.get("http://localhost:4200");
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+//	}
 	
 	@When("User clicks each rating")
 	public void user_clicks_each_rating() {
-		driver.get("http://localhost:4200");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		storePage.clickAdd();
 	}
 	
-	@Then("User should be able to view games filtered by rating")
+	@Then("User should be able to view games that have no rating")
 	public void user_should_be_able_to_view_games_filtered_by_rating() {
-		driver.get("http://localhost:4200");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		
 	}
 	
 	@When("User selects Mostly Negative filter")

@@ -1,0 +1,257 @@
+body {
+
+  background-color: #eee;
+}
+
+#search-criteria {
+  color: #333 !important;
+  text-align: center !important;
+}
+
+.card-img-top{
+  text-align: center;
+  font-size: larger;
+  font-weight: bold;
+
+}
+
+
+.image-thumb{
+  text-align: center;
+  width:90px;
+  height: auto;
+}
+
+.card-body{
+  text-align: center;
+}
+
+.form-control{
+  width: 96%;
+  margin-left: 15px;
+
+}
+
+
+.card {
+
+  /*background-color: #fff;*/
+  background-color: rgb(235, 240, 250);
+  border: none;
+  border-radius: 25px;
+  width: 285px; /*190*/
+  height: 530px;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.image-container {
+  text-align: center;
+  position: relative;
+}
+
+.thumbnail-image {
+  border-radius: 10px !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 270px;
+  height: 90px;
+}
+
+
+
+.product-info {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.price{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+.new-price {
+  font-size: 20px;
+  font-weight: bold;
+  color: blue;
+
+}
+
+#basicPaginate {
+  color: #eee !important;
+}
+
+
+:host /deep/ .ngx-pagination {
+  color: #333;
+}
+
+:host /deep/ .ngx-pagination .disabled{
+  color: #333;
+}
+
+
+
+:host /deep/ .ngx-pagination .dark-theme {
+  color:white;
+}
+
+.titles{
+  font-size: 15px;
+}
+
+.btn-primary{
+  background-color: rgb(25, 129, 239);
+  border: 1px solid rgb(0, 0, 0);
+  text-align: center;
+  padding: 3px 10px 10px 10px;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: small;
+
+}
+
+
+
+
+
+#games{
+  width: 84%;
+  float:right;
+}
+
+
+/*filter*/
+
+#filterbar {
+  width: 15%;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  float: left;
+}
+
+#filterbar input[type="radio"] {
+  visibility: hidden
+}
+
+#filterbar input[type='radio']:checked {
+  background-color: #16c79a;
+  border: none
+}
+
+#filterbar .btn.btn-success {
+  background-color: #ddd;
+  color: #333;
+  border: none;
+}
+
+#filterbar .btn.btn-success:hover {
+  background-color: #aff1e1;
+  color: #444
+}
+
+#filterbar .btn-success:not(:disabled):not(.disabled).active,
+#filterbar .btn-success:not(:disabled):not(.disabled):active {
+  background-color: #16c79a;
+  color: #fff
+}
+
+label {
+  cursor: pointer
+}
+
+.tick {
+  display: block;
+  position: relative;
+  padding-left: 23px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin: 0
+}
+
+.tick input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0
+}
+
+.check {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px
+}
+
+.tick:hover input~.check {
+  background-color: #f3f3f3
+}
+
+.tick input:checked~.check {
+  background-color: #ffffff
+}
+
+.check:after {
+  content: "";
+  position: absolute;
+  display: none
+}
+
+.tick input:checked~.check:after {
+  display: block;
+  transform: rotate(45deg) scale(1)
+}
+
+.tick .check:after {
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid rgb(0, 0, 0);
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg) scale(2)
+}
+
+.box {
+  padding: 10px;
+}
+
+.box-label {
+  color: #11698e;
+  font-size: 0.9rem;
+  font-weight: 800
+}
+
+#inner-box,
+#inner-box2 {
+  height: 250px;
+  overflow-y: scroll
+}
+
+#inner-box2 {
+  height: 180px
+}
+
+#inner-box::-webkit-scrollbar,
+#inner-box2::-webkit-scrollbar {
+  width: 6px
+}
+
+#inner-box::-webkit-scrollbar-track,
+#inner-box2::-webkit-scrollbar-track {
+  background-color: #ddd;
+  border-radius: 2px
+}
+
+#inner-box::-webkit-scrollbar-thumb,
+#inner-box2::-webkit-scrollbar-thumb {
+  background-color: #333;
+  border-radius: 2px
+}
