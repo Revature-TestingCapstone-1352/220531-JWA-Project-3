@@ -10,6 +10,7 @@ public class CartPage {
 	//ASSIGNING THE WEB DRIVER FOR THE CARTPAGE
 	private WebDriver driver;
 	private HomePage hp;
+	private LoginPage loginPage;
 	
 	// a constructor to create an instance of this Page, and also initialize the web elements on the page.
 	public CartPage(WebDriver driver) {
@@ -21,32 +22,35 @@ public class CartPage {
 	
 	// SETTING UP ALL THE ELEMENTS THAT WE ARE GOING TO BE USING
 	
-	//Navigation Buttons
-	public By navCartButton = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[3]/a");
+	
 	
 	
 	private By shoppingCartEmptyMessage = By.xpath("/html/body/app-root/app-cart/div[1]/h4");
 	private By addToCartButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[2]");
 	private By cartTable = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/table/tbody");
+	private By cartTableFirstItem = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/table/tbody/tr/td[2]/span[1]/b");
 	
-
-	
-	public void clickNavToCartButton() {
-		
-		driver.findElement(navCartButton).click();
+	public By getCartTable() {
+		return cartTable;
 	}
 	
+	public By getCartTableFirstItem() {
+		return cartTableFirstItem;
+	}
 	
 	public void loginThenNavigateToCart() {
+		driver.findElement(hp.getLoginLink()).click();
+		hp.getLoginLink();
 		
 //		hp.loginForHomePage("joshua_test", "test_joshua");
-		driver.findElement(navCartButton).click();
+//		driver.findElement(navCartButton).click();
 	}
 	
 	
-	public void navigateToHomePage() {
-		
+	public void moveToLogin() {
+		hp.navToLoginPage();
 	}
+	
 	
 //	public void noItemsInCartPage() {
 //		
