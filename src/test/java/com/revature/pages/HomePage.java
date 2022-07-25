@@ -32,6 +32,9 @@ public class HomePage {
 	private By gamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
 
   private By searchBar = By.xpath("/html/body/app-root/app-store/nav/input");
+  
+  	private By userInfoLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[7]/a");
+  
   private By checkoutPage = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[4]/a");
   	
 	//Navigation Buttons
@@ -80,6 +83,9 @@ public class HomePage {
 		driver.findElement(navCartButton).click();
 	}
 
+	public By getUserInfoLink() {
+		return userInfoLink;
+	}
 	public By getCheckoutPage() {
 		return checkoutPage;
 	}
