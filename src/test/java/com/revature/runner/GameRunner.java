@@ -61,13 +61,14 @@ public class GameRunner {
 		driver = new ChromeDriver();
 		
 
-
 		checkoutPage = new CheckoutPage(driver);
+		cartPage = new CartPage(driver);
 		loginPage = new LoginPage(driver);
 		wishListPage = new WishListPage(driver);
 		homePage = new HomePage(driver);
 		
-		//ADD YOUR WEB PAGES HERE
+		
+		
 		driver.get("http://localhost:4200");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
