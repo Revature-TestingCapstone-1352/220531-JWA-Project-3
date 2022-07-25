@@ -16,6 +16,7 @@ import com.revature.pages.CheckoutPage;
 import com.revature.pages.HomePage;
 
 import com.revature.pages.LoginPage;
+import com.revature.pages.StorePage;
 import com.revature.pages.WishListPage;
 
 
@@ -47,6 +48,7 @@ public class GameRunner {
   public static CheckoutPage checkoutPage;
 	public static WishListPage wishListPage;
 	public static HomePage homePage;
+	public static StorePage storePage;
 
 //	public  WebDriver getDriver(){
 //		
@@ -73,7 +75,7 @@ public class GameRunner {
 		loginPage = new LoginPage(driver);
 		wishListPage = new WishListPage(driver);
 		homePage = new HomePage(driver);
-		
+		storePage = new StorePage(driver);
 		//ADD YOUR WEB PAGES HERE
 		driver.get("http://localhost:4200");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
