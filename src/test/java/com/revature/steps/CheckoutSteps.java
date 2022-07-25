@@ -66,10 +66,8 @@ public class CheckoutSteps {
 
 	@Then("the Cart Page will display that the Cart is empty and the Proceed to Checkout will not be displayed")
 	public void the_cart_page_will_display_that_the_cart_is_empty_and_the_proceed_to_checkout_will_not_be_displayed() {
-		//new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(checkoutPage.getEmptyCart()));
+		String emptyCartText = checkoutPage.getEmptyCartText();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		String emptyCartText = driver.findElement(checkoutPage.getEmptyCart()).getText();
-		new WebDriverWait(driver, Duration.ofSeconds(5));
 		assertEquals(emptyCartText, "Your shopping cart is empty!");
 	}
 }
