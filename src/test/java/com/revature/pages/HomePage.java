@@ -27,14 +27,17 @@ public class HomePage {
   private By addWishListButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[1]");
 	private By gamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
 	
-// ==============	
-//	@FindBy(xpath  = "/html/body/app-root/router-outlet/app-nav-bar/ul/li[8]/a")
-//	public WebElement logoutLink;
+// ============== Khellil code	
 	public By logoutLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[8]/a");
 	public void getLogoutLink() {
 		driver.findElement(logoutLink).click();
 	}
+	public By userInfoLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[7]/a");
+	public void getUserInfoLink() {
+		driver.findElement(userInfoLink).click();
+	}
 //	 ==============
+	
   public void clickAdd()
 	{
 		driver.findElement(addWishListButton).click();

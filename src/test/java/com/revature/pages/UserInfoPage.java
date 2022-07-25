@@ -13,18 +13,27 @@ public class UserInfoPage {
 		PageFactory.initElements(driver, this);
 	}
 	 
-//	private By editUserDetailButton = By.xpath("//*[@id=\"userinfocard\"]/div/div[3]/button");
-	@FindBy(xpath  = "//*[@id=\"userinfocard\"]/div/div[3]/button") 
-	public WebElement editUserDetailButton;	
-//	public By geteditUserDetailButton() {
-//		return editUserDetailButton;
-//	}
-	@FindBy(xpath  = "//*[@id=\"changeemailcard\"]/div/div[1]")
+	@FindBy(xpath  = "//*[@id=\"changeemailcard\"]/div/div[1]/input")
 	public WebElement EnterNewEmail;
 	
-
+	public By editUserDetail = By.xpath("//*[@id=\"userinfocard\"]/div/div[3]/button");
+	public void getUserInfoLink() {
+		driver.findElement(editUserDetail).click();
+	}
+	public By editUserEmail = By.xpath("//*[@id=\"changeemailcard\"]/div/div[2]/button");
+	public void getUserNewEmailLink() {
+		driver.findElement(editUserEmail).click();
+	}	
 	
+	@FindBy(xpath  = "//*[@id=\"changepwdcard\"]/div/div[1]/input")
+	public WebElement EnterNewPassword;
+	@FindBy(xpath  = "//*[@id=\"changepwdcard\"]/div/div[2]/input")
+	public WebElement ConfirmNewPassword;
 	
-	
-	
+	public By editUserPassword = By.xpath("/html/body/app-root/app-user-information/div/div[3]/div/div/div/div/div[3]/button");
+	public void getUserNewPasswordLink() {
+		driver.findElement(editUserPassword).click();
+	}
+	@FindBy(xpath  = "//*[@id=\"changepwdcard\"]/div/label")
+	public WebElement passNotMatchDisplayed;
 }

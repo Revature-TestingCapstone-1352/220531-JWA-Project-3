@@ -33,10 +33,8 @@ public class GameRunner {
   public static CheckoutPage checkoutPage;
 	public static WishListPage wishListPage;
 	public static HomePage homePage;
-	
-	// khellil code
+// Khellil code
 	public static UserInfoPage userInfoPage;
-	
 	// ==========
 
 	public  WebDriver getDriver() 
@@ -57,7 +55,7 @@ public class GameRunner {
 	public static void setup() {
 		File chrome = new File("src/test/resources/chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver",chrome.getAbsolutePath());
-		
+		 
 		driver = new ChromeDriver();
 		
 		checkoutPage = new CheckoutPage(driver);
