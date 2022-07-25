@@ -16,6 +16,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class HomePage {
 	private WebDriver driver;
 	
+	private By addWishListButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[1]");
+	private By gamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
+	private By gamesDivBy = By.xpath("//*[@id=\"games\"]");
+	private By addCartButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[2]");
+	
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
 		// this next bit of code is working from the PageFactory
@@ -27,9 +32,6 @@ public class HomePage {
 	private By uNameField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[1]/input");
 	private By pKeyField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[2]/input");
 	private By loginButton = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[3]/button");
-	private By addWishListButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[1]");
-	private By gamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
-	private By gamesDivBy = By.xpath("//*[@id=\"games\"]");
   
 	public By getaddWishlistButton() {
 		return addWishListButton;
@@ -60,5 +62,15 @@ public class HomePage {
 		} catch(Exception e) {
 			return false;
 		}
+	}
+	
+	public void addItemToCart() {
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(addCartButton));
+		driver.findElement(addCartButton).click();
+	}
+	
+	public void addItemToWishlist() {
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(addWishListButton));
+		driver.findElement(addWishListButton).click();
 	}
 }

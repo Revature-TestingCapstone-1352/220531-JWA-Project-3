@@ -17,11 +17,11 @@ import io.cucumber.java.en.When;
 public class LoginSteps {
 
 	private LoginPage loginPage = GameRunner.loginPage;
-	private RegisterPage registerPage = null;
-	private HomePage homePage = null;
-	private CartPage cartPage = null;
-	private WishListPage wishlistPage = null;
-	private UserInfoPage userInfoPage = null;
+	private RegisterPage registerPage = GameRunner.registerPage;
+	private HomePage homePage = GameRunner.homePage;
+	private CartPage cartPage = GameRunner.cartPage;
+	private WishListPage wishlistPage = GameRunner.wishListPage;
+	private UserInfoPage userInfoPage = GameRunner.userInfoPage;
 	
 	@Given("the user is on the login page")
 	public void the_user_is_on_the_login_page() {
@@ -76,15 +76,12 @@ public class LoginSteps {
 	@Given("a user has added a game to their cart")
 	public void a_user_has_added_a_game_to_their_cart() {
 	    homePage = loginPage.toStorePage();
-		// Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    homePage.addItemToCart();
 	}
 
 	@Given("a user is on the cart page")
 	public void a_user_goes_to_the_cart_page() {
 	    cartPage = loginPage.toCartPage();
-		// Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
 	}
 
 	@When("a user clicks the logout button")
@@ -95,60 +92,46 @@ public class LoginSteps {
 	@When("a user goes to the cart page")
 	public void a_user_goes_to_the_cart_page1() {
 	    cartPage = loginPage.toCartPage();
-		// Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
 	}
 
 	@Then("the cart should be empty")
 	public void the_cart_should_be_empty() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assertTrue(cartPage.isCartEmpty());
 	}
 
 	@Given("a user has added a game to their wishlist")
 	public void a_user_has_added_a_game_to_their_wishlist() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		homePage.addItemToWishlist();
 	}
 
 	@Given("a user is on the wishlist page")
 	public void a_user_goes_to_the_wishlist_page() {
 	    loginPage.toWishlistPage();
-		// Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
 	}
 
 	@When("a user goes to the wishlist page")
 	public void a_user_goes_to_the_wishlist_page1() {
 	    loginPage.toWishlistPage();
-		// Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
 	}
 
 	@Then("the wishlist should be empty")
 	public void the_wishlist_should_be_empty() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assertTrue(wishlistPage.isWishlistEmpty());
 	}
 
 	@Given("a user is on the user information page")
 	public void a_user_goes_to_the_user_information_page() {
 	    userInfoPage = loginPage.toUserInfoPage();
-		// Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
 	}
 
 	@When("a user goes to the user information page")
 	public void a_user_goes_to_the_user_information_page1() {
 		userInfoPage = loginPage.toUserInfoPage();
-		// Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
 	}
 
 	@Then("the user information page should be empty")
 	public void the_user_information_page_should_be_empty() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assertTrue(userInfoPage.isUserPageEmpty());
 	}
 	
 	@Given("the user is already logged out")
