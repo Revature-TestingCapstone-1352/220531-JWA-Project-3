@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.revature.pages.HomePage;
+import com.revature.pages.LoginPage;
 import com.revature.pages.RegisterPage;
 import com.revature.runner.GameRunner;
 
@@ -22,10 +23,10 @@ public class RegisterSteps
 	private WebDriver driver = GameRunner.driver;
 	private HomePage homePage = GameRunner.homePage;
 	private RegisterPage registerPage = GameRunner.registerPage;
+	private LoginPage loginPage = GameRunner.loginPage;
 	
 	public void enterInformation(String username, String password, String email)
 	{
-		driver.get("http://localhost:4200");
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(registerPage.getUserName()));
 		driver.findElement(registerPage.getUserName()).sendKeys(username);
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(registerPage.getPassword()));
@@ -39,6 +40,7 @@ public class RegisterSteps
 	public void clickRegister()
 	{
 //		driver.get("http://localhost:4200");
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(homePage.getRegisterLink()));
 		driver.findElement(homePage.getRegisterLink()).click();
 	}
 	
@@ -48,6 +50,7 @@ public class RegisterSteps
 		driver.get("http://localhost:4200");
 		new WebDriverWait(driver, Duration.ofSeconds(3));
 		clickRegister();
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(registerPage.getRegisterButton()));
 	}
 	
 	@When("a guest enters a {string} and {string} and {string}")
@@ -63,9 +66,9 @@ public class RegisterSteps
 	{
 		new WebDriverWait(driver, Duration.ofSeconds(5));
 		
-		WebElement searchBar = driver.findElement(homePage.getSearchField());
+		WebElement userInput = driver.findElement(loginPage.getUsernameBy());
 		
-		boolean isSearchBar = searchBar.isDisplayed();
+		boolean isSearchBar = userInput.isDisplayed();
 		
 		assertEquals(isSearchBar,true);
 	}
