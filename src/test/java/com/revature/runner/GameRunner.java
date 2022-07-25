@@ -26,12 +26,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(features = "src/test/resources/chromedriver.exe", glue = "com.revature.steps" )
 public class GameRunner {
 	
-	
-	
-	// we'll need a driver and an instance of our WikiPage POM
 	public static  WebDriver driver;
-
-
 
 	// we'll need a driver and an instance of our WikiPage POM
 	public static CartPage cartPage;
@@ -53,7 +48,7 @@ public class GameRunner {
 	}
 
 
-	@BeforeAll //@BeforeClass is JUnit 4
+	@BeforeAll
 	public static void setup() {
 		File chrome = new File("src/test/resources/chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver",chrome.getAbsolutePath());
@@ -65,6 +60,7 @@ public class GameRunner {
 		cartPage = new CartPage(driver);
 		loginPage = new LoginPage(driver);
 		wishListPage = new WishListPage(driver);
+		cartPage = new CartPage(driver);
 		homePage = new HomePage(driver);
 		
 		
@@ -73,13 +69,9 @@ public class GameRunner {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
 	}
-		
+	
 	@AfterAll
-	public static void teardown() 
-  {
+	public static void teardown() {
 		driver.quit();
-
 	}
-	
-	
 }

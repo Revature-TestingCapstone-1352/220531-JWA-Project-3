@@ -28,11 +28,15 @@ public class CartPage {
 	private By shoppingCartEmptyMessage = By.xpath("/html/body/app-root/app-cart/div[1]/h4");
 	private By addToCartButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[2]");
 	private By cartTable = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/table/tbody");
+	private By cartTableFirstItem = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/table/tbody/tr/td[2]/span[1]/b");
 	
-
+	public By getCartTable() {
+		return cartTable;
+	}
 	
-	
-	
+	public By getCartTableFirstItem() {
+		return cartTableFirstItem;
+	}
 	
 	public void loginThenNavigateToCart() {
 		driver.findElement(hp.getLoginLink()).click();
