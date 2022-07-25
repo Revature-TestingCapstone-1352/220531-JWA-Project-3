@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class RegisterPage 
 {
 	
-private WebDriver driver;
+	private WebDriver driver;
 	
 	public RegisterPage(WebDriver driver) 
 	{
@@ -42,16 +42,4 @@ private WebDriver driver;
 		return registerButton;
 	}
 	
-	public void enterInformation(String username, String password, String email)
-	{
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getUserName()));
-		driver.findElement(usernameBy).sendKeys(username);
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getPassword()));
-		driver.findElement(passwordBy).sendKeys(password);
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getEmail()));
-		driver.findElement(emailBy).sendKeys(email);
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getRegisterButton()));
-		driver.findElement(registerButton).click();
-	}
-
 }
