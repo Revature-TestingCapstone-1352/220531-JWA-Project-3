@@ -25,4 +25,22 @@ public class LoginPage
 		return new HomePage(driver);
 	}
 
+	public By getUsernameBy() {
+		return usernameBy;
+	}
+
+	public By getPasswordBy() {
+		return passwordBy;
+	}
+
+	public By getLoginButtonBy() {
+		return loginButtonBy;
+	}
+
+	public WebDriver getDriver() {
+		return driver;
+	}
+	
+	
+
 }
