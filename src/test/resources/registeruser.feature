@@ -20,12 +20,12 @@
 Feature: Register User Feature
 
 	Background:
-		Given: A guest is on the home page
+		Given A guest is on the home page
 
   Scenario Outline: the guest should be able to click the register page
     When a guest enters a "<username>" and "<password>" and "<email>"
     Then a guest can register by pressing the register button and be on the Homepage
 
     Examples: 
-      | username| password  | email               |
-      | Jacotste|stephen1995| stephen@gluemail.com|
+      |username| password | email               |
+      | Jacot  |stephen94 | stephen@gluemail.com|

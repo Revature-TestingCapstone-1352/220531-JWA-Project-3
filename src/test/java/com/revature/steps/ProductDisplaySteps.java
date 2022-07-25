@@ -1,5 +1,6 @@
 package com.revature.steps;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.Duration;
@@ -55,7 +56,9 @@ public class ProductDisplaySteps {
 	@Then("there should be a maximum of twenty-four games displayed per page")
 	public void maximum_of_twentyfour_games() {
 		List<WebElement> twentyFour = driver.findElement(homePage.getGamesDisplayed()).findElements(By.xpath("./child::*"));
-		assertEquals(twentyFour.size(), 25);
+		//removing pagination child element from list
+		twentyFour.remove(twentyFour.size() - 1);
+		assertThat(twentyFour.size() <= 24);
 	}
 
 	@Given("the User is on the Store Page again")
@@ -83,5 +86,6 @@ public class ProductDisplaySteps {
 		}
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleIs("Evochron Mercenary for PC Reviews - Metacritic"));
 		assertEquals(driver.getTitle(), "Evochron Mercenary for PC Reviews - Metacritic");
+		driver.switchTo().window(origin);
 	}
 }

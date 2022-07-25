@@ -35,6 +35,7 @@ public class GameRunner {
 	public static HomePage homePage;
 	public static RegisterPage registerPage;
 
+	
 	public  WebDriver getDriver() 
   {
 		
@@ -45,6 +46,7 @@ public class GameRunner {
 		
 		return driver;
 	}
+	
 
 
 
