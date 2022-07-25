@@ -27,6 +27,17 @@ Feature: Cart
     Then User should be on the Cart page
     
     
+  @tag2
+  Scenario: User can remove an item from the cart
+  	Given User has navigated to the HomePage
+  	And The User has navigated to the loginPage
+  	And The User has inserted credentials and logged in
+  	And The User is on the general landing page
+  	When User clicks on Cart page
+  	Then User should be on the Cart page
+  	
+    
+    
     
 #
   #@tag2
