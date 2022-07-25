@@ -58,6 +58,9 @@ public class GameRunner {
 		loginPage = new LoginPage(driver);
 		wishListPage = new WishListPage(driver);
 		homePage = new HomePage(driver);
+		registerPage = new RegisterPage(driver);
+		cartPage = new CartPage(driver);
+		//userInfoPage = new UserInfoPage(driver);
 		
 		//ADD YOUR WEB PAGES HERE
 		//driver.get("http://localhost:4200");
