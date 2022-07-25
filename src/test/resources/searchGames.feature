@@ -17,16 +17,22 @@
 ## (Comments)
 #Sample Feature Definition Template
 @tag
-Feature: Product Display
+Feature: Search Games
 
   @tag1
-  Scenario: Games per page
-    Given a User is on the Store Page
-    When the games are displayed
-    Then there should be a maximum of twenty-four games displayed per page
+  Scenario: Search for Good Game
+    Given The user is on the homepage
+    And the games are displayed
+    When I search for "Dawn of"
+    Then The first game should be "Warhammer 40,000: Dawn of War II: Retribution"
 
-  @tag2
-  Scenario: View Metacritic review
-    Given a User is on the Store Page
-    When when the User clicks on the Metacritic link of a game
-    Then there is a valid Metacritic review displayed
+  #@tag2
+  #Scenario Outline: Title of your scenario outline
+    #Given I want to write a step with <name>
+    #When I check for the <value> in step
+    #Then I verify the <status> in step
+#
+    #Examples: 
+      #| name  | value | status  |
+      #| name1 |     5 | success |
+      #| name2 |     7 | Fail    |

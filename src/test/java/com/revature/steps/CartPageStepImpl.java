@@ -28,17 +28,19 @@ public class CartPageStepImpl {
 		private static HomePage homePage = GameRunner.homePage;
 		private static LoginPage loginPage = GameRunner.loginPage;
 		
+
 		@Given("User is on the HomePage")
 		public void user_is_on_the_home_page() {
 			driver.get("http://localhost:4200");
 	        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
 		}
 		
 		@When("User clicks the Cart button")
 		public void user_clicks_the_cart_button() {
 			// Write code here that turns the phrase above into concrete actions
 			 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-			 driver.findElement(cartPage.navCartButton).click();
+//			 driver.findElement(cartPage.navCartButton).click();
 		}
 		
 		@Then("User should be on the Cart page")
