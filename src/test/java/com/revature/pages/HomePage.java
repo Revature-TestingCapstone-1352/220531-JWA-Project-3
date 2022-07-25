@@ -126,8 +126,4 @@ public class HomePage {
 		return checkoutPage;
 	}
 	
-
-    public By getSearchBar() {
-        return searchBar;
-    }
 }

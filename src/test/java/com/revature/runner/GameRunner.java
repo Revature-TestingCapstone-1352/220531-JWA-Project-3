@@ -1,11 +1,12 @@
 package com.revature.runner;
 
-import com.revature.pages.*;
-import io.cucumber.java.AfterAll;
-import io.cucumber.java.BeforeAll;
+import java.io.File;
+import java.time.Duration;
+
 import org.junit.platform.suite.api.Suite;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import com.revature.pages.CartPage;
 import com.revature.pages.CheckoutPage;
 import com.revature.pages.HomePage;
@@ -13,8 +14,8 @@ import com.revature.pages.LoginPage;
 import com.revature.pages.UserInfoPage;
 import com.revature.pages.WishListPage;
 
-
-import java.io.File;
+import io.cucumber.java.AfterAll;
+import io.cucumber.java.BeforeAll;
 
 
 @Suite

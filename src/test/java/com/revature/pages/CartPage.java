@@ -34,8 +34,8 @@ public class CartPage {
 		return cartTable;
 	}
 	
-	public By getCartTableFirstItem() {
-		return cartTableFirstItem;
+	public String getCartTableFirstItemName() {
+		return driver.findElement(cartTableFirstItem).getText();
 	}
 	
 	public void loginThenNavigateToCart() {
