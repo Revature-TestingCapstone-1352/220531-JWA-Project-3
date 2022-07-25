@@ -10,6 +10,7 @@ import com.revature.pages.CartPage;
 import com.revature.pages.CheckoutPage;
 import com.revature.pages.HomePage;
 import com.revature.pages.LoginPage;
+import com.revature.pages.UserInfoPage;
 import com.revature.pages.WishListPage;
 
 import io.cucumber.java.AfterAll;
@@ -22,23 +23,19 @@ import io.cucumber.junit.CucumberOptions;
 @Suite
 public class GameRunner {
 	
-	
-	
-	// we'll need a driver and an instance of our WikiPage POM
 	public static  WebDriver driver;
-
-
 
 	// we'll need a driver and an instance of our WikiPage POM
 	public static CartPage cartPage;
 	public static LoginPage loginPage;
 	public static CheckoutPage checkoutPage;
 	public static WishListPage wishListPage;
+	public static UserInfoPage userInfoPage;
 	public static HomePage homePage;
 
 
 
-	@BeforeAll //@BeforeClass is JUnit 4
+	@BeforeAll
 	public static void setup() {
 		File chrome = new File("src/test/resources/chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver",chrome.getAbsolutePath());
@@ -46,18 +43,24 @@ public class GameRunner {
 		driver = new ChromeDriver();
 		
 
-
 		checkoutPage = new CheckoutPage(driver);
+		cartPage = new CartPage(driver);
 		loginPage = new LoginPage(driver);
 		wishListPage = new WishListPage(driver);
 		
 		//ADD YOUR WEB PAGES HERE
-	}
+		userInfoPage = new UserInfoPage(driver);
+		homePage = new HomePage(driver);
 		
-	@AfterAll
-	public static void teardown() 
-    {
-		driver.quit();
+		
+		
+		driver.get("http://localhost:4200");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
+	}
+	
+	@AfterAll
+	public static void teardown() {
+		driver.quit();
 	}
 }

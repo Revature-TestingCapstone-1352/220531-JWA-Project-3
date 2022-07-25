@@ -31,7 +31,7 @@ public class CheckoutPage {
 	//private String thankYouText = driver.findElement(thankYouOrder).getText();
 	private By emptyCart = By.xpath("/html/body/app-root/app-cart/div[1]/h4");
 	//private String emptyCartText = driver.findElement(emptyCart).getText();
-	
+	private By proceedFromCartMsg = By.xpath("/html/body/app-root/app-checkout/div[1]/h5");
 
 
 	public By getThankYou() {
@@ -73,5 +73,9 @@ public class CheckoutPage {
 
 	public By getOrderButton() {
 		return orderButton;
+	}
+	
+	public By getProceedFromCartMsg() {
+		return proceedFromCartMsg;
 	}
 }
