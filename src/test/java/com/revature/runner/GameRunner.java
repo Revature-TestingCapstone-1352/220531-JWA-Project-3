@@ -19,9 +19,8 @@ import io.cucumber.java.BeforeAll;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
+
 //@CucumberOptions(features = "Features" )
-
-
 @Suite
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/chromedriver.exe", glue = "com.revature.steps" )
@@ -36,15 +35,18 @@ public class GameRunner {
 	public static WishListPage wishListPage;
 	public static HomePage homePage;
 
-//	public  WebDriver getDriver(){
-//		
-//		File chrome = new File("src/test/resources/chromedriver.exe");
-//		System.setProperty("webdriver.chrome.driver",chrome.getAbsolutePath());
-//		driver = new ChromeDriver();
-//		
-//		
-//		return driver;
-//	}
+
+	public  WebDriver getDriver() //what is this for? when is it used?
+  {
+		
+		File chrome = new File("src/test/resources/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",chrome.getAbsolutePath());
+		driver = new ChromeDriver();
+		
+		
+		return driver;
+	}
+
 
 	@BeforeAll
 	public static void setup() {
@@ -53,17 +55,16 @@ public class GameRunner {
 		
 		driver = new ChromeDriver();
 		
-		//ADD YOUR WEB PAGES HERE
-		cartPage = new CartPage(driver);
-
 
 		checkoutPage = new CheckoutPage(driver);
+		cartPage = new CartPage(driver);
 		loginPage = new LoginPage(driver);
 		wishListPage = new WishListPage(driver);
 		cartPage = new CartPage(driver);
 		homePage = new HomePage(driver);
 		
-		//ADD YOUR WEB PAGES HERE
+		
+		
 		driver.get("http://localhost:4200");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 

@@ -36,7 +36,7 @@ public class AddToCartFromHomePageStepImpl {
 
 	@When("the User clicks on the Cart button")
 	public void the_user_clicks_on_the_cart_button() {
-	    homePage.clickNavToCartButton(); 
+	    homePage.clickNavToCart(); 
 	}
 
 	@Then("the User should see the game they added in their cart")

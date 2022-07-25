@@ -33,10 +33,14 @@ public class HomePage {
 	
 	//Navigation Buttons
 	public By navCartButton = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[3]/a");
+	
+	private By searchBar = By.xpath("/html/body/app-root/app-store/nav/input");
 
-	public void clickAdd() {
+	public void clickAdd()
+	{
 		driver.findElement(addWishListButton).click();
 	}
+
 
 	public By getLoginLink() {
 		return loginLink;
@@ -56,9 +60,19 @@ public class HomePage {
 
 	public By getGamesDisplayed() {
 		return gamesDisplayed;
+
+	}
+	public By getSearchBar() {
+		return searchBar;
 	}
 	
-	public void clickNavToCartButton() {
+	//----------------------NAV CLICK FUNCTIONS--------------------------------------
+	
+	public void navToLoginPage() {
+		driver.findElement(getLoginLink()).click();
+	}
+	
+	public void clickNavToCart() {
 		driver.findElement(navCartButton).click();
 	}
 }

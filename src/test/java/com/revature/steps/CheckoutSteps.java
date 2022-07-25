@@ -60,33 +60,41 @@ public class CheckoutSteps {
 	
 	@Given("that a User has an Item in their Cart and is viewing their Cart")
 	public void that_a_user_has_an_item_in_their_cart_and_is_viewing_their_cart() {
+
 	    driver.get("http://localhost:4200");
 	    new WebDriverWait(driver, Duration.ofSeconds(3));
 		loginForCheckout("joshua_test", "test_joshua");
 		new WebDriverWait(driver, Duration.ofSeconds(3));
 		addToCart();
+
 	}
 
 	@When("the User clicks the Proceed to Checkout button, then the Place Order button")
 	public void the_user_clicks_the_proceed_to_checkout_button_then_the_place_order_button() {
+
 		new WebDriverWait(driver, Duration.ofSeconds(3));
 	    proceedToCheckout();
+
 	}
 
 	@Then("the User will have successfully bought the games")
 	public void the_user_will_have_successfully_bought_the_games() {
+
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(checkoutPage.getThankYou()));
 		String thankYouText = driver.findElement(checkoutPage.getThankYou()).getText();
 		assertEquals(thankYouText, "Thank you for your Order.");
+
 	}
 
 	@Given("that a User has an empty Cart and is viewing their Cart")
 	public void that_a_user_has_an_empty_cart_and_is_viewing_their_cart() {
+
 		driver.get("http://localhost:4200");
 		new WebDriverWait(driver, Duration.ofSeconds(3));
 		loginForCheckout("joshua_test", "test_joshua");
 		new WebDriverWait(driver, Duration.ofSeconds(3));
 		viewCart();
+
 	}
 
 	@When("the User tries to Checkout")
@@ -96,8 +104,10 @@ public class CheckoutSteps {
 
 	@Then("the Cart Page will display that the Cart is empty and the Proceed to Checkout will not be displayed")
 	public void the_cart_page_will_display_that_the_cart_is_empty_and_the_proceed_to_checkout_will_not_be_displayed() {
+
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(checkoutPage.getEmptyCart()));
 		String emptyCartText = driver.findElement(checkoutPage.getEmptyCart()).getText();
 		assertEquals(emptyCartText, "Your shopping cart is empty!");
+
 	}
 }
