@@ -12,3 +12,5 @@ buildNumber.properties
 node_modules
 **.angular**
 **.idea**
+application.properties
+
