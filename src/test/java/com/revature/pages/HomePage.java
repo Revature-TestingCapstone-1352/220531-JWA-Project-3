@@ -26,8 +26,13 @@ public class HomePage {
 	private By loginButton = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[3]/button");
 	private By addWishListButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[1]");
 	private By gamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
-  
-	public By getaddWishlistButton() {
+    private By metacriticLink = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div/div[1]/div/div[3]/div[6]/div/a");
+	
+    public By getMetatcriticLink() {
+    	return metacriticLink;
+    }
+    
+    public By getaddWishlistButton() {
 		return addWishListButton;
 	}
 	
