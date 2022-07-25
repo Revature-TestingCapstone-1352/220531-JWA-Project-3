@@ -24,23 +24,43 @@ public class HomePage {
 	private By uNameField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[1]/input");
 	private By pKeyField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[2]/input");
 	private By loginButton = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[3]/button");
-		
-	public void loginForHomePage(String username, String password) {
-		driver.findElement(loginLink).click();
-		driver.findElement(uNameField).sendKeys(username);
-		driver.findElement(pKeyField).sendKeys(password);
-		driver.findElement(loginButton).click();
+	private By addWishListButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[1]");
+	private By gamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
+  private By metacriticLink = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div/div[1]/div/div[3]/div[6]/div/a");
+  private By searchField = By.xpath("/html/body/app-root/app-store/nav/input");
+	private By registerLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[5]/a");
+	
+    public By getMetatcriticLink() 
+    {
+    	return metacriticLink;
+    }
+	public By getRegisterLink() 
+	{
+		return registerLink;
 	}
-	// ---------------------------------------------------------------------
-	private WebElement gamesDisplayed = driver.findElement(By.xpath("/html/body/app-root/app-store/div/div/div[2]/div"));
-	
-	public boolean areDisplayed() {
-		return gamesDisplayed.isDisplayed();
+
+	public By getSearchField() {
+		return searchField;
+	}
+
+	public By getaddWishlistButton() 
+  {
+		return addWishListButton;
 	}
 	
-	private List<WebElement> twentyFour = gamesDisplayed.findElements(By.xpath("./child::*"));
-	
-	public int areThereTwentyFour() {
-		return twentyFour.size();
+	public By getLoginLink() {
+		return loginLink;
+	}
+	public By getuNameField() {
+		return uNameField;
+	}
+	public By getpKeyField() {
+		return pKeyField;
+	}
+	public By getLoginButton() {
+		return loginButton;
+	}
+	public By getGamesDisplayed() {
+		return gamesDisplayed;
 	}
 }
