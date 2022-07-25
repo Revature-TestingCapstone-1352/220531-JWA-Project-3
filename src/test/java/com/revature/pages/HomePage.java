@@ -127,7 +127,5 @@ public class HomePage {
 	}
 	
 
-    public By getSearchBar() {
-        return searchBar;
-    }
+    
 }

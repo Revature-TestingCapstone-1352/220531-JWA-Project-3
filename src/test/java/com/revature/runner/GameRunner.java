@@ -10,11 +10,16 @@ import com.revature.pages.CartPage;
 import com.revature.pages.CheckoutPage;
 import com.revature.pages.HomePage;
 import com.revature.pages.LoginPage;
+
+import com.revature.pages.StorePage;
+
 import com.revature.pages.UserInfoPage;
+
 import com.revature.pages.WishListPage;
 
 
 import java.io.File;
+import java.time.Duration;
 
 
 @Suite
@@ -29,6 +34,7 @@ public class GameRunner {
 	public static WishListPage wishListPage;
 	public static UserInfoPage userInfoPage;
 	public static HomePage homePage;
+	public static StorePage storePage;
 
 	@BeforeAll
 	public static void setup() {
@@ -46,9 +52,10 @@ public class GameRunner {
 		//ADD YOUR WEB PAGES HERE
 		userInfoPage = new UserInfoPage(driver);
 		homePage = new HomePage(driver);
-		
-		
-		
+
+		storePage = new StorePage(driver);
+		//ADD YOUR WEB PAGES HERE
+
 		driver.get("http://localhost:4200");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
