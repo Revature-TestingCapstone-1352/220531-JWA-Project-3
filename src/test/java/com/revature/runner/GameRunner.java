@@ -12,6 +12,7 @@ import com.revature.pages.CartPage;
 import com.revature.pages.CheckoutPage;
 import com.revature.pages.HomePage;
 import com.revature.pages.LoginPage;
+import com.revature.pages.UserInfoPage;
 import com.revature.pages.WishListPage;
 
 import io.cucumber.java.AfterAll;
@@ -38,6 +39,7 @@ public class GameRunner {
 	public static LoginPage loginPage;
 	public static CheckoutPage checkoutPage;
 	public static WishListPage wishListPage;
+	public static UserInfoPage userInfoPage;
 	public static HomePage homePage;
 
 
@@ -65,6 +67,7 @@ public class GameRunner {
 		checkoutPage = new CheckoutPage(driver);
 		loginPage = new LoginPage(driver);
 		wishListPage = new WishListPage(driver);
+		userInfoPage = new UserInfoPage(driver);
 		homePage = new HomePage(driver);
 		
 		//ADD YOUR WEB PAGES HERE
