@@ -2,9 +2,12 @@ package com.revature.steps;
 
 import static org.junit.Assert.*;
 
+import com.revature.pages.CartPage;
 import com.revature.pages.HomePage;
 import com.revature.pages.LoginPage;
 import com.revature.pages.RegisterPage;
+import com.revature.pages.UserInfoPage;
+import com.revature.pages.WishListPage;
 import com.revature.runner.GameRunner;
 
 import io.cucumber.java.en.Given;
@@ -16,6 +19,9 @@ public class LoginSteps {
 	private LoginPage loginPage = GameRunner.loginPage;
 	private RegisterPage registerPage = null;
 	private HomePage homePage = null;
+	private CartPage cartPage = null;
+	private WishListPage wishlistPage = null;
+	private UserInfoPage userInfoPage = null;
 	
 	@Given("the user is on the login page")
 	public void the_user_is_on_the_login_page() {
@@ -64,21 +70,20 @@ public class LoginSteps {
 
 	@Given("a user is logged in")
 	public void a_user_is_logged_in() {
-	    
-		// Write code here that turns the phrase above into concrete actions
-	    //assertTrue(loginPage.isLoggedIn());
-		throw new io.cucumber.java.PendingException();
+		loginPage.initialLogin();
 	}
 
 	@Given("a user has added a game to their cart")
 	public void a_user_has_added_a_game_to_their_cart() {
-	    // Write code here that turns the phrase above into concrete actions
+	    homePage = loginPage.toStorePage();
+		// Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
 
 	@Given("a user is on the cart page")
 	public void a_user_goes_to_the_cart_page() {
-	    // Write code here that turns the phrase above into concrete actions
+	    cartPage = loginPage.toCartPage();
+		// Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
 
@@ -89,7 +94,8 @@ public class LoginSteps {
 
 	@When("a user goes to the cart page")
 	public void a_user_goes_to_the_cart_page1() {
-	    // Write code here that turns the phrase above into concrete actions
+	    cartPage = loginPage.toCartPage();
+		// Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
 
@@ -107,13 +113,15 @@ public class LoginSteps {
 
 	@Given("a user is on the wishlist page")
 	public void a_user_goes_to_the_wishlist_page() {
-	    // Write code here that turns the phrase above into concrete actions
+	    loginPage.toWishlistPage();
+		// Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
 
 	@When("a user goes to the wishlist page")
 	public void a_user_goes_to_the_wishlist_page1() {
-	    // Write code here that turns the phrase above into concrete actions
+	    loginPage.toWishlistPage();
+		// Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
 
@@ -125,13 +133,15 @@ public class LoginSteps {
 
 	@Given("a user is on the user information page")
 	public void a_user_goes_to_the_user_information_page() {
-	    // Write code here that turns the phrase above into concrete actions
+	    userInfoPage = loginPage.toUserInfoPage();
+		// Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
 
 	@When("a user goes to the user information page")
 	public void a_user_goes_to_the_user_information_page1() {
-	    // Write code here that turns the phrase above into concrete actions
+		userInfoPage = loginPage.toUserInfoPage();
+		// Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
 

@@ -9,10 +9,7 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.revature.pages.CheckoutPage;
-import com.revature.pages.HomePage;
-import com.revature.pages.LoginPage;
-import com.revature.pages.WishListPage;
+import com.revature.pages.*;
 
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
@@ -29,9 +26,12 @@ public class GameRunner {
 	// we'll need a driver and an instance of our WikiPage POM
 	public static  WebDriver driver;
 	public static LoginPage loginPage;
-  public static CheckoutPage checkoutPage;
+	public static CheckoutPage checkoutPage;
 	public static WishListPage wishListPage;
 	public static HomePage homePage;
+	public static RegisterPage registerPage;
+	public static CartPage cartPage;
+	public static UserInfoPage userInfoPage;
 
 	public  WebDriver getDriver() 
   {
