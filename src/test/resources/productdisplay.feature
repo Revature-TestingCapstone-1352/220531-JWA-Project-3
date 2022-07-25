@@ -27,6 +27,6 @@ Feature: Product Display
 
   @tag2
   Scenario: View Metacritic review
-    Given the User is on the Store Page again
+    Given a User is on the Store Page
     When when the User clicks on the Metacritic link of a game
     Then there is a valid Metacritic review displayed
