@@ -103,4 +103,10 @@ public class CheckoutPage {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getOrderButton()));
 		driver.findElement(getOrderButton()).click();
 	}
+	
+	public String getEmptyCartText() {
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		String emptyCartText = driver.findElement(getEmptyCart()).getText();
+		return emptyCartText;
+	}
 }
