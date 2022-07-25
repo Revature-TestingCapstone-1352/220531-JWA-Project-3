@@ -41,6 +41,16 @@ public class LoginSteps {
 	public void the_user_enters_invalid_credentials() {
 		registerPage = loginPage.loginInvalidUser("TestNotAUser", "TestNotAPass");
 	}
+	
+	@When("the user enters the wrong username to log in")
+	public void the_user_enters_the_wrong_username_to_log_in() {
+		registerPage = loginPage.loginInvalidUser("TestNotAUser", "TestPass");
+	}
+
+	@When("the user enters the wrong password to log in")
+	public void the_user_enters_the_wrong_password_to_log_in() {
+		registerPage = loginPage.loginInvalidUser("TestUser", "TestNotAPass");
+	}
 
 	@Then("the user is redirected to the registration page")
 	public void the_user_is_redirected_to_the_registration_page() {

@@ -33,6 +33,22 @@ Feature: Login
 	 When the user enters invalid credentials to log in
 	 Then the user is redirected to the registration page
 	 And the user is not logged in
+	 
+	@IncorrectUsername
+  Scenario: User cannot log in with incorrect username
+	 Given the user is already logged out
+	 And the user is on the login page
+	 When the user enters the wrong username to log in
+	 Then the user is redirected to the registration page
+	 And the user is not logged in
+	 
+	@IncorrectPassword
+  Scenario: User cannot log in with incorrect password
+	 Given the user is already logged out
+	 And the user is on the login page
+	 When the user enters the wrong password to log in
+	 Then the user is redirected to the registration page
+	 And the user is not logged in
 	
 	#Khellil Feature goes here
 	 
