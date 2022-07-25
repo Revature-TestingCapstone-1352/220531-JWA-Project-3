@@ -7,10 +7,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.revature.runner.GameRunner;
+
 public class RegisterPage 
 {
 	
 	private WebDriver driver;
+	public HomePage homePage = GameRunner.homePage;
 	
 	public RegisterPage(WebDriver driver) 
 	{
@@ -42,4 +45,22 @@ public class RegisterPage
 		return registerButton;
 	}
 	
+	public void enterInformation(String username, String password, String email)
+	{
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getUserName()));
+		driver.findElement(getUserName()).sendKeys(username);
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getPassword()));
+		driver.findElement(getPassword()).sendKeys(password);
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getEmail()));
+		driver.findElement(getEmail()).sendKeys(email);
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getRegisterButton()));
+		driver.findElement(getRegisterButton()).click();
+	}
+	
+	public void clickRegister()
+	{
+//		driver.get("http://localhost:4200");
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(homePage.getRegisterLink()));
+		driver.findElement(homePage.getRegisterLink()).click();
+	}
 }
