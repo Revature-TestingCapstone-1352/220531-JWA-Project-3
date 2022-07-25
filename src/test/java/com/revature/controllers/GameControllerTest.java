@@ -31,15 +31,20 @@ public class GameControllerTest {
 	private GameService gameService;
 
 	@Test
-	public void testGetAllGames() throws Exception {
+	public void testGetAllGames() {
 		List<Game> mockGameList = new ArrayList<Game>();
 		mockGameList.add(new Game());
+		String expected = "[{\"gameID\":0,\"storeID\":0.0,\"name\":null,\"steamAppID\":0.0,\"salePrice\":0.0,\"retailPrice\":0.0,\"steamRatingText\":null,\"steamRatingPercent\":0.0,\"steamRatingCount\":0.0,\"metacriticScore\":0.0,\"metacriticLink\":null,\"releaseDate\":null,\"publisher\":null,\"thumb\":null}]";
 
 		Mockito.when(gameService.getAllGames()).thenReturn(mockGameList);
 		RequestBuilder rb = MockMvcRequestBuilders.get("/game").accept(MediaType.APPLICATION_JSON);
-		MvcResult result = mockMvc.perform(rb).andReturn();
-		String expected = "[{\"gameID\":0,\"storeID\":0.0,\"name\":null,\"steamAppID\":0.0,\"salePrice\":0.0,\"retailPrice\":0.0,\"steamRatingText\":null,\"steamRatingPercent\":0.0,\"steamRatingCount\":0.0,\"metacriticScore\":0.0,\"metacriticLink\":null,\"releaseDate\":null,\"publisher\":null,\"thumb\":null}]";
-		JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+		MvcResult result;
+		try {
+			result = mockMvc.perform(rb).andReturn();
+			JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	};
 
 }
