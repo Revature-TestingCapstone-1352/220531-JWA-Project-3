@@ -1,13 +1,11 @@
 package com.revature.runner;
 
-import java.io.File;
-import java.time.Duration;
-
+import com.revature.pages.*;
+import io.cucumber.java.AfterAll;
+import io.cucumber.java.BeforeAll;
 import org.junit.platform.suite.api.Suite;
-import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import com.revature.pages.CartPage;
 import com.revature.pages.CheckoutPage;
 import com.revature.pages.HomePage;
@@ -15,16 +13,11 @@ import com.revature.pages.LoginPage;
 import com.revature.pages.UserInfoPage;
 import com.revature.pages.WishListPage;
 
-import io.cucumber.java.AfterAll;
-import io.cucumber.java.BeforeAll;
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
+
+import java.io.File;
 
 
-//@CucumberOptions(features = "Features" )
 @Suite
-@RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources/chromedriver.exe", glue = "com.revature.steps" )
 public class GameRunner {
 	
 	public static  WebDriver driver;
@@ -36,19 +29,6 @@ public class GameRunner {
 	public static WishListPage wishListPage;
 	public static UserInfoPage userInfoPage;
 	public static HomePage homePage;
-
-
-	public  WebDriver getDriver() //what is this for? when is it used?
-  {
-		
-		File chrome = new File("src/test/resources/chromedriver.exe");
-		System.setProperty("webdriver.chrome.driver",chrome.getAbsolutePath());
-		driver = new ChromeDriver();
-		
-		
-		return driver;
-	}
-
 
 	@BeforeAll
 	public static void setup() {
@@ -62,8 +42,9 @@ public class GameRunner {
 		cartPage = new CartPage(driver);
 		loginPage = new LoginPage(driver);
 		wishListPage = new WishListPage(driver);
+		
+		//ADD YOUR WEB PAGES HERE
 		userInfoPage = new UserInfoPage(driver);
-		cartPage = new CartPage(driver);
 		homePage = new HomePage(driver);
 		
 		
