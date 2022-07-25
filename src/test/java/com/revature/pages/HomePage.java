@@ -26,9 +26,14 @@ public class HomePage {
 	private By loginButton = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[3]/button");
 	private By addWishListButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[1]");
 	private By gamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
-	private By searchField = By.xpath("/html/body/app-root/app-store/nav/input");
+  private By metacriticLink = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div/div[1]/div/div[3]/div[6]/div/a");
+  private By searchField = By.xpath("/html/body/app-root/app-store/nav/input");
 	private By registerLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[5]/a");
-  
+	
+    public By getMetatcriticLink() 
+    {
+    	return metacriticLink;
+    }
 	public By getRegisterLink() 
 	{
 		return registerLink;
@@ -38,7 +43,8 @@ public class HomePage {
 		return searchField;
 	}
 
-	public By getaddWishlistButton() {
+	public By getaddWishlistButton() 
+  {
 		return addWishListButton;
 	}
 	
