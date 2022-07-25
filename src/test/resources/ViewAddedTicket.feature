@@ -20,7 +20,7 @@
 Feature: View Added Ticket Feature
  
  	Background: 
- 		Given: A user logs in through the Login Page
+ 		Given A user logs in through the Login Page
   
   
   Scenario Outline: A user should be able to login and be able to add a item to their wishlist and be able to view it on the wishlist page

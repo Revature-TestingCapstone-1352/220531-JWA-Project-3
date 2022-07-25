@@ -1,7 +1,11 @@
 package com.revature.pages;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage 
 {
@@ -11,10 +15,14 @@ public class LoginPage
 	private By passwordBy = By.xpath("//*[@id=\"form1\"]/div/div[2]/input");
 	private By loginButtonBy = By.xpath("//*[@id=\"form1\"]/div/div[3]/button");
 	
+	private static HomePage homePage;
+	
+	
 	public LoginPage(WebDriver driver)
 	{
 		this.driver = driver;
 	}
+	
 	
 	public HomePage loginValidUser(String username, String password)
 	{
@@ -40,7 +48,4 @@ public class LoginPage
 	public WebDriver getDriver() {
 		return driver;
 	}
-	
-	
-
 }

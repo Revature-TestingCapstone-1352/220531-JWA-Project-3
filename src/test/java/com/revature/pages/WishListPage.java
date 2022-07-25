@@ -53,4 +53,12 @@ public class WishListPage
 	public By getAddToCartBy() {
 		return addToCartBy;
 	}
+	
+	public String findGameName()
+	{
+		//new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(driver.findElement(getGameNameBy())));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		String gamename = driver.findElement(getGameNameBy()).getText();
+		return gamename;
+	}
 }
