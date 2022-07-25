@@ -3,23 +3,21 @@ package com.revature.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage {
 	private WebDriver driver;
 	
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
-		// this next bit of code is working from the PageFactory
-		//PageFactory.initElements(driver, this);
 	}
 	
-	//TEMP until LoginPage is setup ----------------------------------------
 	private By loginLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[6]/a");
 	private By uNameField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[1]/input");
 	private By pKeyField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[2]/input");
@@ -30,12 +28,10 @@ public class HomePage {
     private By searchField = By.xpath("/html/body/app-root/app-store/nav/input");
 	private By registerLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[5]/a");
 	
-    public By getMetatcriticLink() 
-    {
+    public By getMetatcriticLink() {
     	return metacriticLink;
     }
-	public By getRegisterLink() 
-	{
+	public By getRegisterLink() {
 		return registerLink;
 	}
 
@@ -43,8 +39,7 @@ public class HomePage {
 		return searchField;
 	}
 
-	public By getaddWishlistButton() 
-  {
+	public By getaddWishlistButton() {
 		return addWishListButton;
 	}
 	
@@ -57,10 +52,21 @@ public class HomePage {
 	public By getpKeyField() {
 		return pKeyField;
 	}
+	
 	public By getLoginButton() {
 		return loginButton;
 	}
 	public By getGamesDisplayed() {
 		return gamesDisplayed;
+	}
+	
+	public void navigateToLoginPage() {
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getLoginLink()));
+		driver.findElement(getLoginLink()).click();
+	}
+	
+	public void clickAdd()
+	{
+		driver.findElement(getaddWishlistButton()).click();
 	}
 }

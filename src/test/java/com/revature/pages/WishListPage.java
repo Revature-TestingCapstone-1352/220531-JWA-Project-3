@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WishListPage 
 {
-	protected WebDriver driver;
+protected WebDriver driver;
 	
 	private By gameNameBy = By.xpath("//*[@id=\"games\"]/div/div/div/div[2]");
 	
@@ -52,5 +52,13 @@ public class WishListPage
 
 	public By getAddToCartBy() {
 		return addToCartBy;
+	}
+	
+	public String findGameName()
+	{
+		//new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(driver.findElement(getGameNameBy())));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		String gamename = driver.findElement(getGameNameBy()).getText();
+		return gamename;
 	}
 }
