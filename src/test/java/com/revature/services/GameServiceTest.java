@@ -71,7 +71,7 @@ public class GameServiceTest {
 
 		when(mockGameDao.findAll()).thenReturn(mockGameList);
 
-		assertEquals(mockGameList.size(), gameService.getAllGames().size());
+		assertEquals(mockGameList, gameService.getAllGames());
 	}
 
 	@Test
