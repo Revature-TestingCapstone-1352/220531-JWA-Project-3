@@ -12,8 +12,7 @@ import com.revature.runner.GameRunner;
 
 public class LoginPage 
 {
-protected WebDriver driver;
-	
+  protected WebDriver driver;
 	private By usernameBy = By.xpath("//*[@id=\"form1\"]/div/div[1]/input");
 	private By passwordBy = By.xpath("//*[@id=\"form1\"]/div/div[2]/input");
 	private By loginButtonBy = By.xpath("//*[@id=\"form1\"]/div/div[3]/button");
@@ -24,10 +23,14 @@ protected WebDriver driver;
 	private By cartPageBy = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[3]/a");
 	private By userInfoPageBy = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[7]/a");
 	
+	private static HomePage homePage;
+	
+	
 	public LoginPage(WebDriver driver)
 	{
 		this.driver = driver;
 	}
+	
 	
 	public HomePage loginValidUser(String username, String password)
 	{
@@ -126,7 +129,7 @@ protected WebDriver driver;
 	public WebDriver getDriver() {
 		return driver;
 	}
-
-	
-	
+  
 }
+
+

@@ -56,10 +56,10 @@ public class GameRunner {
 		
 		driver = new ChromeDriver();
 		
+		homePage = new HomePage(driver);
 		checkoutPage = new CheckoutPage(driver);
 		loginPage = new LoginPage(driver);
 		wishListPage = new WishListPage(driver);
-		homePage = new HomePage(driver);
 		registerPage = new RegisterPage(driver);
 		cartPage = new CartPage(driver);
 		userInfoPage = new UserInfoPage(driver);
