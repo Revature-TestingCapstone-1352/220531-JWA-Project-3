@@ -16,6 +16,8 @@ protected WebDriver driver;
 	
 	private By addToCartBy = By.xpath("//*[@id=\"games\"]/div/div/div/div[4]/div/button[2]/span");
 	
+	//private By emptyWishlistText = By.xpath("/html/body/app-root/app-wishlist/div/div/h4");
+	
 	private By loginLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[6]/a");
 	private By uNameField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[1]/input");
 	private By pKeyField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[2]/input");
@@ -63,6 +65,15 @@ protected WebDriver driver;
 
 	public By getAddToCartBy() {
 		return addToCartBy;
+	}
+	
+	public boolean isWishlistEmpty() {
+		try {
+			new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(gameNameBy));
+			return false;
+		} catch(Exception e) {
+			return true;
+		}
 	}
 	
 	public String findGameName()
