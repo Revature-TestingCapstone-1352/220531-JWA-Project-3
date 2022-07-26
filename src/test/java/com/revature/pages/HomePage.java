@@ -18,11 +18,8 @@ public class HomePage {
 	
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
-		// this next bit of code is working from the PageFactory
-		//PageFactory.initElements(driver, this);
 	}
 	
-	//TEMP until LoginPage is setup ----------------------------------------
 	private By loginLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[6]/a");
 	private By uNameField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[1]/input");
 	private By pKeyField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[2]/input");
@@ -34,16 +31,15 @@ public class HomePage {
 	private By registerLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[5]/a");
 	private By wishListLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[2]/a");
 	
+
     public By getWishListLink() {
 		return wishListLink;
 	}
 	
-	public By getMetatcriticLink() 
-    {
+    public By getMetatcriticLink() {
     	return metacriticLink;
     }
-	public By getRegisterLink() 
-	{
+	public By getRegisterLink() {
 		return registerLink;
 	}
 
@@ -51,8 +47,7 @@ public class HomePage {
 		return searchField;
 	}
 
-	public By getaddWishlistButton() 
-	{
+	public By getaddWishlistButton() {
 		return addWishListButton;
 	}
 	
@@ -65,6 +60,7 @@ public class HomePage {
 	public By getpKeyField() {
 		return pKeyField;
 	}
+	
 	public By getLoginButton() {
 		return loginButton;
 	}
@@ -72,12 +68,7 @@ public class HomePage {
 		return gamesDisplayed;
 	}
 	
-	public void navigateToLoginPage() 
-	{
-		/*
-		new WebDriverWait(driver, Duration.ofSeconds(10))
-		.until(ExpectedConditions.elementToBeClickable(null));
-		*/
+	public void navigateToLoginPage() {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getLoginLink()));
 		driver.findElement(getLoginLink()).click();
 	}

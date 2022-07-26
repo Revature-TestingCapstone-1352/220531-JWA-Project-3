@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WishListPage 
 {
-	protected WebDriver driver;
+protected WebDriver driver;
 	
 	private By gameNameBy = By.xpath("//*[@id=\"games\"]/div/div/div/div[2]");
 	
@@ -86,4 +86,5 @@ public class WishListPage
 		String notThere = driver.findElement(getWishListNotThereText()).getText();
 		return notThere;
 	}
+
 }

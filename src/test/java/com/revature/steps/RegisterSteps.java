@@ -21,9 +21,9 @@ import io.cucumber.java.en.When;
 public class RegisterSteps 
 {
 	private WebDriver driver = GameRunner.driver;
-	private HomePage homePage = GameRunner.homePage;
 	private RegisterPage registerPage = GameRunner.registerPage;
 	private LoginPage loginPage = GameRunner.loginPage;
+
 	
 	public void enterInformation(String username, String password, String email)
 	{
@@ -49,16 +49,15 @@ public class RegisterSteps
 	{
 		driver.get("http://localhost:4200");
 		new WebDriverWait(driver, Duration.ofSeconds(3));
-		clickRegister();
+		registerPage.clickRegister();
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(registerPage.getRegisterButton()));
 	}
 	
 	@When("a guest enters a {string} and {string} and {string}")
 	public void a_guest_enters_a_and_and(String username, String password, String email)
 	{
-		
 		new WebDriverWait(driver, Duration.ofSeconds(5));
-		enterInformation(username, password, email);
+		registerPage.enterInformation(username, password, email);
 	}
 	
 	@Then("a guest can register by pressing the register button and be on the Homepage")

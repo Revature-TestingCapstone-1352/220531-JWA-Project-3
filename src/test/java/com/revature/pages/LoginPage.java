@@ -9,8 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage 
 {
-	protected WebDriver driver;
-	
+  protected WebDriver driver;
 	private By usernameBy = By.xpath("//*[@id=\"form1\"]/div/div[1]/input");
 	private By passwordBy = By.xpath("//*[@id=\"form1\"]/div/div[2]/input");
 	private By loginButtonBy = By.xpath("//*[@id=\"form1\"]/div/div[3]/button");
@@ -48,4 +47,7 @@ public class LoginPage
 	public WebDriver getDriver() {
 		return driver;
 	}
+  
 }
+
+
