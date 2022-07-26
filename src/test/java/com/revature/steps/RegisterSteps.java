@@ -23,6 +23,26 @@ public class RegisterSteps
 	private WebDriver driver = GameRunner.driver;
 	private RegisterPage registerPage = GameRunner.registerPage;
 	private LoginPage loginPage = GameRunner.loginPage;
+
+	
+	public void enterInformation(String username, String password, String email)
+	{
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(registerPage.getUserName()));
+		driver.findElement(registerPage.getUserName()).sendKeys(username);
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(registerPage.getPassword()));
+		driver.findElement(registerPage.getPassword()).sendKeys(password);
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(registerPage.getEmail()));
+		driver.findElement(registerPage.getEmail()).sendKeys(email);
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(registerPage.getRegisterButton()));
+		driver.findElement(registerPage.getRegisterButton()).click();
+	}
+	
+	public void clickRegister()
+	{
+//		driver.get("http://localhost:4200");
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(homePage.getRegisterLink()));
+		driver.findElement(homePage.getRegisterLink()).click();
+	}
 	
 	@Given("A guest is on the home page")
 	public void a_guest_is_on_the_home_page()
@@ -36,7 +56,6 @@ public class RegisterSteps
 	@When("a guest enters a {string} and {string} and {string}")
 	public void a_guest_enters_a_and_and(String username, String password, String email)
 	{
-		
 		new WebDriverWait(driver, Duration.ofSeconds(5));
 		registerPage.enterInformation(username, password, email);
 	}

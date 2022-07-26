@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="1" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="5" time="6.428">
+    <testcase classname="View Added Ticket Feature" name="A user should be able to login and be able to add a item to their wishlist and be able to view it on the wishlist page" time="0.996">
+        <system-out><![CDATA[When they type in a valid "StephenTest" and "StephenPass"...................passed
+And they go to the Home Page they should be able to click add to wishlist on an item.passed
+Then view that item on the wishlist page....................................passed
+]]></system-out>
+    </testcase>
+    <testcase classname="Checkout" name="Successful checkout" time="1.037">
+        <system-out><![CDATA[Given that a User has an Item in their Cart and is viewing their Cart.......passed
+When the User clicks the Proceed to Checkout button, then the Place Order button.passed
+Then the User will have successfully bought the games.......................passed
+]]></system-out>
+    </testcase>
+    <testcase classname="Checkout" name="Trying to checkout with an empty cart" time="0.358">
+        <system-out><![CDATA[Given that a User has an empty Cart and is viewing their Cart...............passed
+When the User tries to Checkout.............................................passed
+Then the Cart Page will display that the Cart is empty and the Proceed to Checkout will not be displayed.passed
+]]></system-out>
+    </testcase>
+    <testcase classname="Product Display" name="Games per page" time="1.017">
+        <system-out><![CDATA[Given a User is on the Store Page...........................................passed
+When the games are displayed................................................passed
+Then there should be a maximum of twenty-four games displayed per page......passed
+]]></system-out>
+    </testcase>
+    <testcase classname="Product Display" name="View Metacritic review" time="0.001">
+        <failure message="The scenario has pending or undefined step(s)" type="java.lang.Exception"><![CDATA[Given the User is on the Store Page again...................................undefined
+When when the User clicks on the Metacritic link of a game..................skipped
+Then there is a valid Metacritic review displayed...........................skipped
+]]></failure>
+    </testcase>
+</testsuite>
