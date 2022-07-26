@@ -11,6 +11,7 @@ import com.revature.pages.CheckoutPage;
 import com.revature.pages.HomePage;
 import com.revature.pages.LoginPage;
 import com.revature.pages.UserInfoPage;
+import com.revature.pages.RegisterPage;
 import com.revature.pages.WishListPage;
 
 
@@ -29,8 +30,25 @@ public class GameRunner {
 	public static WishListPage wishListPage;
 	public static UserInfoPage userInfoPage;
 	public static HomePage homePage;
+	public static RegisterPage registerPage;
 
-	@BeforeAll
+	
+	public  WebDriver getDriver() 
+  {
+		
+		File chrome = new File("src/test/resources/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",chrome.getAbsolutePath());
+		driver = new ChromeDriver();
+		
+		
+		return driver;
+	}
+	
+
+
+
+	
+	@BeforeAll //@BeforeClass is JUnit 4
 	public static void setup() {
 		File chrome = new File("src/test/resources/chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver",chrome.getAbsolutePath());
@@ -38,20 +56,18 @@ public class GameRunner {
 		driver = new ChromeDriver();
 		
 
+		//ADD YOUR WEB PAGES HERE
+		
 		checkoutPage = new CheckoutPage(driver);
 		cartPage = new CartPage(driver);
 		loginPage = new LoginPage(driver);
 		wishListPage = new WishListPage(driver);
-		
-		//ADD YOUR WEB PAGES HERE
-		userInfoPage = new UserInfoPage(driver);
 		homePage = new HomePage(driver);
+		registerPage = new RegisterPage(driver);
+		userInfoPage = new UserInfoPage(driver);
 		
-		
-		
-//		driver.get("http://localhost:4200");
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
+		
 	}
 	
 	

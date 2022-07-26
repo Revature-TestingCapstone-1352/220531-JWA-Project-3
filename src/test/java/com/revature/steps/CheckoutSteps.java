@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.revature.pages.CheckoutPage;
 import com.revature.pages.HomePage;
+import com.revature.pages.LoginPage;
+import com.revature.pages.UserInfoPage;
 import com.revature.runner.GameRunner;
 
 import io.cucumber.java.en.Given;
@@ -19,60 +21,24 @@ import io.cucumber.java.en.When;
 public class CheckoutSteps {
 	public static WebDriver driver = GameRunner.driver;
 	public static CheckoutPage checkoutPage = GameRunner.checkoutPage;
+	public static LoginPage loginPage = GameRunner.loginPage;
 	public static HomePage homePage = GameRunner.homePage;
-
-	public void loginForCheckout(String username, String password) {
-		/*
-		new WebDriverWait(driver, Duration.ofSeconds(10))
-		.until(ExpectedConditions.elementToBeClickable(null));
-		 */
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(checkoutPage.getLoginLink()));
-
-		driver.findElement(checkoutPage.getLoginLink()).click();
-		new WebDriverWait(driver, Duration.ofSeconds(3));
-		driver.findElement(checkoutPage.getuNameField()).sendKeys(username);
-		new WebDriverWait(driver, Duration.ofSeconds(3));
-		driver.findElement(checkoutPage.getpKeyField()).sendKeys(password);
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(checkoutPage.getLoginButton()));
-		driver.findElement(checkoutPage.getLoginButton()).click();
-	}
-
-	public void addToCart() {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(checkoutPage.getAddToCart()));
-		driver.findElement(checkoutPage.getAddToCart()).click();
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(checkoutPage.getViewCart()));
-		driver.findElement(checkoutPage.getViewCart()).click();
-	}
-
-	public void viewCart() {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(checkoutPage.getViewCart()));
-		driver.findElement(checkoutPage.getViewCart()).click();
-	}
-
-	public void proceedToCheckout() {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(checkoutPage.getProceedToCheckout()));
-		driver.findElement(checkoutPage.getProceedToCheckout()).click();
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(checkoutPage.getOrderButton()));
-		driver.findElement(checkoutPage.getOrderButton()).click();
-	}
-
+	public static UserInfoPage userInfoPage = GameRunner.userInfoPage;
+	
 	@Given("that a User has an Item in their Cart and is viewing their Cart")
 	public void that_a_user_has_an_item_in_their_cart_and_is_viewing_their_cart() {
-
-		driver.get("http://localhost:4200");
-		new WebDriverWait(driver, Duration.ofSeconds(3));
-		loginForCheckout("joshua_test", "test_joshua");
-		new WebDriverWait(driver, Duration.ofSeconds(3));
-		addToCart();
-
+	    driver.get("http://localhost:4200");
+	    new WebDriverWait(driver, Duration.ofSeconds(5));
+	    homePage.navigateToLoginPage();
+		loginPage.loginValidUser("joshua_test", "test_joshua");
+		new WebDriverWait(driver, Duration.ofSeconds(5));
+		checkoutPage.addToCart();
 	}
 
 	@When("the User clicks the Proceed to Checkout button, then the Place Order button")
 	public void the_user_clicks_the_proceed_to_checkout_button_then_the_place_order_button() {
-
-		new WebDriverWait(driver, Duration.ofSeconds(3));
-		proceedToCheckout();
-
+		new WebDriverWait(driver, Duration.ofSeconds(5));
+		checkoutPage.proceedToCheckout();
 	}
 
 	@Then("the User will have successfully bought the games")
@@ -88,11 +54,10 @@ public class CheckoutSteps {
 	public void that_a_user_has_an_empty_cart_and_is_viewing_their_cart() {
 
 		driver.get("http://localhost:4200");
-		new WebDriverWait(driver, Duration.ofSeconds(3));
-		loginForCheckout("joshua_test", "test_joshua");
-		new WebDriverWait(driver, Duration.ofSeconds(3));
-		viewCart();
-
+		new WebDriverWait(driver, Duration.ofSeconds(5));
+		checkoutPage.loginForCheckout("joshua_test", "test_joshua");
+		new WebDriverWait(driver, Duration.ofSeconds(5));
+		checkoutPage.viewCart();
 	}
 
 	@When("the User tries to Checkout")
@@ -102,16 +67,15 @@ public class CheckoutSteps {
 
 	@Then("the Cart Page will display that the Cart is empty and the Proceed to Checkout will not be displayed")
 	public void the_cart_page_will_display_that_the_cart_is_empty_and_the_proceed_to_checkout_will_not_be_displayed() {
-
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(checkoutPage.getEmptyCart()));
-		String emptyCartText = driver.findElement(checkoutPage.getEmptyCart()).getText();
+		String emptyCartText = checkoutPage.getEmptyCartText();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		assertEquals(emptyCartText, "Your shopping cart is empty!");
 
 	}
 
 	@When("the User clicks the Checkout Tab")
 	public void the_user_clicks_the_checkout_tab() {
-		driver.findElement(homePage.getCheckoutPage()).click();
+		homePage.clickNavToCheckout();
 		new WebDriverWait(driver, Duration.ofSeconds(3));
 	}
 

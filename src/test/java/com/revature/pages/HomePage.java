@@ -2,6 +2,16 @@ package com.revature.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage {
     private WebDriver driver;
@@ -38,6 +48,7 @@ public class HomePage {
 
 	private By viewCart = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[3]/a");
 	
+
 	
 	
 	
@@ -46,10 +57,19 @@ public class HomePage {
 	
 	public By getfirstAddToCartButton() {
 		return firstAddToCartButton;
+
 	}
 	
-	public By getViewCartLink() {
-		return viewCart;
+	public void clickFirstAddToCartButtion() {
+		driver.findElement(firstAddToCartButton).click();
+
+	}
+	
+//	public By getViewCartLink() {
+//		return viewCart;
+//	}
+	public void clickViewCartLink() {
+		driver.findElement(viewCart).click();
 	}
 
     public void clickAdd() {
@@ -60,7 +80,10 @@ public class HomePage {
     public By getLoginLink() {
         return loginLink;
     }
-
+    public void clickLoginLink() {
+        driver.findElement(loginLink).click();
+    }
+    
     public By getuNameField() {
         return uNameField;
     }
@@ -77,9 +100,7 @@ public class HomePage {
         return gamesDisplayed;
     }
 
-    public By getSearchBar() {
-		return searchBar;
-	}
+   
 
     public void clickDarkModeButton() {
         driver.findElement(darkLightModeButton).click();
@@ -131,8 +152,30 @@ public class HomePage {
 		driver.findElement(getLoginLink()).click();
 	}
 	
+
 	public void navToWishListPage() {
 		driver.findElement(navWishListButton).click();
+	}
+
+    private By metacriticLink = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div/div[1]/div/div[3]/div[6]/div/a");
+	private By registerLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[5]/a");
+	
+    public By getMetatcriticLink() {
+    	return metacriticLink;
+    }
+	public By getRegisterLink() {
+		return registerLink;
+	}
+
+
+
+	public By getaddWishlistButton() {
+		return addWishListButton;
+	}
+	
+	public void clickNavToCheckout() {
+		driver.findElement(checkoutPage).click();
+
 	}
 	
 	public void clickNavToCart() {
@@ -145,8 +188,15 @@ public class HomePage {
 	public By getUserInfoLink() {
 		return userInfoLink;
 	}
-	public By getCheckoutPage() {
-		return checkoutPage;
+	
+	
+	public void searchFor(String input) {
+		driver.findElement(searchBar).sendKeys(input);
+	}
+
+	public void navigateToLoginPage() {
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getLoginLink()));
+		driver.findElement(getLoginLink()).click();
 	}
 	
 

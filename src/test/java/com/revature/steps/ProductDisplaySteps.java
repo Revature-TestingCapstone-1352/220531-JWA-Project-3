@@ -1,9 +1,12 @@
 package com.revature.steps;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.Duration;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -24,24 +27,15 @@ public class ProductDisplaySteps {
 	public static WebDriver driver = GameRunner.driver;
 	public static HomePage homePage = GameRunner.homePage;
 	
-	public void loginForHomePage(String username, String password) {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(homePage.getLoginLink()));
-		driver.findElement(homePage.getLoginLink()).click();
-		new WebDriverWait(driver, Duration.ofSeconds(3));
-		driver.findElement(homePage.getuNameField()).sendKeys(username);
-		new WebDriverWait(driver, Duration.ofSeconds(3));
-		driver.findElement(homePage.getpKeyField()).sendKeys(password);
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(homePage.getLoginButton()));
-		driver.findElement(homePage.getLoginButton()).click();
-	}
-	
 	@Given("a User is on the Store Page")
 	public void a_user_is_on_the_store_page() {
 
 		driver.get("http://localhost:4200");
 		new WebDriverWait(driver, Duration.ofSeconds(3));
-		loginForHomePage("joshua_test", "test_joshua");
-
+//<<<<<<< HEAD
+//		loginForHomePage("joshua_test", "test_joshua");
+//
+//=======
 	}
 
 	@When("the games are displayed")
@@ -58,25 +52,36 @@ public class ProductDisplaySteps {
 	public void maximum_of_twentyfour_games() {
 
 		List<WebElement> twentyFour = driver.findElement(homePage.getGamesDisplayed()).findElements(By.xpath("./child::*"));
-		assertEquals(twentyFour.size(), 25);
-
+		//removing pagination child element from list
+		twentyFour.remove(twentyFour.size() - 1);
+		assertThat(twentyFour.size() <= 24);
 	}
 
-	@Given("a User is on the Store Page again")
+	@Given("the User is on the Store Page again")
 	public void a_user_is_on_the_store_page_again() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    driver.get("http://localhost:4200");
+	    new WebDriverWait(driver, Duration.ofSeconds(3));
 	}
 
 	@When("when the User clicks on the Metacritic link of a game")
 	public void when_the_user_clicks_on_the_metacritic_link_of_a_game() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(homePage.getMetatcriticLink()));
+		driver.findElement(homePage.getMetatcriticLink()).click();
 	}
 
 	@Then("there is a valid Metacritic review displayed")
 	public void there_is_a_valid_metacritic_review_displayed() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		Set<String> handles = driver.getWindowHandles();
+		String origin = driver.getWindowHandle();
+		Iterator<String> iter = handles.iterator();
+		while (iter.hasNext()) {
+			String newWindow = iter.next();
+			if (!origin.equalsIgnoreCase(newWindow)) {
+				driver.switchTo().window(newWindow);
+			}
+		}
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleIs("Evochron Mercenary for PC Reviews - Metacritic"));
+		assertEquals(driver.getTitle(), "Evochron Mercenary for PC Reviews - Metacritic");
+		driver.switchTo().window(origin);
 	}
 }
