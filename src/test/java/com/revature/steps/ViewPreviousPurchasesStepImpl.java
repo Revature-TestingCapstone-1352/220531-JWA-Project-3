@@ -26,6 +26,7 @@ public class ViewPreviousPurchasesStepImpl {
 
 	@Given("a User enters their {string} and {string} in the login form and click the login button")
 	public void a_user_enters_their_and_in_the_login_form(String username, String password) {
+		driver.get("http://localhost:4200");
 		new WebDriverWait(driver, Duration.ofSeconds(10))
 			.until(ExpectedConditions.elementToBeClickable(homePage.getLoginLink()));
 
