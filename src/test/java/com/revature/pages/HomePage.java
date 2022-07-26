@@ -66,9 +66,7 @@ public class HomePage {
         return gamesDisplayed;
     }
 
-    public By getSearchBar() {
-		return searchBar;
-	}
+   
 
     public void clickDarkModeButton() {
         driver.findElement(darkLightModeButton).click();
@@ -126,8 +124,11 @@ public class HomePage {
 		return checkoutPage;
 	}
 	
-
-    public By getSearchBar() {
-        return searchBar;
-    }
+	public void searchFor(String input) {
+		driver.findElement(searchBar).sendKeys(input);
+	}
+	
+//    public By getSearchBar() {
+//        return searchBar;
+//    }
 }

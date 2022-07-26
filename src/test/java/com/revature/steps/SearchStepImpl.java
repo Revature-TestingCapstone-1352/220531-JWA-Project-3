@@ -28,7 +28,7 @@ public class SearchStepImpl {
 
 
 		driver.get("http://localhost:4200/");
-		new WebDriverWait(driver, Duration.ofSeconds(3));
+//		new WebDriverWait(driver, Duration.ofSeconds(3));
 
 	}
 
@@ -37,8 +37,8 @@ public class SearchStepImpl {
 		HomePage homePage = new HomePage(driver);
 		string = "Dawn of";
 
-		driver.findElement(homePage.getSearchBar()).sendKeys(string);
-
+//		driver.findElement(homePage.getSearchBar()).sendKeys(string);
+		homePage.searchFor(string);
 
 		//	   new WebDriverWait(driver, Duration.ofSeconds(3));
 	}

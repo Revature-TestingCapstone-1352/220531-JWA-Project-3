@@ -50,7 +50,7 @@ public class GameRunner {
 		
 		
 		driver.get("http://localhost:4200");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
 	}
 	
