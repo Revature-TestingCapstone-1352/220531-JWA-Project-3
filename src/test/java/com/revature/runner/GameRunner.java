@@ -33,9 +33,8 @@ public class GameRunner {
   public static CheckoutPage checkoutPage;
 	public static WishListPage wishListPage;
 	public static HomePage homePage;
-// Khellil code
 	public static UserInfoPage userInfoPage;
-	// ==========
+	
 
 	public  WebDriver getDriver() 
   {
@@ -65,9 +64,7 @@ public class GameRunner {
 		userInfoPage = new UserInfoPage(driver);
 		
 		//ADD YOUR WEB PAGES HERE
-		driver.get("http://localhost:4200");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-	}
+}
 	
 	@AfterAll
 	public static void teardown() 
