@@ -17,8 +17,8 @@
 ## (Comments)
 #Sample Feature Definition Template
 @tag
-Feature: Title of your feature
-  I want to use this template for my feature file
+Feature: Remove Item From Cart
+  
 
 
 	@tag1
