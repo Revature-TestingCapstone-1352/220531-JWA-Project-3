@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.revature.pages.HomePage;
+import com.revature.pages.LoginPage;
 import com.revature.pages.UserInfoPage;
 import com.revature.runner.GameRunner;
 
@@ -21,15 +22,18 @@ public class ViewPreviousPurchasesStepImpl {
 	public static WebDriver driver = GameRunner.driver;
 	public static HomePage homePage = GameRunner.homePage;
 	public static UserInfoPage userInfoPage = GameRunner.userInfoPage;
+	public static LoginPage loginPage = GameRunner.loginPage;
 	
 	public void loginForPreviousOrder(String username, String password) {
 		new WebDriverWait(driver, Duration.ofSeconds(10))
 			.until(ExpectedConditions.elementToBeClickable(homePage.getLoginLink()));
 		
-		driver.findElement(homePage.getLoginLink()).click();
-		driver.findElement(homePage.getuNameField()).sendKeys(username);
-		driver.findElement(homePage.getpKeyField()).sendKeys(password);
-		driver.findElement(homePage.getLoginButton()).click();
+		homePage.clickLoginLink();
+//		driver.findElement(homePage.getuNameField()).sendKeys(username);
+//		driver.findElement(homePage.getpKeyField()).sendKeys(password);
+//		driver.findElement(homePage.getLoginButton()).click();
+		loginPage.loginValidUser(username, password);
+		
 	}
 	
 	@Given("a User is logged in and has made a previous purchase")
