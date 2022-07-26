@@ -17,8 +17,9 @@
 ## (Comments)
 #Sample Feature Definition Template
 @tag
-Feature: Cart
- 
+Feature: Remove Item From Cart
+  
+
 
 	@tag1
 	Scenario: User adds game to wishlist while logged in
@@ -29,38 +30,12 @@ Feature: Cart
 		And User clicks the addToWishListButton
 		And User navigates to wishListPage 
 		And User clicks the addToCartButton
-		When User navigates to cart
-		Then User should see the game in the cart
+		And User navigates to cart
+		When User clicks the removeGameButton
+		Then User should see the empty cart message
+		
+
 
     
     
- 
-  	
-  
-  	
-  	
-  	
 
-#
-  #@tag2
-  #Scenario Outline: Title of your scenario outline
-    #Given I want to write a step with <name>
-    #When I check for the <value> in step
-    #Then I verify the <status> in step
-#
-    #Examples: 
-      #| name  | value | status  |
-      #| name1 |     5 | success |
-      #| name2 |     7 | Fail    |
-      #
-      #
-      #
-       #@tag1
-  #Scenario: User can navigate to the cart while not logged in
-    #Given User is on the HomePage
-    #And some other precondition
-    #When I complete action
-    #And some other action
-    #And yet another action
-    #Then I validate the outcomes
-    #And check more outcomes

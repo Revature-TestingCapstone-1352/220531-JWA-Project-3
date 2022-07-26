@@ -17,7 +17,7 @@ import com.revature.pages.WishListPage;
 
 import java.io.File;
 
-
+ 
 @Suite
 public class GameRunner {
 	
@@ -56,27 +56,25 @@ public class GameRunner {
 		driver = new ChromeDriver();
 		
 
+		//ADD YOUR WEB PAGES HERE
+		
 		checkoutPage = new CheckoutPage(driver);
 		cartPage = new CartPage(driver);
 		loginPage = new LoginPage(driver);
 		wishListPage = new WishListPage(driver);
-//<<<<<<< HEAD
-//		
-//		//ADD YOUR WEB PAGES HERE
-//		userInfoPage = new UserInfoPage(driver);
-//		homePage = new HomePage(driver);
-//		
-//		
-//		
-//		driver.get("http://localhost:4200");
-////        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-//
-//=======
 		homePage = new HomePage(driver);
 		registerPage = new RegisterPage(driver);
+		userInfoPage = new UserInfoPage(driver);
 		
-		//ADD YOUR WEB PAGES HERE
+
+		
 	}
+	
+	
+	
+	
+	
+	
 	
 	@AfterAll
 	public static void teardown() {

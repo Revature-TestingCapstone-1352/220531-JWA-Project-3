@@ -38,8 +38,9 @@ public class CheckoutPage {
 
 	public By getThankYou() {
 		return thankYouOrder;
-
 	}
+	
+	
 	
 	public By getEmptyCart() {
 		return emptyCart;
@@ -116,4 +117,6 @@ public class CheckoutPage {
 		String emptyCartText = driver.findElement(getEmptyCart()).getText();
 		return emptyCartText;
 	}
+	
+	
 }

@@ -16,6 +16,9 @@ protected WebDriver driver;
 	
 	private By addToCartBy = By.xpath("//*[@id=\"games\"]/div/div/div/div[4]/div/button[2]/span");
 	
+	private By wishListAddToCartButton = By.xpath("//*[@id=\"games\"]/div/div/div/div[4]/div/button[2]/span");
+	
+	
 	private By loginLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[6]/a");
 	private By uNameField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[1]/input");
 	private By pKeyField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[2]/input");
@@ -26,8 +29,21 @@ protected WebDriver driver;
 		this.driver = driver;
 	}
 	
-	public By getLoginLink() {
-		return loginLink;
+//	public By getLoginLink() {
+//		return loginLink;
+//	}
+	
+	
+	
+	//----jf code---
+	public void wishListAddToCartClick() {
+		driver.findElement(wishListAddToCartButton).click();		
+	}
+	
+	
+	public String getGameName() {
+		String gameName = driver.findElement(gameNameBy).getText();
+		return gameName;
 	}
 
 	public By getuNameField() {

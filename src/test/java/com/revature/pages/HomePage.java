@@ -21,7 +21,11 @@ public class HomePage {
         // this next bit of code is working from the PageFactory
         //PageFactory.initElements(driver, this);
     }
+    
+ // SETTING UP ALL THE ELEMENTS THAT WE ARE GOING TO BE USING ON THE HOME PAGE AKA NAVIGATION PAGE
+    
 
+    private By body = By.xpath("/html/body");
     //TEMP until LoginPage is setup
     private By loginLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[6]/a");
     private By uNameField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[1]/input");
@@ -31,23 +35,34 @@ public class HomePage {
     private By gamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
     private By searchBar = By.xpath("/html/body/app-root/app-store/nav/input");
     private By darkLightModeButton = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[10]/button/h5");
-    private By body = By.xpath("/html/body");
     private By nextPageButton = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[10]/a");
     private By previousPageButton = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[1]/a");
     private By numberedPageButton = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[6]/a");
-  	private By userInfoLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[7]/a");
-    private By checkoutPage = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[4]/a");
-	//Navigation Buttons
+    private By firstAddToCartButton = By.xpath("//*[@id=\"games\"]/div/div[1]/div/div[4]/div/button[2]");
+    
+    //Navigation Buttons
+    private By userInfoLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[7]/a");
+  	private By checkoutPage = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[4]/a");
+    
 	public By navCartButton = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[3]/a");
 
-    private By firstAddToCartButton = By.xpath("//*[@id=\"games\"]/div/div[1]/div/div[4]/div/button[2]");
 	private By viewCart = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[3]/a");
 	
-//	public By getfirstAddToCartButton() {
-//		return firstAddToCartButton;
-//	}
+
+	
+	
+	
+	
+	
+	
+	public By getfirstAddToCartButton() {
+		return firstAddToCartButton;
+
+	}
+	
 	public void clickFirstAddToCartButtion() {
 		driver.findElement(firstAddToCartButton).click();
+
 	}
 	
 //	public By getViewCartLink() {
@@ -127,11 +142,21 @@ public class HomePage {
 
 	
 	//----------------------NAV CLICK FUNCTIONS--------------------------------------
+    
+    private By navWishListButton = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[2]/a");
+    private By navStoreButton = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[1]/a");
+    
+    
 	
 	public void navToLoginPage() {
 		driver.findElement(getLoginLink()).click();
 	}
 	
+
+	public void navToWishListPage() {
+		driver.findElement(navWishListButton).click();
+	}
+
     private By metacriticLink = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div/div[1]/div/div[3]/div[6]/div/a");
 	private By registerLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[5]/a");
 	
@@ -150,10 +175,14 @@ public class HomePage {
 	
 	public void clickNavToCheckout() {
 		driver.findElement(checkoutPage).click();
+
 	}
 	
 	public void clickNavToCart() {
 		driver.findElement(navCartButton).click();
+	}
+	public void navToStore() {
+		driver.findElement(navStoreButton).click();
 	}
 
 	public By getUserInfoLink() {
@@ -170,4 +199,5 @@ public class HomePage {
 		driver.findElement(getLoginLink()).click();
 	}
 	
+
 }
