@@ -23,14 +23,14 @@ public class ViewPreviousPurchasesStepImpl {
 	public static HomePage homePage = new HomePage(driver);
 	public static LoginPage loginPage = new LoginPage(driver);
 	public static UserInfoPage userInfoPage = new UserInfoPage(driver);
-	
-	@Given("a User is logged in and has made a previous purchase")
-	public void a_user_is_logged_in_and_has_made_a_previous_purchase() {
+
+	@Given("a User enters their {string} and {string} in the login form and click the login button")
+	public void a_user_enters_their_and_in_the_login_form(String username, String password) {
 		new WebDriverWait(driver, Duration.ofSeconds(10))
 			.until(ExpectedConditions.elementToBeClickable(homePage.getLoginLink()));
-	
+
 		homePage.navToLoginPage();
-		loginPage.loginValidUser("Testing123", "Orders");
+		loginPage.loginValidUser(username, password);
 	}
 
 	@When("they click on the User Information button")
@@ -46,25 +46,25 @@ public class ViewPreviousPurchasesStepImpl {
 		userInfoPage.clickViewOrderHistoryButton();
 	}
 
-	@Then("they can see a previous purchase they have made")
-	public void they_can_see_a_previous_purchase_they_have_made() {
+	@Then("{string} can see a previous purchase they have made")
+	public void they_can_see_a_previous_purchase_they_have_made(String username) {
 		userInfoPage.waitForOrderHistoryHeader();
 		
-		assertEquals("Order Placed: 2022-07-24", userInfoPage.getFirstOrderDate());
-		assertEquals("Order Total: €39.98", userInfoPage.getFirstOrderTotal());
-		assertEquals("The Elder Scrolls V: Skyrim", userInfoPage.getFirstOrderFirstGame());
-		assertEquals("BioShock", userInfoPage.getFirstOrderSecondGame());
-	}
-	
-	@Given("a User is logged in and has made previous purchases")
-	public void a_user_is_logged_in_and_has_made_previous_purchases() {
-		// Login with different user who has made two purchases
-	    throw new io.cucumber.java.PendingException();
-	}
-	
-	@Then("they can see the previous purchases they have made")
-	public void they_can_see_the_previous_purchases_they_have_made() {
-		// Do the same assertions twice
-	    throw new io.cucumber.java.PendingException();
+		if (username.equals("Testing123")) {
+			assertEquals("Order Placed: 2022-07-24", userInfoPage.getFirstOrderDate());
+			assertEquals("Order Total: €39.98", userInfoPage.getFirstOrderTotal());
+			assertEquals("The Elder Scrolls V: Skyrim", userInfoPage.getFirstOrderFirstGame());
+			assertEquals("BioShock", userInfoPage.getFirstOrderSecondGame());
+		} 
+		if (username.equals("Multiple")) {
+			assertEquals("Order Placed: 2022-07-26", userInfoPage.getFirstOrderDate());
+			assertEquals("Order Total: €39.98", userInfoPage.getFirstOrderTotal());
+			assertEquals("Portal", userInfoPage.getFirstOrderFirstGame());
+			assertEquals("Super Street Fighter IV Arcade Edition", userInfoPage.getFirstOrderSecondGame());
+			
+			assertEquals("Order Placed: 2022-07-24", userInfoPage.getSecondOrderDate());
+			assertEquals("Order Total: €9.99", userInfoPage.getSecondOrderTotal());
+			assertEquals("Saints Row: The Third", userInfoPage.getSecondOrderFirstGame());
+		}
 	}
 }

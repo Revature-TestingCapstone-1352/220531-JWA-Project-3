@@ -21,6 +21,9 @@ public class UserInfoPage {
 	private By firstOrderTotal = By.xpath("/html/body/app-root/app-user-information/div/div[2]/table/thead/tr/th[2]");
 	private By firstOrderFirstGame = By.xpath("/html/body/app-root/app-user-information/div/div[2]/table/tbody/tr[1]/td[2]/span/b");
 	private By firstOrderSecondGame = By.xpath("/html/body/app-root/app-user-information/div/div[2]/table/tbody/tr[2]/td[2]/span/b");
+	private By secondOrderDate = By.xpath("/html/body/app-root/app-user-information/div/div[2]/table[2]/thead/tr/th[1]");
+	private By secondOrderTotal = By.xpath("/html/body/app-root/app-user-information/div/div[2]/table[2]/thead/tr/th[2]");
+	private By secondOrderFirstGame = By.xpath("/html/body/app-root/app-user-information/div/div[2]/table[2]/tbody/tr/td[2]/span/b");
 
 	public void clickViewOrderHistoryButton() {
 		new WebDriverWait(driver, Duration.ofSeconds(10))
@@ -48,5 +51,17 @@ public class UserInfoPage {
 
 	public String getFirstOrderSecondGame() {
 		return driver.findElement(firstOrderSecondGame).getText();
+	}
+	
+	public String getSecondOrderDate() {
+		return driver.findElement(secondOrderDate).getText();
+	}
+
+	public String getSecondOrderTotal() {
+		return driver.findElement(secondOrderTotal).getText();
+	}
+
+	public String getSecondOrderFirstGame() {
+		return driver.findElement(secondOrderFirstGame).getText();
 	}
 }
