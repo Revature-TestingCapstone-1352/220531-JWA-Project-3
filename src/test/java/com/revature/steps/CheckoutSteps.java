@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.revature.pages.CheckoutPage;
 import com.revature.pages.HomePage;
 import com.revature.pages.LoginPage;
+import com.revature.pages.UserInfoPage;
 import com.revature.runner.GameRunner;
 
 import io.cucumber.java.en.Given;
@@ -22,6 +23,7 @@ public class CheckoutSteps {
 	public static CheckoutPage checkoutPage = GameRunner.checkoutPage;
 	public static LoginPage loginPage = GameRunner.loginPage;
 	public static HomePage homePage = GameRunner.homePage;
+	public static UserInfoPage userInfoPage = GameRunner.userInfoPage;
 	
 	@Given("that a User has an Item in their Cart and is viewing their Cart")
 	public void that_a_user_has_an_item_in_their_cart_and_is_viewing_their_cart() {
@@ -73,7 +75,7 @@ public class CheckoutSteps {
 
 	@When("the User clicks the Checkout Tab")
 	public void the_user_clicks_the_checkout_tab() {
-		driver.findElement(homePage.getCheckoutPage()).click();
+		homePage.clickNavToCheckout();
 		new WebDriverWait(driver, Duration.ofSeconds(3));
 	}
 

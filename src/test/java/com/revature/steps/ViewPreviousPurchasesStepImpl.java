@@ -47,8 +47,9 @@ public class ViewPreviousPurchasesStepImpl {
 
 	@When("then they click on the View Previous Orders button")
 	public void then_they_click_on_the_view_previous_orders_button() {
-		new WebDriverWait(driver, Duration.ofSeconds(10))
-			.until(ExpectedConditions.elementToBeClickable(userInfoPage.getViewOrderHistoryButton()));
+		new WebDriverWait(driver, Duration.ofSeconds(5));
+//		new WebDriverWait(driver, Duration.ofSeconds(10))
+//			.until(ExpectedConditions.elementToBeClickable(userInfoPage.getViewOrderHistoryButton()));
 		
 		driver.findElement(userInfoPage.getViewOrderHistoryButton()).click();
 	}

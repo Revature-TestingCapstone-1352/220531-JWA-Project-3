@@ -1,9 +1,7 @@
 package com.revature.pages;
 
-<<<<<<< HEAD
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-=======
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -14,7 +12,6 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
->>>>>>> frontend_team_1
 
 public class HomePage {
     private WebDriver driver;
@@ -46,7 +43,6 @@ public class HomePage {
     private By firstAddToCartButton = By.xpath("//*[@id=\"games\"]/div/div[1]/div/div[4]/div/button[2]");
 	private By viewCart = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[3]/a");
 	
-<<<<<<< HEAD
 	public By getfirstAddToCartButton() {
 		return firstAddToCartButton;
 	}
@@ -125,17 +121,8 @@ public class HomePage {
 	
 	public void navToLoginPage() {
 		driver.findElement(getLoginLink()).click();
-=======
-	public HomePage(WebDriver driver) {
-		this.driver = driver;
 	}
 	
-	private By loginLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[6]/a");
-	private By uNameField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[1]/input");
-	private By pKeyField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[2]/input");
-	private By loginButton = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[3]/button");
-	private By addWishListButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[1]");
-	private By gamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
     private By metacriticLink = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div/div[1]/div/div[3]/div[6]/div/a");
     private By searchField = By.xpath("/html/body/app-root/app-store/nav/input");
 	private By registerLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[5]/a");
@@ -155,9 +142,8 @@ public class HomePage {
 		return addWishListButton;
 	}
 	
-	public By getLoginLink() {
-		return loginLink;
->>>>>>> frontend_team_1
+	public void clickNavToCheckout() {
+		driver.findElement(checkoutPage).click();
 	}
 	
 	public void clickNavToCart() {
@@ -167,33 +153,18 @@ public class HomePage {
 	public By getUserInfoLink() {
 		return userInfoLink;
 	}
-<<<<<<< HEAD
-	public By getCheckoutPage() {
-		return checkoutPage;
-=======
 	
-	public By getLoginButton() {
-		return loginButton;
->>>>>>> frontend_team_1
-	}
 	
 	public void searchFor(String input) {
 		driver.findElement(searchBar).sendKeys(input);
 	}
 	
-<<<<<<< HEAD
 //    public By getSearchBar() {
 //        return searchBar;
 //    }
-=======
 	public void navigateToLoginPage() {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getLoginLink()));
 		driver.findElement(getLoginLink()).click();
 	}
 	
-	public void clickAdd()
-	{
-		driver.findElement(getaddWishlistButton()).click();
-	}
->>>>>>> frontend_team_1
 }
