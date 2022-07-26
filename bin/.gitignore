@@ -15,3 +15,4 @@ node_modules
 .classpath
 application.properties
 
+/src/
