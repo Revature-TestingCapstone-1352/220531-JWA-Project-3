@@ -17,5 +17,6 @@ application.properties
 bin/
 .metadata/
 .vscode/
+
 .idea/
 
