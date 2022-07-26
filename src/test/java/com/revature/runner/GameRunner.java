@@ -11,11 +11,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.revature.pages.*;
 
+
 import com.revature.pages.CheckoutPage;
 import com.revature.pages.HomePage;
 import com.revature.pages.LoginPage;
 import com.revature.pages.RegisterPage;
 import com.revature.pages.WishListPage;
+
 
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
@@ -36,6 +38,8 @@ public class GameRunner {
 	public static WishListPage wishListPage;
 	public static HomePage homePage;
 	public static RegisterPage registerPage;
+	public static CartPage cartPage;
+	public static UserInfoPage userInfoPage;
 
 	
 	public  WebDriver getDriver() 
@@ -65,6 +69,8 @@ public class GameRunner {
 		loginPage = new LoginPage(driver);
 		wishListPage = new WishListPage(driver);
 		registerPage = new RegisterPage(driver);
+		cartPage = new CartPage(driver);
+		userInfoPage = new UserInfoPage(driver);
 		
 		//ADD YOUR WEB PAGES HERE
 	}
