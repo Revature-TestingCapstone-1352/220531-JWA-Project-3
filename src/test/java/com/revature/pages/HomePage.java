@@ -20,8 +20,6 @@ public class HomePage {
 	private By gamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
 	private By gamesDivBy = By.xpath("//*[@id=\"games\"]");
 	private By addCartButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[2]");
-	private By addWishListButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[1]");
-	private By gamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
     private By metacriticLink = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div/div[1]/div/div[3]/div[6]/div/a");
     private By searchField = By.xpath("/html/body/app-root/app-store/nav/input");
 	private By registerLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[5]/a");

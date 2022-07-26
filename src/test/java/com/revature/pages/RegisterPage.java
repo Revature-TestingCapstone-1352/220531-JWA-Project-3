@@ -10,12 +10,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.revature.runner.GameRunner;
 
-public class RegisterPage 
-{
 
 public class RegisterPage {
 
 	protected WebDriver driver;
+	public HomePage homePage = GameRunner.homePage;
 	
 	private By registerButtonBy = By.xpath("/html/body/app-root/app-register/div/div/div/div/div/div[4]/button");
 	private By usernameBy = By.xpath("/html/body/app-root/app-register/div/div/div/div/div/div[1]/input");
@@ -23,25 +22,6 @@ public class RegisterPage {
 	private By emailBy = By.xpath("/html/body/app-root/app-register/div/div/div/div/div/div[3]/input");
 	
 	public RegisterPage(WebDriver driver) {
-		this.driver = driver;
-	}
-	
-	public boolean isOnThePage() {
-		try {
-			new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(registerButtonBy));
-			WebElement registerButton = driver.findElement(registerButtonBy);
-			if (registerButton.getText().equals("Register")) return true;
-			else return false;
-		} catch(Exception e) {
-			return false;
-		}
-	}
-	
-	private WebDriver driver;
-	public HomePage homePage = GameRunner.homePage;
-	
-	public RegisterPage(WebDriver driver) 
-	{
 		this.driver = driver;
 	}
 	
@@ -62,7 +42,7 @@ public class RegisterPage {
 	
 	public By getRegisterButton()
 	{
-		return registerButton;
+		return registerButtonBy;
 	}
 	
 	public void enterInformation(String username, String password, String email)
@@ -82,5 +62,16 @@ public class RegisterPage {
 //		driver.get("http://localhost:4200");
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(homePage.getRegisterLink()));
 		driver.findElement(homePage.getRegisterLink()).click();
+	}
+	
+	public boolean isOnThePage() {
+		try {
+			new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(registerButtonBy));
+			WebElement registerButton = driver.findElement(registerButtonBy);
+			if (registerButton.getText().equals("Register")) return true;
+			else return false;
+		} catch(Exception e) {
+			return false;
+		}
 	}
 }
