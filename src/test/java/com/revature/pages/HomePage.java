@@ -28,6 +28,17 @@ public class HomePage {
     private By searchField = By.xpath("/html/body/app-root/app-store/nav/input");
 	private By registerLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[5]/a");
 	
+	//Adding Khelil's code:
+	private By logoutLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[8]/a");
+	private By userInfoLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[7]/a");
+
+	public By getLogoutLink() {
+		return logoutLink;
+	}
+	public By getUserInfoLink() {
+		return userInfoLink; 
+	}
+	
     public By getMetatcriticLink() {
     	return metacriticLink;
     }
