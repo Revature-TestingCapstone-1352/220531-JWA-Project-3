@@ -1,5 +1,7 @@
 package com.revature.pages;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -25,25 +27,15 @@ public class CartPage {
 	
 	// SETTING UP ALL THE ELEMENTS THAT WE ARE GOING TO BE USING ON THE CART PAGE
 	
-	private By shoppingCartEmptyMessage = By.xpath("/html/body/app-root/app-cart/div[1]/h4");
-	private By addToCartButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[2]");
 	
 	
+	
+	private By addToCartButton = By.xpath("//*[@id=\"games\"]/div/div/div/div[4]/div/button[2]/span");	
 	private By cartTable = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/table/tbody");
 	public By cartTableFirstItem = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/table/tbody/tr/td[2]/span[1]/b");
-//	private By cartTableFirstItem = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/table/tbody/tr/td[2]/span[1]/b");
 	
-
-	
-	
-//	private By addItemToCartButtonFromWishList = By.xpath("//*[@id=\"games\"]/div/div/div/div[4]/div/button[2]/span");
-	
-	private By nameOfFirstGameInWishList = By.xpath("//*[@id=\"games\"]/div/div/div/div[2]");
 	
 	private By nameOfFirstGameInCart = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/table/tbody/tr/td[2]/span[1]/b");
-	
-	
-//	private By firstWishListButton = By.xpath("//*[@id=\"games\"]/div/div[1]/div/div[4]/div/button[1]");
 	
 	
 	// STORE PAGE ITEMS
@@ -51,6 +43,12 @@ public class CartPage {
 	private By storePageGameName = By.xpath("//*[@id=\"games\"]/div/div[1]/div/div[2]");
 	private By storeWishListButton = By.xpath("//*[@id=\"games\"]/div/div[1]/div/div[4]/div/button[1]");
 	
+	
+	
+	public void clickAddToCartButton() {
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.findElement(addToCartButton).click();
+	}
 	
 	
 	public void noItemsInCartPage() {
@@ -106,6 +104,8 @@ public class CartPage {
 	
 	///////////////// WISH LIST ITEMS \\\\\\\\\\\\\\\\\\\\\\\\
 	
+	private By nameOfFirstGameInWishList = By.xpath("//*[@id=\"games\"]/div/div/div/div[2]");
+	
 	public String getNameOfFirstGameInWishList() {
 		String gameName = driver.findElement(nameOfFirstGameInWishList).getText();		
 		return gameName;
@@ -133,8 +133,34 @@ public class CartPage {
 	
 
 
-
+	// CHECKOUT PAGE THINGS
 	
+	//THE NAME OF THE TOP GAME IN THE TABLE AFTER ADDING TO CART
+	private By checkOutGameName = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/table/tbody/tr/td[2]/span[1]/b");
+	
+	private By shoppingCartEmptyMessage = By.xpath("/html/body/app-root/app-cart/div[1]/h4");
+	
+	private By removeButton_First_Item_In_Cart = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/table/tbody/tr/td[1]/button");
+	
+	
+	
+	
+	public String getCheckOutGameName() {
+		
+		String gameName = driver.findElement(checkOutGameName).getText();
+		return gameName;
+		
+	}
+	
+	
+	public void clickremoveButton_First_Item_In_Cart() {
+		driver.findElement(removeButton_First_Item_In_Cart).click();
+	}
+	
+	public String getEmptyStringMessage() {
+		String msg = driver.findElement(shoppingCartEmptyMessage).getText();
+		return msg;
+	}
 
 	
 	

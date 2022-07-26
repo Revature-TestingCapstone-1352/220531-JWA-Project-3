@@ -20,15 +20,18 @@
 Feature: Title of your feature
   I want to use this template for my feature file
 
-@tag1
-	Scenario: User should be able to remove a game from their cart
+
+	@tag1
+	Scenario: User adds game to wishlist while logged in
 		Given User has navigated to the LandingPage
 		And User navigates to LoginPage
 		And User enters correct credentials and logs in
-		And User Navigates to the storePage
-		And User selects a game to be put in cart
-		And User navigates to the cartPage
-		When User clicks on the removeGameButton
+		And User navigates to StorePage
+		And User clicks the addToWishListButton
+		And User navigates to wishListPage 
+		And User clicks the addToCartButton
+		And User navigates to cart
+		When User clicks the removeGameButton
 		Then User should see the empty cart message
 		
 

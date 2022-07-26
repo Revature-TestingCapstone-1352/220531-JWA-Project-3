@@ -26,9 +26,11 @@ Feature: Cart
 		And User navigates to LoginPage
 		And User enters correct credentials and logs in
 		And User navigates to StorePage
-		When User clicks the addToWishListButton
-		And User navigates to wishListPage
-		Then User should see the game in the wishlist
+		And User clicks the addToWishListButton
+		And User navigates to wishListPage 
+		And User clicks the addToCartButton
+		When User navigates to cart
+		Then User should see the game in the cart
 
     
     
