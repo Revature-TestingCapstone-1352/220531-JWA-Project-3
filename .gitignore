@@ -14,4 +14,4 @@ node_modules
 .idea/*
 .classpath
 application.properties
-
+bin/
