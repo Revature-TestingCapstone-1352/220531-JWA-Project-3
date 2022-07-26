@@ -46,13 +46,25 @@ public class ViewPreviousPurchasesStepImpl {
 		userInfoPage.clickViewOrderHistoryButton();
 	}
 
-	@Then("they can see previous purchases they have made")
-	public void they_can_see_previous_purchases_they_have_made() {
+	@Then("they can see a previous purchase they have made")
+	public void they_can_see_a_previous_purchase_they_have_made() {
 		userInfoPage.waitForOrderHistoryHeader();
 		
 		assertEquals("Order Placed: 2022-07-24", userInfoPage.getFirstOrderDate());
 		assertEquals("Order Total: €39.98", userInfoPage.getFirstOrderTotal());
 		assertEquals("The Elder Scrolls V: Skyrim", userInfoPage.getFirstOrderFirstGame());
 		assertEquals("BioShock", userInfoPage.getFirstOrderSecondGame());
+	}
+	
+	@Given("a User is logged in and has made previous purchases")
+	public void a_user_is_logged_in_and_has_made_previous_purchases() {
+		// Login with different user who has made two purchases
+	    throw new io.cucumber.java.PendingException();
+	}
+	
+	@Then("they can see the previous purchases they have made")
+	public void they_can_see_the_previous_purchases_they_have_made() {
+		// Do the same assertions twice
+	    throw new io.cucumber.java.PendingException();
 	}
 }

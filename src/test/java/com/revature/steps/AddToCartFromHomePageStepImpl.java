@@ -51,7 +51,7 @@ public class AddToCartFromHomePageStepImpl {
 	@Given("the User logged in and on the home page")
 	public void the_user_logged_in_and_on_the_home_page() {
 		new WebDriverWait(driver, Duration.ofSeconds(10))
-		.until(ExpectedConditions.elementToBeClickable(homePage.getLoginLink()));
+			.until(ExpectedConditions.elementToBeClickable(homePage.getLoginLink()));
 
 		homePage.navToLoginPage();
 		loginPage.loginValidUser("Testing123", "Orders");
