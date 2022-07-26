@@ -23,6 +23,7 @@ public class RegisterSteps
 	private WebDriver driver = GameRunner.driver;
 	private RegisterPage registerPage = GameRunner.registerPage;
 	private LoginPage loginPage = GameRunner.loginPage;
+	private HomePage homePage = GameRunner.homePage;
 
 	
 	public void enterInformation(String username, String password, String email)
