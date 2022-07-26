@@ -33,6 +33,7 @@ public class GameRunner {
 	public static CartPage cartPage;
 	public static UserInfoPage userInfoPage;
 
+	
 	public  WebDriver getDriver() 
   {
 		
@@ -43,6 +44,7 @@ public class GameRunner {
 		
 		return driver;
 	}
+	
 
 
 
@@ -63,8 +65,6 @@ public class GameRunner {
 		userInfoPage = new UserInfoPage(driver);
 		
 		//ADD YOUR WEB PAGES HERE
-		//driver.get("http://localhost:4200");
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 	}
 	
 	@AfterAll
