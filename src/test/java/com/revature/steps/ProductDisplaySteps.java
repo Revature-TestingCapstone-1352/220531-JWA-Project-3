@@ -29,24 +29,31 @@ public class ProductDisplaySteps {
 	
 	@Given("a User is on the Store Page")
 	public void a_user_is_on_the_store_page() {
+
 		driver.get("http://localhost:4200");
 		new WebDriverWait(driver, Duration.ofSeconds(3));
+
 	}
 
 	@When("the games are displayed")
 	public void the_games_are_displayed() {
+
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(homePage.getGamesDisplayed()));
 	    WebElement isDisplayedPre = driver.findElement(homePage.getGamesDisplayed());
 	    boolean isDisplayed = isDisplayedPre.isDisplayed();
 		assertEquals(isDisplayed, true);
+
 	}
 
 	@Then("there should be a maximum of twenty-four games displayed per page")
 	public void maximum_of_twentyfour_games() {
+
 		List<WebElement> twentyFour = driver.findElement(homePage.getGamesDisplayed()).findElements(By.xpath("./child::*"));
+
 		//removing pagination child element from list
 		twentyFour.remove(twentyFour.size() - 1);
 		assertThat(twentyFour.size() <= 24);
+
 	}
 
 	@Given("the User is on the Store Page again")
