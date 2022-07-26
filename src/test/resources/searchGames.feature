@@ -19,20 +19,27 @@
 @tag
 Feature: Search Games
 
-  @tag1
-  Scenario: Search for Good Game
+  
+  #Scenario Outline: Search for Good Game
+    #Given The user is on the homepage
+    #And the games are displayed
+    #When I search for "Dawn of"
+    #Then The first game should be "Warhammer 40,000: Dawn of War II: Retribution"
+
+#	Scenario: Search while logged in
+#		Given A user logs in through the Login Page
+#		And The user is on the homepage
+#		And the games are displayed
+#		When I search for "age o"
+    #Then The first game should be "Age of Empires III: Complete Collection"
+    
+      Scenario Outline: Search for Good Game
     Given The user is on the homepage
     And the games are displayed
-    When I search for "Dawn of"
-    Then The first game should be "Warhammer 40,000: Dawn of War II: Retribution"
-
-  #@tag2
-  #Scenario Outline: Title of your scenario outline
-    #Given I want to write a step with <name>
-    #When I check for the <value> in step
-    #Then I verify the <status> in step
-#
-    #Examples: 
-      #| name  | value | status  |
-      #| name1 |     5 | success |
-      #| name2 |     7 | Fail    |
+    When I search for "<entry>"
+    Then The first game should be "<result>"
+	
+    Examples: 
+      | entry  | result | 
+      | Dawn of |     Warhammer 40,000: Dawn of War II: Retribution | 
+      | age o |     Age of Empires III: Complete Collection | 

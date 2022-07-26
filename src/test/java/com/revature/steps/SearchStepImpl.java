@@ -33,24 +33,24 @@ public class SearchStepImpl {
 	}
 
 	@When("I search for {string}")
-	public void i_search_for(String string) {
+	public void i_search_for(String entry) {
 		HomePage homePage = new HomePage(driver);
-		string = "Dawn of";
+//		string = "Dawn of";
 
 //		driver.findElement(homePage.getSearchBar()).sendKeys(string);
-		homePage.searchFor(string);
+		homePage.searchFor(entry);
 
 		//	   new WebDriverWait(driver, Duration.ofSeconds(3));
 	}
 
 	@Then("The first game should be {string}")
-	public void the_first_game_should_be(String string) {
+	public void the_first_game_should_be(String result) {
 		String item = driver.findElement(By
 				.xpath("/html/body/app-root/app-store/div/div/div[2]/div/div[1]/div/div[2]")).getText(); 
 
-		string = "Warhammer 40,000: Dawn of War II: Retribution";
+//		string = "Warhammer 40,000: Dawn of War II: Retribution";
 
-		assertEquals(string,item);
+		assertEquals(result,item);
 	}
 
 }
