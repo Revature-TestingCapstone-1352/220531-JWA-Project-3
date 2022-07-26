@@ -16,10 +16,11 @@ public class UserInfoPage {
 	@FindBy(xpath  = "//*[@id=\"changeemailcard\"]/div/div[1]/input")
 	public WebElement EnterNewEmail;
 	
-	public By editUserDetail = By.xpath("//*[@id=\"userinfocard\"]/div/div[3]/button");
-	public void getUserInfoLink() {
-		driver.findElement(editUserDetail).click();
+	private By editUserDetail = By.xpath("//*[@id=\"userinfocard\"]/div/div[3]/button");
+	public By geteditUserDetail() {
+		return editUserDetail;
 	}
+	
 	public By editUserEmail = By.xpath("//*[@id=\"changeemailcard\"]/div/div[2]/button");
 	public void getUserNewEmailLink() {
 		driver.findElement(editUserEmail).click();
@@ -34,6 +35,18 @@ public class UserInfoPage {
 	public void getUserNewPasswordLink() {
 		driver.findElement(editUserPassword).click();
 	}
+	
 	@FindBy(xpath  = "//*[@id=\"changepwdcard\"]/div/label")
 	public WebElement passNotMatchDisplayed;
+	
+	private By logoutSeccussLink = By.xpath("/html/body/app-root/app-logout/h4");
+	public By getLogoutSeccussLink() {
+		return logoutSeccussLink;
+    }
+
+	private By errorPasswordLink = By.xpath("//*[@id=\"changepwdcard\"]/div/label");
+	//private By errorPasswordLink = By.xpath("/html/body/app-root/app-user-information/div/div[3]/div/div/div/div/label");
+	public By getErrorPasswordLink() {
+		return errorPasswordLink; 
+	}
 }

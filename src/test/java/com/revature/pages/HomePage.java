@@ -28,13 +28,14 @@ public class HomePage {
 	private By gamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
 	
 // ============== Khellil code	
-	public By logoutLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[8]/a");
-	public void getLogoutLink() {
-		driver.findElement(logoutLink).click();
+	private By logoutLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[8]/a");
+	private By userInfoLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[7]/a");
+
+	public By getLogoutLink() {
+		return logoutLink;
 	}
-	public By userInfoLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[7]/a");
-	public void getUserInfoLink() {
-		driver.findElement(userInfoLink).click();
+	public By getUserInfoLink() {
+		return userInfoLink; 
 	}
 //	 ==============
 	

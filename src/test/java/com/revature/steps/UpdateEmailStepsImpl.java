@@ -31,6 +31,13 @@ public class UpdateEmailStepsImpl {
 		driver.findElement(homePage.getLoginButton()).click();
 	}
 	
+	public void getUserInfoLink() {
+		driver.findElement(homePage.getUserInfoLink()).click();
+	}
+	 private void geteditUserDetail() {
+		 driver.findElement(userInfoPage.geteditUserDetail()).click();
+	}
+	
 	@Given("the user is on the home Page")
 	public void the_user_is_on_the_home_page() {
 		driver.get("http://localhost:4200");
@@ -42,16 +49,22 @@ public class UpdateEmailStepsImpl {
 	@When("the user clicks on User Information Button")
 	    public void the_user_clicks_on_user_information_button() {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		driver.findElement(homePage.userInfoLink).click();
+		//driver.findElement(homePage.userInfoLink).click();
+		getUserInfoLink();
 	}
 
     @When("the user clicks on Edit User Details")
      public void the_user_clicks_on_edit_user_details() {
     	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-    	driver.findElement(userInfoPage.editUserDetail).click();
+    	//driver.findElement(userInfoPage.editUserDetail).click();
+    	geteditUserDetail();
     }
     
-    @When("the user enter the {string}> and clicks the Update E-mail button")
+    
+    
+   
+
+	@When("the user enter the {string}> and clicks the Update E-mail button")
     public void the_user_enter_the_and_clicks_the_update_e_mail_button(String newEmail) {
 		userInfoPage.EnterNewEmail.sendKeys(newEmail); 
 		driver.findElement(userInfoPage.editUserEmail).click();

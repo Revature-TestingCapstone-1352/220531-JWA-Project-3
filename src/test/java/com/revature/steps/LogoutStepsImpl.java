@@ -1,11 +1,14 @@
 package com.revature.steps;
 
+import static org.junit.Assert.assertEquals;
+
 import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.revature.pages.HomePage;
+import com.revature.pages.UserInfoPage;
 import com.revature.runner.GameRunner;
 
 import io.cucumber.java.en.Given;
@@ -16,6 +19,7 @@ public class LogoutStepsImpl {
 	
 	public static WebDriver driver = GameRunner.driver;
 	public static HomePage homePage = GameRunner.homePage;
+	public static UserInfoPage userInfoPage = GameRunner.userInfoPage;
 	
 	public void loginForHomePage(String username, String password) {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(homePage.getLoginLink()));
@@ -26,6 +30,14 @@ public class LogoutStepsImpl {
 		driver.findElement(homePage.getpKeyField()).sendKeys(password);
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(homePage.getLoginButton()));
 		driver.findElement(homePage.getLoginButton()).click();
+	}
+	
+	public void getLogoutLink() {
+		driver.findElement(homePage.getLogoutLink()).click();
+	}
+	
+	public void getUserInfoLink() {
+		driver.findElement(homePage.getUserInfoLink()).click();
 	}
 	
 	@Given("LoggedIn User is on the Home Page")
@@ -39,11 +51,14 @@ public class LogoutStepsImpl {
 	@When("The User clicks on LogoutButton")
 	public void the_user_clicks_on_logout_button() {
 	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-	driver.findElement(homePage.logoutLink).click();
+	getLogoutLink();
 	}
 	
 	@Then("Logout seccussful")
 	public void logout_seccussful() {
-		driver.get("http://localhost:4200/logout");
+		
+	new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(userInfoPage.getLogoutSeccussLink()));
+		String logoutSeccussText = driver.findElement(userInfoPage.getLogoutSeccussLink()).getText();
+		assertEquals(logoutSeccussText, "Logout was successful.");
 	}
 }

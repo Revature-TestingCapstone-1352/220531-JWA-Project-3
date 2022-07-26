@@ -1,5 +1,7 @@
 package com.revature.steps;
 
+import static org.junit.Assert.assertEquals;
+
 import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -32,6 +34,14 @@ public class UpdatePasswordStepsImpl {
 		driver.findElement(homePage.getLoginButton()).click();
 	}
 	
+	public void getUserInfoLink() {
+		driver.findElement(homePage.getUserInfoLink()).click();
+	}
+	 private void geteditUserDetail() {
+		 driver.findElement(userInfoPage.geteditUserDetail()).click();
+	}
+
+	
 	@Given("the user is on the home_Page")
 	public void the_user_is_on_the_home_page() {
 		driver.get("http://localhost:4200");
@@ -43,13 +53,15 @@ public class UpdatePasswordStepsImpl {
 	@When("the user clicks on User Information_Button")
 	public void the_user_clicks_on_user_information_button() {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		driver.findElement(homePage.userInfoLink).click();
+		//driver.findElement(homePage.userInfoLink).click();
+		getUserInfoLink();
 	}
 
 	@When("the user clicks on Edit_User_Details")
 	public void the_user_clicks_on_edit_user_details() {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-    	driver.findElement(userInfoPage.editUserDetail).click();
+    	//driver.findElement(userInfoPage.editUserDetail).click();
+		geteditUserDetail();
 	}
 
 	@When("the user type in a valid <{string}> and confirm same password and clicks on Update password button")
@@ -59,7 +71,6 @@ public class UpdatePasswordStepsImpl {
 		userInfoPage.EnterNewPassword.sendKeys(password); 
 		userInfoPage.ConfirmNewPassword.sendKeys(password);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		//driver.findElement(userInfoPage.editUserPassword).click();
 		WebElement button =driver.findElement(By.xpath("//*[@id=\"changepwdcard\"]/div/div[3]/button"));
 		js.executeScript("arguments[0].click();", button);
 	}
@@ -85,16 +96,17 @@ public class UpdatePasswordStepsImpl {
 		userInfoPage.EnterNewPassword.sendKeys(password); 
 		userInfoPage.ConfirmNewPassword.sendKeys(confirmpassword);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		//driver.findElement(userInfoPage.editUserPassword).click();
 		WebElement button =driver.findElement(By.xpath("//*[@id=\"changepwdcard\"]/div/div[3]/button"));
 		js.executeScript("arguments[0].click();", button); 
 	}
 
 	@Then("the user get a Popup message")
 	public void the_user_get_a_popup_message() {
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		driver.findElement(By.xpath("//*[@id=\"changepwdcard\"]/div")).getText();
-	//	new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions
-	//		.presenceOfElementLocated(userInfoPage.getPassNotMatchDisplayed()));
+//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//		driver.findElement(By.xpath("//*[@id=\"changepwdcard\"]/div")).getText();
+ new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.presenceOfElementLocated(userInfoPage.getErrorPasswordLink()));
+		String passwordErrorText = driver.findElement(userInfoPage.getErrorPasswordLink()).getText();
+		assertEquals(passwordErrorText, "Passwords do not match.");
+		
 }
 }
