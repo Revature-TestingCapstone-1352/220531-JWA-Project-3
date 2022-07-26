@@ -1,10 +1,12 @@
 package com.revature.pages;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
+import java.time.Duration;
+
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CheckoutPage {
 	private WebDriver driver;
@@ -75,7 +77,41 @@ public class CheckoutPage {
 		return orderButton;
 	}
 	
-	public By getProceedFromCartMsg() {
-		return proceedFromCartMsg;
+
+	public void loginForCheckout(String username, String password) {
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getLoginLink()));
+		driver.findElement(getLoginLink()).click();
+		new WebDriverWait(driver, Duration.ofSeconds(3));
+		driver.findElement(getuNameField()).sendKeys(username);
+		new WebDriverWait(driver, Duration.ofSeconds(3));
+		driver.findElement(getpKeyField()).sendKeys(password);
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getLoginButton()));
+		driver.findElement(getLoginButton()).click();
+	}
+	
+	public void addToCart() {
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getAddToCart()));
+		driver.findElement(getAddToCart()).click();
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getViewCart()));
+		driver.findElement(getViewCart()).click();
+	}
+	
+	public void viewCart() {
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getViewCart()));
+		driver.findElement(getViewCart()).click();
+	}
+	
+	public void proceedToCheckout() {
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getProceedToCheckout()));
+		driver.findElement(getProceedToCheckout()).click();
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getOrderButton()));
+		driver.findElement(getOrderButton()).click();
+	}
+	
+	public String getEmptyCartText() {
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		String emptyCartText = driver.findElement(getEmptyCart()).getText();
+		return emptyCartText;
+
 	}
 }

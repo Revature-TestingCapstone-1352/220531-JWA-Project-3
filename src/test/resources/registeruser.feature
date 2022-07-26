@@ -1,7 +1,5 @@
 #Author: your.email@your.domain.com
 #Keywords Summary :
-#Author: your.email@your.domain.com
-#Keywords Summary :
 #Feature: List of scenarios.
 #Scenario: Business rule through list of steps with arguments.
 #Given: Some precondition step
@@ -19,17 +17,15 @@
 ## (Comments)
 #Sample Feature Definition Template
 
-Feature: View Added Ticket Feature
- 
- 	Background: 
- 		Given A user logs in through the Login Page
-  
-  
-  Scenario Outline: A user should be able to login and be able to add a item to their wishlist and be able to view it on the wishlist page
-  	When they type in a valid "<username>" and "<password>"
-  	And they go to the Home Page they should be able to click add to wishlist on an item
-    Then view that item on the wishlist page
+Feature: Register User Feature
+
+	Background:
+		Given A guest is on the home page
+
+  Scenario Outline: the guest should be able to click the register page
+    When a guest enters a "<username>" and "<password>" and "<email>"
+    Then a guest can register by pressing the register button and be on the Homepage
 
     Examples: 
-      | password  | username   |
-      |StephenPass|StephenTest |  
+      |username| password | email               |
+      | Jacot  |stephen94 | stephen@gluemail.com|
