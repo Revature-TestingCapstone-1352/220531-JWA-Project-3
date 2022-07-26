@@ -4,6 +4,7 @@ import java.io.File;
 //import io.cucumber.junit.*;
 import java.time.Duration;
 
+import org.junit.platform.suite.api.IncludeTags;
 import org.junit.platform.suite.api.Suite;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -24,9 +25,8 @@ import io.cucumber.java.BeforeAll;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
-@RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources/chromedriver.exe", glue = "com.revature.steps" )
 @Suite
+@IncludeTags("CucumberTests")
 public class GameRunner {
 	
 	
