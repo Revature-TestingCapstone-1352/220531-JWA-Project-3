@@ -1,6 +1,7 @@
 package com.revature.steps;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.time.Duration;
 
@@ -23,6 +24,7 @@ public class RegisterSteps
 	private WebDriver driver = GameRunner.driver;
 	private RegisterPage registerPage = GameRunner.registerPage;
 	private LoginPage loginPage = GameRunner.loginPage;
+	private HomePage homePage = GameRunner.homePage;
 
 	
 	public void enterInformation(String username, String password, String email)
@@ -63,13 +65,12 @@ public class RegisterSteps
 	@Then("a guest can register by pressing the register button and be on the Homepage")
 	public void a_guest_can_register_by_pressing_the_register_button_and_be_on_the_homepage()
 	{
-		new WebDriverWait(driver, Duration.ofSeconds(5));
 		
-		WebElement userInput = driver.findElement(loginPage.getUsernameBy());
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(loginPage.getLoginButtonBy()));
+
+		boolean buttonIsThere = driver.findElement(loginPage.getLoginButtonBy()).isDisplayed();
 		
-		boolean isSearchBar = userInput.isDisplayed();
-		
-		assertEquals(isSearchBar,true);
+		assertTrue(buttonIsThere);
 	}
 
 }

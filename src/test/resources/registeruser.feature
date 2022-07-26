@@ -27,5 +27,5 @@ Feature: Register User Feature
     Then a guest can register by pressing the register button and be on the Homepage
 
     Examples: 
-      |username| password | email               |
-      | Jacot  |stephen94 | stephen@gluemail.com|
+      |username| password | email       |
+      | Jac  |stephen | stephen@mail.com|
