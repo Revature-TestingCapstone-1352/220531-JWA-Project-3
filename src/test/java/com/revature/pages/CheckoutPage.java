@@ -36,8 +36,9 @@ public class CheckoutPage {
 
 	public By getThankYou() {
 		return thankYouOrder;
-
 	}
+	
+	
 	
 	public By getEmptyCart() {
 		return emptyCart;
@@ -78,4 +79,6 @@ public class CheckoutPage {
 	public By getProceedFromCartMsg() {
 		return proceedFromCartMsg;
 	}
+	
+	
 }

@@ -11,122 +11,134 @@ public class CartPage {
 	private WebDriver driver;
 	private HomePage hp;
 	private LoginPage loginPage;
+	public String gameSelectedName;
 	
 	// a constructor to create an instance of this Page, and also initialize the web elements on the page.
 	public CartPage(WebDriver driver) {
 		this.driver = driver;
-		// this next bit of code is working from the PageFactory
+
+		
 		PageFactory.initElements(driver, this);
+		this.gameSelectedName = "";
 		
 	}
 	
-	// SETTING UP ALL THE ELEMENTS THAT WE ARE GOING TO BE USING
-	
-	
-	
+	// SETTING UP ALL THE ELEMENTS THAT WE ARE GOING TO BE USING ON THE CART PAGE
 	
 	private By shoppingCartEmptyMessage = By.xpath("/html/body/app-root/app-cart/div[1]/h4");
 	private By addToCartButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[2]");
+	
+	
 	private By cartTable = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/table/tbody");
-	private By cartTableFirstItem = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/table/tbody/tr/td[2]/span[1]/b");
+	public By cartTableFirstItem = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/table/tbody/tr/td[2]/span[1]/b");
+//	private By cartTableFirstItem = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/table/tbody/tr/td[2]/span[1]/b");
+	
+
+	
+	
+//	private By addItemToCartButtonFromWishList = By.xpath("//*[@id=\"games\"]/div/div/div/div[4]/div/button[2]/span");
+	
+	private By nameOfFirstGameInWishList = By.xpath("//*[@id=\"games\"]/div/div/div/div[2]");
+	
+	private By nameOfFirstGameInCart = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/table/tbody/tr/td[2]/span[1]/b");
+	
+	
+//	private By firstWishListButton = By.xpath("//*[@id=\"games\"]/div/div[1]/div/div[4]/div/button[1]");
+	
+	
+	// STORE PAGE ITEMS
+	
+	private By storePageGameName = By.xpath("//*[@id=\"games\"]/div/div[1]/div/div[2]");
+	private By storeWishListButton = By.xpath("//*[@id=\"games\"]/div/div[1]/div/div[4]/div/button[1]");
+	
+	
+	
+	public void noItemsInCartPage() {
+		
+		driver.findElement(shoppingCartEmptyMessage).click();
+	}
+	
+	
+	
+	// SETTER FOR GAME SELECTED NAME
+	public void setGameSelectedName(String gameName) {
+		this.gameSelectedName = gameName;
+	}
+	
+	
+	// GETTER FOR GAME SELECTED NAME
+	public String getGameSelectedName() {
+		return this.gameSelectedName;
+	}
+	
+	
+	
+	public By getCartTableFirstItem() {
+		 
+		 
+		 return cartTableFirstItem;
+	}
+	
 	
 	public By getCartTable() {
 		return cartTable;
 	}
 	
-	public By getCartTableFirstItem() {
-		return cartTableFirstItem;
-	}
+
 	
+	//\\\\\\\\\\\\\\\\\\\\\\\\ LOGIN PAGE ITEMS \\\\\\\\\\\\\\\\\\\\\\\\
+	
+	
+	/////////////////// JF LOGIN THINGS \\\\\\\\\\\\\\\\\\\\\\\\
 	public void loginThenNavigateToCart() {
 		driver.findElement(hp.getLoginLink()).click();
 		hp.getLoginLink();
 		
-//		hp.loginForHomePage("joshua_test", "test_joshua");
-//		driver.findElement(navCartButton).click();
 	}
 	
-	
+	// JF LOGIN THINGS
 	public void moveToLogin() {
 		hp.navToLoginPage();
 	}
 	
 	
-//	public void noItemsInCartPage() {
-//		
-//		driver.findElement(shoppingCartEmptyMessage).click();
-//	}
-//	
-//	public void proceedToCheckout() {
-////		driver.findElement(proceedToCheckout).click();
-////		driver.findElement(orderButton).click();
-//	}
 	
-//	public String successfulOrderText() {
-////		return thankYouText;
-//	}
 	
-//	public String emptyCartString() {
-////		return emptyCartText;
-//	}
-//	private cartTblRemoveButtons = cartTable.findElement((SearchContext) By.tagName("button"));
-	// THIS LOCATES THE TOP LEVEL NAVIGATION CART BUTTON
-//	@FindBy(xpath = "/html/body/app-root/router-outlet/app-nav-bar/ul/li[3]/a")
-//	public WebElement navCartButton;
+	///////////////// WISH LIST ITEMS \\\\\\\\\\\\\\\\\\\\\\\\
+	
+	public String getNameOfFirstGameInWishList() {
+		String gameName = driver.findElement(nameOfFirstGameInWishList).getText();		
+		return gameName;
+	}
 	
 	
 	
-	// THIS LOCATES THE TOP LEVEL NAVIGATION CART BUTTON
-//	@FindBy(xpath = "/html/body/app-root/app-cart/div[1]/h4")
-//	public WebElement shoppingCartEmptyMessage;
+	public void testStoreAddToWLButt() {
+		driver.findElement(storeWishListButton).click();
+	}
 	
-	
-//	@FindBy(xpath = "//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[2]")
-//	public WebElement addToCartButton;
-	
-	
-	// THIS CART TABLE WILL ONLY APPEAR IF THERE IS AN ITEM IN THE CART
-//	@FindBy(xpath = "/html/body/app-root/app-cart/div/div/div[2]/table/tbody")
-//	public WebElement cartTable;
-	
-	
-	// THIS WILL BRING UP ALL THE BUTTONS INSIDE OF THE cartTable
-//	public WebElement cartTblRemoveButtons = cartTable.findElement(By.tagName("button"));
+	public String getStoreGameName() {
+		return driver.findElement(storePageGameName).getText();
+	}
 	
 	
 	
-//	String noElements = "/html/body/app-root/app-cart/div[1]/h4";
-//	driver.findElement(By.xpath(noElements));
+	
+	public String getNameOfFristGameInCart() {
+		String gameName = driver.findElement(nameOfFirstGameInCart).getText();
+		return gameName;
+	}
 	
 	
-//	@Test
-//	public void randoTesto() throws InterruptedException {
-////		File chrome = new File("src/test/resources/chromedriver.exe");
-////		System.setProperty("webdriver.chrome.driver",chrome.getAbsolutePath());
-//		
-////		WebDriver driver = new ChromeDriver();
-//		
-////		System.out.println("I ran here");
-//		driver.get("http://localhost:4200/");
-//		System.out.println("I instantiated");
-//		
-//		
-////		String navCartButtonPath = "/html/body/app-root/router-outlet/app-nav-bar/ul/li[3]/a";
-////		String shoppingCartEmptyMessagePath = "/html/body/app-root/app-cart/div[1]/h4";
-////		String addToCartButtonPath = "//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[2]";
-////		String cartTablePath ="/html/body/app-root/app-cart/div/div/div[2]/table/tbody";
-////				cartTblRemoveButtonsPath =
-//		int millies = 800;
-//		driver.wait(millies);
-//		
-////		WebElement navBtn = cartPage.navCartButton;
-////		navBtn.click();
-////		driver.wait(millies)
-////		driver.wait(millies ,ExpectedConditions.elementToBeClickable(By.xpath(navCartButtonPath))).click();
-////		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(navCartButtonPath))).click();
-////		WebElement web = driver.findElement(By.xpath(navCartButtonPath));
-////		web.click();
-//	}
+	
+
+
+
+	
+
+	
+	
+	
 
 	
 }

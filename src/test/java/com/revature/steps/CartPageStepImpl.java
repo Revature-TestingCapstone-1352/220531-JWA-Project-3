@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import com.revature.pages.CartPage;
 import com.revature.pages.HomePage;
 import com.revature.pages.LoginPage;
+import com.revature.pages.WishListPage;
 import com.revature.runner.GameRunner;
 
 import io.cucumber.java.en.Given;
@@ -27,71 +28,68 @@ public class CartPageStepImpl {
 		private static CartPage cartPage = GameRunner.cartPage;
 		private static HomePage homePage = GameRunner.homePage;
 		private static LoginPage loginPage = GameRunner.loginPage;
+		private static WishListPage wishListPage = GameRunner.wishListPage;
 		
-
-		@Given("User is on the HomePage")
-		public void user_is_on_the_home_page() {
+		
+		
+		
+				
+		
+		@Given("User has navigated to the LandingPage")
+		public void user_has_navigated_to_the_landing_page() {
 			driver.get("http://localhost:4200");
 	        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
 		}
 		
-		@When("User clicks the Cart button")
-		public void user_clicks_the_cart_button() {
-			// Write code here that turns the phrase above into concrete actions
-			 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//			 driver.findElement(cartPage.navCartButton).click();
-		}
-		
-		@Then("User should be on the Cart page")
-		public void user_should_be_on_the_cart_page() {
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-			String theURL = driver.getCurrentUrl();
-			assertEquals("http://localhost:4200/cart",theURL);
-		}
-		
-		
-		
-
-		//-----------------------------------------------------------------------------
-		
-		
-		
-		
-		@Given("User has navigated to the HomePage")
-		public void user_has_navigated_to_the_home_page() {
-			driver.get("http://localhost:4200/");
+		@Given("User navigates to LoginPage")
+		public void user_navigates_to_login_page() {
 			homePage.navToLoginPage();
-			
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		}
+		
+		@Given("User enters correct credentials and logs in")
+		public void user_enters_correct_credentials_and_logs_in() {
+			loginPage.loginValidUser("joshua_test", "test_joshua");
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		}
+		
+		@Given("User navigates to StorePage")
+		public void user_navigates_to_store_page() {
+		    homePage.navToStore();
+		    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		}
+		
+		@When("User clicks the addToWishListButton")
+		public void user_clicks_the_add_to_wish_list_button() {
+	
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		    cartPage.testStoreAddToWLButt();
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 			
+		}
+		
+		@When("User navigates to wishListPage")
+		public void user_navigates_to_wish_list_page() {
 			
-			// Write code here that turns the phrase above into concrete actions
-//			throw new io.cucumber.java.PendingException();
+			
+		    homePage.navToWishListPage();
+		    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		}
 		
-		@Given("The User has navigated to the loginPage")
-		public void the_user_has_navigated_to_the_login_page() {
-			// Write code here that turns the phrase above into concrete actions
-			throw new io.cucumber.java.PendingException();
+		@Then("User should see the game in the wishlist")
+		public void user_should_see_the_game_in_the_wishlist() {
+			
+			String gameName_ItShouldBe = "Evochron Mercenary";
+			String actualGameName = cartPage.getNameOfFirstGameInWishList();
+		   
+			assertEquals(gameName_ItShouldBe,actualGameName);
+			
+			
+			
 		}
+
 		
-		@Given("The User has inserted credentials and logged in")
-		public void the_user_has_inserted_credentials_and_logged_in() {
-			// Write code here that turns the phrase above into concrete actions
-			throw new io.cucumber.java.PendingException();
-		}
-		
-		@Given("The User is on the general landing page")
-		public void the_user_is_on_the_general_landing_page() {
-			// Write code here that turns the phrase above into concrete actions
-			throw new io.cucumber.java.PendingException();
-		}
-		
-		@When("User clicks on Cart page")
-		public void user_clicks_on_cart_page() {
-			// Write code here that turns the phrase above into concrete actions
-			throw new io.cucumber.java.PendingException();
-		}
 
 }

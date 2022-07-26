@@ -16,7 +16,7 @@ import com.revature.pages.WishListPage;
 
 import java.io.File;
 
-
+ 
 @Suite
 public class GameRunner {
 	
@@ -49,10 +49,12 @@ public class GameRunner {
 		
 		
 		
-		driver.get("http://localhost:4200");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+//		driver.get("http://localhost:4200");
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
 	}
+	
+	
 	
 	@AfterAll
 	public static void teardown() {

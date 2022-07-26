@@ -16,6 +16,8 @@ public class WishListPage
 	
 	private By addToCartBy = By.xpath("//*[@id=\"games\"]/div/div/div/div[4]/div/button[2]/span");
 	
+	private By wishListAddToCartButton = By.xpath("//*[@id=\"games\"]/div/div/div/div[4]/div/button[2]/span");
+	
 	public WishListPage(WebDriver driver)
 	{
 		this.driver = driver;
@@ -26,6 +28,19 @@ public class WishListPage
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(driver.findElement(gameNameBy)));
 		
 		return driver.findElement(gameNameBy).getText();
+	}
+	
+	
+	
+	//----jf code---
+	public void wishListAddToCartClick() {
+		driver.findElement(wishListAddToCartButton).click();		
+	}
+	
+	
+	public String getGameName() {
+		String gameName = driver.findElement(gameNameBy).getText();
+		return gameName;
 	}
 
 }
