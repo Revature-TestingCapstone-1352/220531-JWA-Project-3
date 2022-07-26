@@ -33,12 +33,9 @@ public class CheckoutPage {
 	//private String thankYouText = driver.findElement(thankYouOrder).getText();
 	private By emptyCart = By.xpath("/html/body/app-root/app-cart/div[1]/h4");
 	//private String emptyCartText = driver.findElement(emptyCart).getText();
-	private By proceedFromCartMsg = By.xpath("/html/body/app-root/app-checkout/div[1]/h5");
-
-
+	
 	public By getThankYou() {
 		return thankYouOrder;
-
 	}
 	
 	public By getEmptyCart() {
@@ -77,7 +74,6 @@ public class CheckoutPage {
 		return orderButton;
 	}
 	
-
 	public void loginForCheckout(String username, String password) {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getLoginLink()));
 		driver.findElement(getLoginLink()).click();
@@ -112,6 +108,5 @@ public class CheckoutPage {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		String emptyCartText = driver.findElement(getEmptyCart()).getText();
 		return emptyCartText;
-
 	}
 }
