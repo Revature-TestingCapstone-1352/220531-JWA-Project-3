@@ -21,7 +21,6 @@ Feature: User can view their Username from User Information page
 
 	Scenario: The logged in user should see their username on the User Information page
 		Given user is logged in
-		And user is on the home page
     When user clicks User Information page
     Then user can see their own Username on the User Information page
 
