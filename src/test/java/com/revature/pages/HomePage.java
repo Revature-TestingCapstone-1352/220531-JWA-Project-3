@@ -199,5 +199,4 @@ public class HomePage {
 		driver.findElement(getLoginLink()).click();
 	}
 	
-
 }

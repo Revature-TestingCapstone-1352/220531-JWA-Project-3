@@ -82,7 +82,9 @@ public class CartPage {
 		return cartTable;
 	}
 	
-
+	public String getCartTableFirstItemName() {
+		return driver.findElement(cartTableFirstItem).getText();
+	}
 	
 	//\\\\\\\\\\\\\\\\\\\\\\\\ LOGIN PAGE ITEMS \\\\\\\\\\\\\\\\\\\\\\\\
 	

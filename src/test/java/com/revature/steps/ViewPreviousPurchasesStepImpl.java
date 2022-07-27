@@ -20,52 +20,52 @@ import io.cucumber.java.en.When;
 public class ViewPreviousPurchasesStepImpl {
 
 	public static WebDriver driver = GameRunner.driver;
-	public static HomePage homePage = GameRunner.homePage;
-	public static UserInfoPage userInfoPage = GameRunner.userInfoPage;
-	public static LoginPage loginPage = GameRunner.loginPage;
-	
-	public void loginForPreviousOrder(String username, String password) {
+	public static HomePage homePage = new HomePage(driver);
+	public static LoginPage loginPage = new LoginPage(driver);
+	public static UserInfoPage userInfoPage = new UserInfoPage(driver);
+
+	@Given("a User enters their {string} and {string} in the login form and click the login button")
+	public void a_user_enters_their_and_in_the_login_form(String username, String password) {
+		driver.get("http://localhost:4200");
 		new WebDriverWait(driver, Duration.ofSeconds(10))
 			.until(ExpectedConditions.elementToBeClickable(homePage.getLoginLink()));
-		
-		homePage.clickLoginLink();
-//		driver.findElement(homePage.getuNameField()).sendKeys(username);
-//		driver.findElement(homePage.getpKeyField()).sendKeys(password);
-//		driver.findElement(homePage.getLoginButton()).click();
+
+		homePage.navToLoginPage();
 		loginPage.loginValidUser(username, password);
-		
-	}
-	
-	@Given("a User is logged in and has made a previous purchase")
-	public void a_user_is_logged_in_and_has_made_a_previous_purchase() {
-		loginForPreviousOrder("Testing123", "Orders");
 	}
 
 	@When("they click on the User Information button")
 	public void they_click_on_the_user_information_button() {
 		new WebDriverWait(driver, Duration.ofSeconds(10))
-			.until(ExpectedConditions.elementToBeClickable(homePage.getUserInfoLink()));
+			.until(ExpectedConditions.elementToBeClickable(homePage.getfirstAddToCartButton()));
 		
 		driver.findElement(homePage.getUserInfoLink()).click();
 	}
 
 	@When("then they click on the View Previous Orders button")
 	public void then_they_click_on_the_view_previous_orders_button() {
-		new WebDriverWait(driver, Duration.ofSeconds(5));
-//		new WebDriverWait(driver, Duration.ofSeconds(10))
-//			.until(ExpectedConditions.elementToBeClickable(userInfoPage.getViewOrderHistoryButton()));
-		
-		driver.findElement(userInfoPage.getViewOrderHistoryButton()).click();
+		userInfoPage.clickViewOrderHistoryButton();
 	}
 
-	@Then("they can see previous purchases they have made")
-	public void they_can_see_previous_purchases_they_have_made() {
-		new WebDriverWait(driver, Duration.ofSeconds(10))
-			.until(ExpectedConditions.visibilityOf(driver.findElement(userInfoPage.getOrderHistoryHeader())));
+	@Then("{string} can see a previous purchase they have made")
+	public void they_can_see_a_previous_purchase_they_have_made(String username) {
+		userInfoPage.waitForOrderHistoryHeader();
 		
-		assertEquals("Order Placed: 2022-07-24", driver.findElement(userInfoPage.getFirstOrderDate()).getText());
-		assertEquals("Order Total: €39.98", driver.findElement(userInfoPage.getFirstOrderTotal()).getText());
-		assertEquals("The Elder Scrolls V: Skyrim", driver.findElement(userInfoPage.getFirstOrderFirstGame()).getText());
-		assertEquals("BioShock", driver.findElement(userInfoPage.getFirstOrderSecondGame()).getText());
+		if (username.equals("Testing123")) {
+			assertEquals("Order Placed: 2022-07-24", userInfoPage.getFirstOrderDate());
+			assertEquals("Order Total: €39.98", userInfoPage.getFirstOrderTotal());
+			assertEquals("The Elder Scrolls V: Skyrim", userInfoPage.getFirstOrderFirstGame());
+			assertEquals("BioShock", userInfoPage.getFirstOrderSecondGame());
+		} 
+		if (username.equals("Multiple")) {
+			assertEquals("Order Placed: 2022-07-26", userInfoPage.getFirstOrderDate());
+			assertEquals("Order Total: €39.98", userInfoPage.getFirstOrderTotal());
+			assertEquals("Portal", userInfoPage.getFirstOrderFirstGame());
+			assertEquals("Super Street Fighter IV Arcade Edition", userInfoPage.getFirstOrderSecondGame());
+			
+			assertEquals("Order Placed: 2022-07-24", userInfoPage.getSecondOrderDate());
+			assertEquals("Order Total: €9.99", userInfoPage.getSecondOrderTotal());
+			assertEquals("Saints Row: The Third", userInfoPage.getSecondOrderFirstGame());
+		}
 	}
 }
