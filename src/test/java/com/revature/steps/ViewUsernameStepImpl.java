@@ -34,7 +34,7 @@ public class ViewUsernameStepImpl {
 
 	@When("user clicks User Information page")
 	public void user_clicks_user_information_page() {
-		new WebDriverWait(driver, Duration.ofSeconds(3));
+		new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(homePage.getGamesDiv()));
 		WebElement userInfoLink = driver
 				.findElement(By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[7]/a"));
 		userInfoLink.click();

@@ -72,9 +72,13 @@ public class HomePage {
 		return gamesDisplayed;
 	}
 	
+	public By getGamesDiv() {
+		return gamesDivBy;
+	}
+	
 	public boolean onHomePage() {
 		try {
-			new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(gamesDivBy));
+			new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(gamesDivBy));
 			WebElement gameList = driver.findElement(gamesDivBy);
 			if (gameList != null) return true;
 			else return false;
