@@ -24,10 +24,12 @@ public class StorePage {
 	private By verypositive = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[5]");
 	private By overwhelminglypositive = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[6]");
 	
-	private By gamesdiv = By.xpath("/html/body/app-root/app-store/div/div/div[2]");
 	
 	
-	private By negativebox = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[1]/label/span");
+	private By allgames = By.className("card");
+	
+	
+	private By mostlynegativebox = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[1]/label/span");
 	private By mixedbox = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[2]/label/span");
 	private By positivebox = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[3]/label/span");
 	private By mostlypositivebox = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[4]/label/span");
@@ -36,7 +38,7 @@ public class StorePage {
 	
 	
 	public void clickAdd()  {	
-	driver.findElement(negativebox).click();
+	driver.findElement(mostlynegativebox).click();
 	driver.findElement(mixedbox).click();
 	driver.findElement(positivebox).click();
 	driver.findElement(mostlypositivebox).click();
@@ -44,13 +46,13 @@ public class StorePage {
 	driver.findElement(overwhelminglypositivebox).click();
 	}
 	
-	public int checkinggamesdivafteruncheckedboxes() {
-		List<WebElement> gamesdivunchecked = driver.findElements(gamesdiv);
+	public int checkNumberOfGames() {
+		List<WebElement> gamesdivunchecked = driver.findElements(allgames);
 		return gamesdivunchecked.size();
 	}
 	
-	public void clickNegativeBox() {
-		driver.findElement(negativebox).click();
+	public void clickMostlyNegativeBox() {
+		driver.findElement(mostlynegativebox).click();
 		
 	}
 	

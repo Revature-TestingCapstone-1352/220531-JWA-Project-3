@@ -22,7 +22,7 @@ Feature: Filter
 
 @tag1
   Scenario: Filter By Rating
-    Given User is on the HomePage
+    Given User will end up in the HomePage
     When User clicks each rating
     Then User should be able to view games that have no rating
 
