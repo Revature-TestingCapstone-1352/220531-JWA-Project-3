@@ -2,22 +2,32 @@ package com.revature.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
 public class HomePage {
-    private WebDriver driver;
+	private WebDriver driver;
+	
+	private By addWishListButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[1]");
+	private By gamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
+	private By gamesDivBy = By.xpath("//*[@id=\"games\"]");
+	private By addCartButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[2]");
+    private By metacriticLink = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div/div[1]/div/div[3]/div[6]/div/a");
+    private By searchField = By.xpath("/html/body/app-root/app-store/nav/input");
+	private By registerLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[5]/a");
+	private By loginLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[6]/a");
+	private By uNameField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[1]/input");
+	private By pKeyField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[2]/input");
+	private By loginButton = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[3]/button");
+	private By wishListLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[2]/a");
 
-    public HomePage(WebDriver driver) {
-        this.driver = driver;
-    }
 
     private By body = By.xpath("/html/body");
-    private By loginLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[6]/a");
-    private By addWishListButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[1]");
-    private By gamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
     private By searchBar = By.xpath("/html/body/app-root/app-store/nav/input");
     private By darkLightModeButton = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[10]/button/h5");
     private By nextPageButton = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[10]/a");
@@ -29,8 +39,23 @@ public class HomePage {
     public By navCartButton = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[3]/a");
     private By navWishListButton = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[2]/a");
     private By navStoreButton = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[1]/a");
-    private By metacriticLink = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div/div[1]/div/div[3]/div[6]/div/a");
-    private By registerLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[5]/a");
+	
+	public HomePage(WebDriver driver) {
+		this.driver = driver;
+	}
+	
+
+	
+
+    public By getWishListLink() {
+		return wishListLink;
+	}
+	
+    public By getMetatcriticLink() {
+    	return metacriticLink;
+    }
+
+    
 
 
     public By getfirstAddToCartButton() {
@@ -99,9 +124,9 @@ public class HomePage {
         driver.findElement(navWishListButton).click();
     }
 
-    public By getMetatcriticLink() {
-        return metacriticLink;
-    }
+    // public By getMetatcriticLink() {
+    //     return metacriticLink;
+    // }
 
     public By getRegisterLink() {
         return registerLink;
@@ -133,4 +158,68 @@ public class HomePage {
         driver.findElement(getLoginLink()).click();
     }
 
+
+
+
+
+
+
+	public By getaddWishlistButton() {
+		return addWishListButton;
+	}
+	
+	
+	public By getuNameField() {
+		return uNameField;
+	}
+	public By getpKeyField() {
+		return pKeyField;
+	}
+	
+	public By getLoginButton() {
+		return loginButton;
+	}
+	
+	
+	public By getGamesDiv() {
+		return gamesDivBy;
+	}
+	
+	public boolean onHomePage() {
+		try {
+			new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(gamesDivBy));
+			WebElement gameList = driver.findElement(gamesDivBy);
+			if (gameList != null) return true;
+			else return false;
+		} catch(Exception e) {
+			return false;
+		}
+	}
+	
+	public void addItemToCart() {
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(addCartButton));
+		driver.findElement(addCartButton).click();
+	}
+	
+	public void addItemToWishlist() {
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(addWishListButton));
+		driver.findElement(addWishListButton).click();
+
+	}
+	
+	// public void navigateToLoginPage() {
+	// 	new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getLoginLink()));
+	// 	driver.findElement(getLoginLink()).click();
+	// }
+	
+	// public void clickAdd()
+	// {
+	// 	driver.findElement(getaddWishlistButton()).click();
+	// }
+	
+	public void navigateToWishList()
+	{
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getWishListLink()));
+		driver.findElement(getWishListLink()).click();
+	}
 }

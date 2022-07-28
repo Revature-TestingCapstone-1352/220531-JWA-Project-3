@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.revature.pages.CartPage;
+import com.revature.pages.CheckoutPage;
 import com.revature.pages.HomePage;
 import com.revature.pages.LoginPage;
 import com.revature.pages.WishListPage;
@@ -29,6 +30,7 @@ public class CartPageStepImpl {
 		private static HomePage homePage = GameRunner.homePage;
 		private static LoginPage loginPage = GameRunner.loginPage;
 		private static WishListPage wishListPage = GameRunner.wishListPage;
+		private static CheckoutPage checkOutPage = GameRunner.checkoutPage;
 		
 		
 		
@@ -68,7 +70,7 @@ public class CartPageStepImpl {
 		public void user_clicks_the_add_to_wish_list_button() {
 	
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-		    cartPage.testStoreAddToWLButt();
+		    wishListPage.testStoreAddToWLButt();
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 			
 		}
@@ -110,7 +112,7 @@ public class CartPageStepImpl {
 			
 			String gameName_ItShouldBe = "Evochron Mercenary";
 			
-			String actualGameName = cartPage.getCheckOutGameName();
+			String actualGameName = checkOutPage.getCheckOutGameName();
 		   
 			assertEquals(gameName_ItShouldBe,actualGameName);
 

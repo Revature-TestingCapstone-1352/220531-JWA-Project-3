@@ -17,7 +17,6 @@ application.properties
 bin/
 .metadata/
 .vscode/
-.idea/
 .apt_generated/
 .apt_generated_tests/
 .mtj.tmp/
@@ -45,7 +44,6 @@ build/
 gradle-app.setting
 !gradle-wrapper.jar
 out/
-.idea/
 .idea_modules/
 *.iml
 *.ipr
@@ -73,3 +71,5 @@ nb-configuration.xml
 .vscode/
 .code-workspace
 .DS_Store
+
+

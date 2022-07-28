@@ -17,15 +17,14 @@
 ## (Comments)
 #Sample Feature Definition Template
 
-Feature: Register User Feature
+Feature: User can view their Username from User Information page
 
-	Background:
-		Given A guest is on the home page
-
-  Scenario Outline: the guest should be able to click the register page
-    When a guest enters a "<username>" and "<password>" and "<email>"
-    Then a guest can register by pressing the register button and be on the Homepage
+	Scenario: The logged in user should see their username on the User Information page
+		Given user is logged in
+    When user clicks User Information page
+    Then user can see their own Username on the User Information page
 
     Examples: 
-      |username| password | email       |
-      | Jac  |stephen | stephen@mail.com|
+      | Username  | Password | status  |
+      | TestUser  | TestPass | success |
+      

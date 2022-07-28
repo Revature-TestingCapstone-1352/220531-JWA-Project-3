@@ -10,9 +10,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class UserInfoPage {
 
 	private WebDriver driver;
-	
+
 	public UserInfoPage(WebDriver driver) {
-		this.driver = driver;
+		this.driver = driver; 
 	}
 	
 	private By viewOrderHistoryButton = By.xpath("/html/body/app-root/app-user-information/div/div[1]/div/div/div/div/div[4]/button");
@@ -24,6 +24,12 @@ public class UserInfoPage {
 	private By secondOrderDate = By.xpath("/html/body/app-root/app-user-information/div/div[2]/table[2]/thead/tr/th[1]");
 	private By secondOrderTotal = By.xpath("/html/body/app-root/app-user-information/div/div[2]/table[2]/thead/tr/th[2]");
 	private By secondOrderFirstGame = By.xpath("/html/body/app-root/app-user-information/div/div[2]/table[2]/tbody/tr/td[2]/span/b");
+	private By usernameInput = By.xpath("//*[@id=\"form1\"]/div/div[1]/input");
+	private By passwordInput = By.xpath("//*[@id=\"form1\"]/div/div[2]/input");
+	private By loginButton = By.xpath("//*[@id=\"form1\"]/div/div[3]/button");
+	private By userInfoLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[7]/a");
+	private By usernameInfoCard = By.xpath("//*[@id=\"userinfocard\"]/div/div[1]/span");
+	private By loggedOutText = By.xpath("/html/body/app-root/app-user-information/h4");
 
 	public void clickViewOrderHistoryButton() {
 		new WebDriverWait(driver, Duration.ofSeconds(10))
@@ -63,5 +69,37 @@ public class UserInfoPage {
 
 	public String getSecondOrderFirstGame() {
 		return driver.findElement(secondOrderFirstGame).getText();
+
 	}
+
+	public boolean isUserPageEmpty() {
+		try {
+			new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(loggedOutText));
+			return driver.findElement(loggedOutText).getText().equals("You need to login to view this page!");
+		} catch(Exception e) {
+			return false;
+		}
+	}
+
+
+	//Creating getters
+	public By getUsernameInput() {
+		return usernameInput;
+	}
+	public By getPasswordInput() {
+		return passwordInput;
+	}
+	public By getLoginButton() {
+		return loginButton;
+	}
+	public By getUserInfoLink() {
+		return userInfoLink;
+	}
+	public By getUsernameInfoCard() {
+		return usernameInfoCard;
+	}
+	
+    
+    	
+	
 }

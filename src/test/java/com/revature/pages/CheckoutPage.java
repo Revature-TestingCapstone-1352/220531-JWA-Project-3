@@ -116,4 +116,31 @@ public class CheckoutPage {
     }
 
 
+    
+    // CHECKOUT PAGE THINGS
+
+    //THE NAME OF THE TOP GAME IN THE TABLE AFTER ADDING TO CART
+    private By checkOutGameName = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/table/tbody/tr/td[2]/span[1]/b");
+
+    private By shoppingCartEmptyMessage = By.xpath("/html/body/app-root/app-cart/div[1]/h4");
+
+    private By removeButton_First_Item_In_Cart = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/table/tbody/tr/td[1]/button");
+
+    public String getCheckOutGameName() {
+
+        String gameName = driver.findElement(checkOutGameName).getText();
+        return gameName;
+
+    }
+
+    public void clickremoveButton_First_Item_In_Cart() {
+        driver.findElement(removeButton_First_Item_In_Cart).click();
+    }
+
+    public String getEmptyStringMessage() {
+        String msg = driver.findElement(shoppingCartEmptyMessage).getText();
+        return msg;
+    }
+
+
 }
