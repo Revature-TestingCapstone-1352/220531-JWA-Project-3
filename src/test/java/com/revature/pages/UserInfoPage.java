@@ -13,6 +13,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class UserInfoPage {
 	private WebDriver driver;
+	
+	
+	private By usernameInput = By.xpath("//*[@id=\"form1\"]/div/div[1]/input");
+	private By passwordInput = By.xpath("//*[@id=\"form1\"]/div/div[2]/input");
+	private By loginButton = By.xpath("//*[@id=\"form1\"]/div/div[3]/button");
+	private By userInfoLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[7]/a");
+	private By usernameInfoCard = By.xpath("//*[@id=\"userinfocard\"]/div/div[1]/span");
+	private By loggedOutText = By.xpath("/html/body/app-root/app-user-information/h4");
+	
 	public UserInfoPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -67,22 +76,6 @@ public class UserInfoPage {
 		return passwordErrorText;
     }
 
-	private WebDriver driver;
-	
-  public UserInfoPage(WebDriver driver) {
-		this.driver = driver;
-	}
-	
-	
-		//Providing Web Element Xpath
-		private By usernameInput = By.xpath("//*[@id=\"form1\"]/div/div[1]/input");
-		private By passwordInput = By.xpath("//*[@id=\"form1\"]/div/div[2]/input");
-		private By loginButton = By.xpath("//*[@id=\"form1\"]/div/div[3]/button");
-		private By userInfoLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[7]/a");
-		private By usernameInfoCard = By.xpath("//*[@id=\"userinfocard\"]/div/div[1]/span");
-    private By loggedOutText = By.xpath("/html/body/app-root/app-user-information/h4");
-		
-		//Creating getters
 		public By getUsernameInput() {
 			return usernameInput;
 		}

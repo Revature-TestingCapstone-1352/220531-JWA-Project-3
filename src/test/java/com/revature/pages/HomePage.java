@@ -27,8 +27,6 @@ public class HomePage {
 	private By uNameField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[1]/input");
 	private By pKeyField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[2]/input");
 	private By loginButton = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[3]/button");
-  private By addWishListButton = By.xpath("//*[@id=\"games\"]/div/div[2]/div/div[4]/div/button[1]");
-	private By gamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
 	
 // ============== Khellil code	
 	private By logoutLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[8]/a");
@@ -42,10 +40,6 @@ public class HomePage {
 	}
 //	 ==============
 	
-  public void clickAdd()
-	{
-		driver.findElement(addWishListButton).click();
-  }
 	private By wishListLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[2]/a");
 	
 	public HomePage(WebDriver driver) {
@@ -122,13 +116,11 @@ public class HomePage {
 		driver.findElement(getLoginLink()).click();
 	}
 	
-	public void clickAdd()
-	{
+	public void clickAdd() {
 		driver.findElement(getaddWishlistButton()).click();
 	}
 	
-	public void navigateToWishList()
-	{
+	public void navigateToWishList() {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getWishListLink()));
 		driver.findElement(getWishListLink()).click();
 	}
