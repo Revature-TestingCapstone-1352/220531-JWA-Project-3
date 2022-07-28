@@ -57,14 +57,12 @@ public class UpdatePasswordStepsImpl {
 	@When("the user clicks on User Information_Button")
 	public void the_user_clicks_on_user_information_button() {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		//driver.findElement(homePage.userInfoLink).click();
 		getUserInfoLink();
 	}
 
 	@When("the user clicks on Edit_User_Details")
 	public void the_user_clicks_on_edit_user_details() {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-    	//driver.findElement(userInfoPage.editUserDetail).click();
 		geteditUserDetail();
 	}
 
@@ -89,24 +87,24 @@ public class UpdatePasswordStepsImpl {
 		new WebDriverWait(driver, Duration.ofSeconds(8));
 		loginForHomePage("username", "password");// login using the new password
 		new WebDriverWait(driver, Duration.ofSeconds(8)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"games\"]")));
-
+		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[8]/a")));
+		assertEquals("Logout username", 
+        driver.findElement(By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[8]/a")).getText());
 	}
 	
 	
-
 	@Given("the user is on the homePage again")
 	public void the_user_is_on_the_home_page_again() {
 		driver.get("http://localhost:4200");
 		new WebDriverWait(driver, Duration.ofSeconds(3));
 		loginForHomePage("username", "password");
 		new WebDriverWait(driver, Duration.ofSeconds(8)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"games\"]")));
-
 	}
 
 	@When("the user type in a <{string}> and confirm diff <{string}> and clicks on Update password button")
 	public void the_user_type_in_a_and_confirm_diff_and_clicks_on_update_password_button(String password, String confirmpassword) {
-		// driver.manage().window().maximize();
-		 JavascriptExecutor js = (JavascriptExecutor)driver; // To fix "Element Is Not Clickable at Point" error
+        JavascriptExecutor js = (JavascriptExecutor)driver; // To fix "Element Is Not Clickable at Point" error
 		userInfoPage.EnterNewPassword.sendKeys(password); 
 		userInfoPage.ConfirmNewPassword.sendKeys(confirmpassword);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -114,39 +112,16 @@ public class UpdatePasswordStepsImpl {
 		WebElement button =driver.findElement(By.xpath("//*[@id=\"changepwdcard\"]/div/div[3]/button"));
 		
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(button));
-		//button.click();
 		js.executeScript("arguments[0].click();", button);
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(button));
 	}
 
 	@Then("the user get a Popup message")
 	public void the_user_get_a_popup_message() {
-//		new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.presenceOfElementLocated(userInfoPage.getErrorPasswordLink()));
-//		String passwordErrorText = driver.findElement(userInfoPage.getErrorPasswordLink()).getText();
-//		assertEquals(passwordErrorText, "Passwords do not match.");
-		
-//		new WebDriverWait(driver, Duration.ofSeconds(10));
-//		WebElement usernameText = driver.findElement(By.xpath("//*[@id=\"changepwdcard\"]/div/label"));
-//		assertEquals(usernameText, "Passwords do not match.");
-
 		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
     	wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#changepwdcard > div > label")));
 		assertEquals("Passwords do not match.", 
-		//driver.findElement(By.xpath("//*[@id=\\\"changepwdcard\\\"]/div/label")).getText());
         driver.findElement(By.cssSelector("#changepwdcard > div > label")).getText());
-		
-//		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(userInfoPage.getErrorPasswordLink()));
-//		String labelText = driver.findElement(By.id("//*[@id=\"changepwdcard\"]/div/label")).getText();
-//		assertEquals(labelText, "Passwords do not match.");
-		
-//		new WebDriverWait(driver, Duration.ofSeconds(3));
-//		WebElement usernameText = driver.findElement(By.xpath("/html/body/app-root/app-user-information/div/div[3]/div/div/div/div/label"));
-//		assertEquals(usernameText, "Passwords do not match.");
-		
-//		new WebDriverWait(driver, Duration.ofSeconds(3));
-//		boolean errorIsThere = userInfoPage.findPasswordError().equals("Passwords do not match.");
-//		assertTrue(errorIsThere);
-		
-     }
+	}
 	
 }
