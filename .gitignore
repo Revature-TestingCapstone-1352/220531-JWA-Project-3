@@ -17,6 +17,7 @@ application.properties
 bin/
 .metadata/
 .vscode/
+.idea/
 .apt_generated/
 .apt_generated_tests/
 .mtj.tmp/
@@ -71,5 +72,3 @@ nb-configuration.xml
 .vscode/
 .code-workspace
 .DS_Store
-
-

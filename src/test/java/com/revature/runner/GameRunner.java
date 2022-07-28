@@ -21,6 +21,7 @@ import com.revature.pages.CheckoutPage;
 import com.revature.pages.HomePage;
 import com.revature.pages.LoginPage;
 import com.revature.pages.RegisterPage;
+import com.revature.pages.UserInfoPage;
 import com.revature.pages.WishListPage;
 
 
@@ -60,11 +61,8 @@ public class GameRunner {
         registerPage = new RegisterPage(driver);
         userInfoPage = new UserInfoPage(driver);
 
-
 			
     }
-
-  
 	
 	@AfterAll
 	public static void teardown() 
