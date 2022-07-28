@@ -1,7 +1,6 @@
 package com.revature.steps;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.time.Duration;
 import org.openqa.selenium.By;

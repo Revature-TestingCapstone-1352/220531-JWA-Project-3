@@ -38,9 +38,6 @@ public class UpdateEmailStepsImpl {
 	public void getUserInfoLink() {
 		driver.findElement(homePage.getUserInfoLink()).click();
 	}
-	 private void geteditUserDetail() {
-		 driver.findElement(userInfoPage.geteditUserDetail()).click();
-	}
 	
 	@Given("the user is on the home Page")
 	public void the_user_is_on_the_home_page() {
@@ -48,7 +45,6 @@ public class UpdateEmailStepsImpl {
 		new WebDriverWait(driver, Duration.ofSeconds(3));
 		loginForHomePage("username", "password");
 		new WebDriverWait(driver, Duration.ofSeconds(8)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"games\"]")));
-
 	}
 	  
 	@When("the user clicks on User Information Button")
@@ -56,19 +52,13 @@ public class UpdateEmailStepsImpl {
 		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(20));
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[7]/a")));
 		element.click();
-		
 	}
 
     @When("the user clicks on Edit User Details")
      public void the_user_clicks_on_edit_user_details() {
-    	//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     	WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(20));
     	WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"userinfocard\"]/div/div[3]/button")));
 		element.click();
-    	
-    	
-    	//driver.findElement(userInfoPage.editUserDetail).click();
-    	//geteditUserDetail();
     }
     
     @When("the user enter the <{string}> and clicks the Update E-mail button")
@@ -81,12 +71,6 @@ public class UpdateEmailStepsImpl {
 
     @Then("the user seccussfully update the Email")
     public void the_user_seccussfully_update_the_email() {
-    	//driver.get("http://localhost:4200/userInformation");
- //   	new WebDriverWait(driver, Duration.ofSeconds(30));
-//		WebElement newEmailText = driver.findElement(By.xpath("//*[@id="userinfocard"]/div/div[2]/span"));
-//		assertEquals(newEmailText, "E-mail address: newemail");
-		
-
 		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(20));
     	wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#userinfocard > div > div:nth-child(2) > span")));
 		assertEquals("E-mail address: newemail", 
