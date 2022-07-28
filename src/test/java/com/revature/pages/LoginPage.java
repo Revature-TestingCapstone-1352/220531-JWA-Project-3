@@ -15,7 +15,7 @@ public class LoginPage
   protected WebDriver driver;
 	private By usernameBy = By.xpath("//*[@id=\"form1\"]/div/div[1]/input");
 	private By passwordBy = By.xpath("//*[@id=\"form1\"]/div/div[2]/input");
-	private By loginButtonBy = By.xpath("//*[@id=\"form1\"]/div/div[3]/button");
+	public By loginButtonBy = By.xpath("//*[@id=\"form1\"]/div/div[3]/button");
 	private By logoutButtonBy = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[8]/a");
 	private By loginPageButtonBy = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[6]/a");
 	private By storePageBy = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[1]/a");
@@ -24,12 +24,6 @@ public class LoginPage
 	private By userInfoPageBy = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[7]/a");
 	
 	private static HomePage homePage;
-	
-	
-	public LoginPage(WebDriver driver)
-	{
-		this.driver = driver;
-	}
 	
 	
 	public HomePage loginValidUser(String username, String password)
@@ -114,22 +108,27 @@ public class LoginPage
 		return GameRunner.userInfoPage;
 	}
 
-	public By getUsernameBy() {
-		return usernameBy;
-	}
 
-	public By getPasswordBy() {
-		return passwordBy;
-	}
+    public LoginPage(WebDriver driver) {
+        this.driver = driver;
+    }
 
-	public By getLoginButtonBy() {
-		return loginButtonBy;
-	}
+    // public HomePage loginValidUser(String username, String password) {
+    //     driver.findElement(usernameBy).sendKeys(username);
+    //     driver.findElement(passwordBy).sendKeys(password);
+    //     driver.findElement(loginButtonBy).click();
 
-	public WebDriver getDriver() {
-		return driver;
-	}
-  
+    //     return new HomePage(driver);
+    // }
+
+    public By getUsernameBy() {
+        return usernameBy;
+    }
 }
+	// public WebDriver getDriver() {
+	// 	return driver;
+	// }
+  
+// }
 
 

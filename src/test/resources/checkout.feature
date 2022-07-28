@@ -30,3 +30,9 @@ Feature: Checkout
   	Given that a User has an empty Cart and is viewing their Cart
     When the User tries to Checkout
     Then the Cart Page will display that the Cart is empty and the Proceed to Checkout will not be displayed
+    
+    @tag3
+    Scenario: Trying to checkout from wrong page
+    Given The user is on the homepage
+    When the User clicks the Checkout Tab
+    Then the User should be told to proceed from Cart

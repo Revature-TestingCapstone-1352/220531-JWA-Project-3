@@ -66,9 +66,9 @@ public class RegisterSteps
 	public void a_guest_can_register_by_pressing_the_register_button_and_be_on_the_homepage()
 	{
 		
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(loginPage.getLoginButtonBy()));
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(loginPage.loginButtonBy));
 
-		boolean buttonIsThere = driver.findElement(loginPage.getLoginButtonBy()).isDisplayed();
+		boolean buttonIsThere = driver.findElement(loginPage.loginButtonBy).isDisplayed();
 		
 		assertTrue(buttonIsThere);
 	}
