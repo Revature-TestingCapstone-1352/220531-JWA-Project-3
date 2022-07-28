@@ -17,6 +17,7 @@ import com.revature.pages.CheckoutPage;
 import com.revature.pages.HomePage;
 import com.revature.pages.LoginPage;
 import com.revature.pages.RegisterPage;
+import com.revature.pages.UserInfoPage;
 import com.revature.pages.WishListPage;
 
 
@@ -68,6 +69,7 @@ public class GameRunner {
 		checkoutPage = new CheckoutPage(driver);
 		loginPage = new LoginPage(driver);
 		wishListPage = new WishListPage(driver);
+		homePage = new HomePage(driver);
 		registerPage = new RegisterPage(driver);
 		cartPage = new CartPage(driver);
 		userInfoPage = new UserInfoPage(driver);
