@@ -19,10 +19,12 @@ export class CheckoutComponent implements OnInit {
   visible:boolean = true;
   messageVisible:boolean = false;
 
+
   constructor(private userService:UserService, private cartService:CartService,private gameService:GameService,) { }
 
   ngOnInit(): void {
     this.displayCart();
+    
   }
 
   displayCart(){
