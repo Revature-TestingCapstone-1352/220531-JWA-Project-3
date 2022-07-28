@@ -29,12 +29,12 @@ import io.cucumber.java.BeforeAll;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
-@Suite
-@IncludeTags("CucumberTests")
+//@Suite
+//@IncludeTags("CucumberTests")
 public class GameRunner {
-	
-	
-	
+
+
+
 	// we'll need a driver and an instance of our WikiPage POM
 	public static  WebDriver driver;
 	public static LoginPage loginPage;
@@ -61,16 +61,16 @@ public class GameRunner {
         userInfoPage = new UserInfoPage(driver);
 
 
-			
+
     }
 
-  
-	
+
+
 	@AfterAll
-	public static void teardown() 
+	public static void teardown()
   	{
 		driver.quit();
 	}
-	
-	
+
+
 }
