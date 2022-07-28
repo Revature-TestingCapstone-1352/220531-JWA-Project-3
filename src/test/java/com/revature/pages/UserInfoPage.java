@@ -99,6 +99,11 @@ public class UserInfoPage {
 			return usernameInfoCard;
 		}
 		
+		public void waitForOrderHistoryHeader() {
+			new WebDriverWait(driver, Duration.ofSeconds(10))
+				.until(ExpectedConditions.visibilityOf(driver.findElement(orderHistoryHeader)));
+		}
+		
 		public void clickViewOrderHistoryButton() {
 		new WebDriverWait(driver, Duration.ofSeconds(10))
 			.until(ExpectedConditions.elementToBeClickable(viewOrderHistoryButton));
