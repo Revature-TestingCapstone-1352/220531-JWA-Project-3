@@ -1,10 +1,15 @@
 package com.revature.pages;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class UserInfoPage {
 	private WebDriver driver;
@@ -44,9 +49,20 @@ public class UserInfoPage {
 		return logoutSeccussLink;
     }
 
-	private By errorPasswordLink = By.xpath("//*[@id=\"changepwdcard\"]/div/label");
-	//private By errorPasswordLink = By.xpath("/html/body/app-root/app-user-information/div/div[3]/div/div/div/div/label");
+	//private By errorPasswordLink = By.xpath("//*[@id=\"changepwdcard\"]/div/label");
+	private By errorPasswordLink = By.xpath("/html/body/app-root/app-user-information/div/div[3]/div/div/div/div/label");
 	public By getErrorPasswordLink() {
 		return errorPasswordLink; 
+	}
+	
+	public String findPasswordError() {
+		JavascriptExecutor jse6 = (JavascriptExecutor) driver;
+		jse6.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(getErrorPasswordLink()));
+
+		String passwordErrorText = driver.findElement(getErrorPasswordLink()).getText();
+		
+		return passwordErrorText;
 	}
 }

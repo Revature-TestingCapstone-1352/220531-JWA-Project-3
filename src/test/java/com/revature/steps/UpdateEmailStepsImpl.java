@@ -1,8 +1,12 @@
 package com.revature.steps;
 
+import static org.junit.Assert.assertEquals;
+
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -48,30 +52,47 @@ public class UpdateEmailStepsImpl {
 	  
 	@When("the user clicks on User Information Button")
 	    public void the_user_clicks_on_user_information_button() {
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		//driver.findElement(homePage.userInfoLink).click();
-		getUserInfoLink();
+		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(20));
+		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[7]/a")));
+		element.click();
+		
+		
+//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+//		//driver.findElement(homePage.userInfoLink).click();
+//		getUserInfoLink();
 	}
 
     @When("the user clicks on Edit User Details")
      public void the_user_clicks_on_edit_user_details() {
-    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+    	//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+    	WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(20));
+    	WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"userinfocard\"]/div/div[3]/button")));
+		element.click();
+    	
+    	
     	//driver.findElement(userInfoPage.editUserDetail).click();
-    	geteditUserDetail();
+    	//geteditUserDetail();
     }
     
-    
-    
-   
-
-	@When("the user enter the {string}> and clicks the Update E-mail button")
-    public void the_user_enter_the_and_clicks_the_update_e_mail_button(String newEmail) {
-		userInfoPage.EnterNewEmail.sendKeys(newEmail); 
+    @When("the user enter the <{string}> and clicks the Update E-mail button")
+    public void the_user_enter_the_and_clicks_the_update_e_mail_button(String newemail) {
+   		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		userInfoPage.EnterNewEmail.sendKeys(newemail); 
 		driver.findElement(userInfoPage.editUserEmail).click();
 	}
 
+
     @Then("the user seccussfully update the Email")
     public void the_user_seccussfully_update_the_email() {
-    	driver.get("http://localhost:4200/userInformation");
+    	//driver.get("http://localhost:4200/userInformation");
+ //   	new WebDriverWait(driver, Duration.ofSeconds(30));
+//		WebElement newEmailText = driver.findElement(By.xpath("//*[@id="userinfocard"]/div/div[2]/span"));
+//		assertEquals(newEmailText, "E-mail address: newemail");
+		
+
+		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(20));
+    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#userinfocard > div > div:nth-child(2) > span")));
+		assertEquals("E-mail address: newemail", 
+        driver.findElement(By.cssSelector("#userinfocard > div > div:nth-child(2) > span")).getText());
 	}
 }
