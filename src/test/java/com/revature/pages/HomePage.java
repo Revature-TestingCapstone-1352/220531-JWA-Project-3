@@ -27,13 +27,9 @@ public class HomePage {
 	
 // ============== Khellil code	
 	private By logoutLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[8]/a");
-	private By userInfoLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[7]/a");
 
 	public By getLogoutLink() {
 		return logoutLink;
-	}
-	public By getUserInfoLink() {
-		return userInfoLink; 
 	}
 //	 ==============
 	
