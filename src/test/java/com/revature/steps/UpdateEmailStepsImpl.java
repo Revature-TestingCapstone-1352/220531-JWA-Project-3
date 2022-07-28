@@ -47,7 +47,8 @@ public class UpdateEmailStepsImpl {
 		driver.get("http://localhost:4200");
 		new WebDriverWait(driver, Duration.ofSeconds(3));
 		loginForHomePage("username", "password");
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		new WebDriverWait(driver, Duration.ofSeconds(8)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"games\"]")));
+
 	}
 	  
 	@When("the user clicks on User Information Button")
@@ -56,10 +57,6 @@ public class UpdateEmailStepsImpl {
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[7]/a")));
 		element.click();
 		
-		
-//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-//		//driver.findElement(homePage.userInfoLink).click();
-//		getUserInfoLink();
 	}
 
     @When("the user clicks on Edit User Details")

@@ -41,14 +41,17 @@ public class UpdatePasswordStepsImpl {
 	 private void geteditUserDetail() {
 		 driver.findElement(userInfoPage.geteditUserDetail()).click();
 	}
-
+	 public void getLogoutLink() {
+			driver.findElement(homePage.getLogoutLink()).click();
+		}
 	
 	@Given("the user is on the home_Page")
 	public void the_user_is_on_the_home_page() {
 		driver.get("http://localhost:4200");
 		new WebDriverWait(driver, Duration.ofSeconds(3));
 		loginForHomePage("username", "password");
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		new WebDriverWait(driver, Duration.ofSeconds(8)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"games\"]")));
+
 	}
 
 	@When("the user clicks on User Information_Button")
@@ -79,18 +82,25 @@ public class UpdatePasswordStepsImpl {
 	@Then("the user seccussfully update the Password")
 	public void the_user_seccussfully_update_the_password() {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		driver.get("http://localhost:4200/userInformation");
+		JavascriptExecutor js = (JavascriptExecutor)driver; 
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
+		WebElement button =driver.findElement(By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[8]/a"));//logout
+		js.executeScript("arguments[0].click();", button);
+		new WebDriverWait(driver, Duration.ofSeconds(8));
+		loginForHomePage("username", "password");// login using the new password
+		new WebDriverWait(driver, Duration.ofSeconds(8)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"games\"]")));
+
 	}
 	
 	
-	
-// =============
+
 	@Given("the user is on the homePage again")
 	public void the_user_is_on_the_home_page_again() {
 		driver.get("http://localhost:4200");
 		new WebDriverWait(driver, Duration.ofSeconds(3));
 		loginForHomePage("username", "password");
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		new WebDriverWait(driver, Duration.ofSeconds(8)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"games\"]")));
+
 	}
 
 	@When("the user type in a <{string}> and confirm diff <{string}> and clicks on Update password button")
