@@ -91,7 +91,7 @@ public class CartPageStepImpl {
 		
 
 		
-		@Given("User clicks the addToCartButton")
+		@When("User clicks the addToCartButton")
 		public void user_clicks_the_add_to_cart_button() {
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
 			cartPage.clickAddToCartButton();
