@@ -29,34 +29,32 @@ public class StorePage {
 	private By veryPositiveBox = By.xpath("//*[@id=\"inner-box2\"]/div[5]/label/span");
 	private By overwhelminglyPositiveBox = By.xpath("//*[@id=\"inner-box2\"]/div[6]/label/span");
 	private By nextPageSpan = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[5]");
-	private By nextPage = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[10]/a");
+	private By nextPageMixed = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[5]/a");
+	private By nextPageMostlyPositive = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[5]/a");
+	private By nextPageVeryPositive = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[8]/a");
+	private By nextPageOverPositive = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[5]/a");
+	private By filterGamesDisplayed = By.xpath("//*[@id=\"games\"]/div");
 	
-	//private By filterGamesDisplayed = By.xpath("//*[@id=\"games\"]/div");
-	
-	private By mostlyNegative = By.xpath("//*[@id=\"games\"]/div");
-	private By mixed = By.xpath("//*[@id=\"games\"]/div");
-	private By positive = By.xpath("//*[@id=\"games\"]/div");
-	private By mostlyPositive = By.xpath("//*[@id=\"games\"]/div");
-	private By veryPositive = By.xpath("//*[@id=\"games\"]/div");
-	private By overwhelminglyPositive = By.xpath("//*[@id=\"games\"]/div");
-	private By unrated = By.xpath("//*[@id=\"games\"]/div");
-	//*[@id="games"]/div
-	private By tickClass = By.xpath("//*[@id=\"inner-box2\"]");
-	
-	public By getTickClass() {
-		return tickClass;
+	public By getNextPageMixed() {
+		return nextPageMixed;
 	}
 	
-	public By getNextPage() {
-		return nextPage;
+	public By getNextPageMostlyPositive() {
+		return nextPageMostlyPositive;
 	}
-	
-	
+
+	public By getNextPageVeryPositive() {
+		return nextPageVeryPositive;
+	}
+
+	public By getNextPageOverPositive() {
+		return nextPageOverPositive;
+	}
+
 	public By getNextPageSpan() {
 		return nextPageSpan;
 	}
 	
-
 	public By getNegativeBox() {
 		return negativeBox;
 	}
@@ -80,38 +78,8 @@ public class StorePage {
 	public By getOverwhelminglyPositiveBox() {
 		return overwhelminglyPositiveBox;
 	}
-
-	/*
+	
 	public By getFilterGamesDisplayed() {
 		return filterGamesDisplayed;
-	}
-	*/
-
-	public By getMostlyNegative() {
-		return mostlyNegative;
-	}
-
-	public By getMixed() {
-		return mixed;
-	}
-
-	public By getPositive() {
-		return positive;
-	}
-
-	public By getMostlyPositive() {
-		return mostlyPositive;
-	}
-
-	public By getVeryPositive() {
-		return veryPositive;
-	}
-
-	public By getOverwhelminglyPositive() {
-		return overwhelminglyPositive;
-	}
-
-	public By getUnrated() {
-		return unrated;
 	}
 }

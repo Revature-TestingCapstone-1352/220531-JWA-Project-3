@@ -38,8 +38,9 @@ public class FilterRatingImpl {
 	private static StorePage storePage = GameRunner.storePage;
 	private static HomePage homePage = GameRunner.homePage;
 	
-	public void clickAll() {
+	public void clickAll() throws InterruptedException {
 		driver.navigate().refresh();
+		Thread.sleep(2000);
 		new WebDriverWait(driver, Duration.ofSeconds(5));
 		driver.findElement(storePage.getNegativeBox()).click();
 		new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -56,31 +57,33 @@ public class FilterRatingImpl {
 		
 	}
 	
-	public int checkNumberOfGames(By whichFilter) {
+	public int checkNumberOfGames(By whichFilter, By whichNextPage) {
 		int count = 0;
+		
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(whichFilter));
 		List<WebElement> initialGames = driver.findElement(whichFilter).findElements(By.xpath("./child::*"));
 		new WebDriverWait(driver, Duration.ofSeconds(10));
 		initialGames.remove(initialGames.size() - 1);
 		count += initialGames.size();
-		//new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(storePage.getNextPageSpan()));
-		//new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(storePage.getNextPage()));
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(storePage.getNextPage()));
 		try {
-			while (driver.findElement(storePage.getNextPage()).isEnabled()) {
+			if (driver.findElement(storePage.getNextPageSpan()).getAttribute("class").equals("pagination-next disabled")) {
+				return count;
+			}
+		} catch (NoSuchElementException e) {
+			return count;
+		}
+		try {
+			while (driver.findElement(whichNextPage).isEnabled()) {
 				new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(whichFilter));
-				new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(storePage.getNextPage()));
-				new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(storePage.getNextPage()));
-				driver.findElement(storePage.getNextPage()).click();
+				new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(whichNextPage));
+				new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(whichNextPage));
+				driver.findElement(whichNextPage).click();
 				new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(whichFilter));
 				new WebDriverWait(driver, Duration.ofSeconds(5));
 				List<WebElement> numberOfGames = driver.findElement(whichFilter).findElements(By.xpath("./child::*"));
 				new WebDriverWait(driver, Duration.ofSeconds(5));
 				numberOfGames.remove(numberOfGames.size() - 1);
 				count += numberOfGames.size();
-				if (driver.findElement(storePage.getNextPageSpan()).getAttribute("class").equals("pagination-next disabled")) {
-					break;
-				}
 			}
 		} catch (NoSuchElementException e) {
 			return count;
@@ -90,7 +93,7 @@ public class FilterRatingImpl {
 	
 	public int clickForUnrated() {
 		new WebDriverWait(driver, Duration.ofSeconds(5));
-		int n = checkNumberOfGames(storePage.getUnrated());
+		int n = checkNumberOfGames(storePage.getFilterGamesDisplayed(), storePage.getNextPageMixed());
 		return n;
 	}
 	
@@ -130,8 +133,6 @@ public class FilterRatingImpl {
 		new WebDriverWait(driver, Duration.ofSeconds(5));
 	}
 	
-	
-	
 	@Given("User is on the HomePage")
 	public void user_is_on_the_home_page() {
 		driver.get("http://localhost:4200");
@@ -146,8 +147,10 @@ public class FilterRatingImpl {
 	}
 	
 	@Then("User should be able to view games that have no rating")
-	public void user_should_be_able_to_view_games_filtered_by_rating() {
+	public void user_should_be_able_to_view_games_filtered_by_rating() throws InterruptedException {
 		clickAll();
+		Thread.sleep(2000);
+		new WebDriverWait(driver, Duration.ofSeconds(10));
 		int n = clickForUnrated();
 		assertEquals(6, n);
 	}
@@ -158,10 +161,14 @@ public class FilterRatingImpl {
 	}
 	
 	@Then("User should be able to view games that are Mostly Negative")
-	public void User_should_be_able_to_view_games_that_are_mostly_negative() {
+	public void User_should_be_able_to_view_games_that_are_mostly_negative() throws InterruptedException {
 		clickAll();
+		Thread.sleep(2000);
+		new WebDriverWait(driver, Duration.ofSeconds(10));
 		clickNegativeBox();
-		int n = checkNumberOfGames(storePage.getMostlyNegative());
+		Thread.sleep(2000);
+		new WebDriverWait(driver, Duration.ofSeconds(10));
+		int n = checkNumberOfGames(storePage.getFilterGamesDisplayed(), storePage.getNextPageMixed());
 		assertEquals(13, n);
 	}
 	
@@ -171,10 +178,14 @@ public class FilterRatingImpl {
 	}
 	
 	@Then("User should be able to view games that are Mixed")
-	public void User_should_be_able_to_view_games_that_are_Mixed() {
+	public void User_should_be_able_to_view_games_that_are_Mixed() throws InterruptedException {
 		clickAll();
+		Thread.sleep(2000);
+		new WebDriverWait(driver, Duration.ofSeconds(10));
 		clickMixedBox();
-		int n = checkNumberOfGames(storePage.getMixed());
+		Thread.sleep(2000);
+		new WebDriverWait(driver, Duration.ofSeconds(10));
+		int n = checkNumberOfGames(storePage.getFilterGamesDisplayed(), storePage.getNextPageMixed());
 		assertEquals(34, n);
 	}
 	
@@ -184,10 +195,14 @@ public class FilterRatingImpl {
 	}
 	
 	@Then("User should be able to view games that are Positive")
-	public void User_should_be_able_to_view_games_that_are_Positive() {
+	public void User_should_be_able_to_view_games_that_are_Positive() throws InterruptedException {
 		clickAll();
+		Thread.sleep(2000);
+		new WebDriverWait(driver, Duration.ofSeconds(10));
 		clickPositiveBox();
-		int n = checkNumberOfGames(storePage.getPositive());
+		Thread.sleep(2000);
+		new WebDriverWait(driver, Duration.ofSeconds(10));
+		int n = checkNumberOfGames(storePage.getFilterGamesDisplayed(), storePage.getNextPageMixed());
 		assertEquals(10, n);
 	}
 	
@@ -197,10 +212,14 @@ public class FilterRatingImpl {
 	}
 	
 	@Then("User should be able to view games that are Mostly Positive")
-	public void User_should_be_able_to_view_games_that_are_mostly_positive() {
+	public void User_should_be_able_to_view_games_that_are_mostly_positive() throws InterruptedException {
 		clickAll();
+		Thread.sleep(2000);
+		new WebDriverWait(driver, Duration.ofSeconds(10));
 		clickMostlyPositiveBox();
-		int n = checkNumberOfGames(storePage.getMostlyPositive());
+		Thread.sleep(2000);
+		new WebDriverWait(driver, Duration.ofSeconds(10));
+		int n = checkNumberOfGames(storePage.getFilterGamesDisplayed(), storePage.getNextPageMostlyPositive());
 		assertEquals(30, n);
 	}
 	
@@ -210,10 +229,14 @@ public class FilterRatingImpl {
 	}
 	
 	@Then("User should be able to view games that are Very Positive")
-	public void User_should_be_able_to_view_games_that_are_very_positive() {
+	public void User_should_be_able_to_view_games_that_are_very_positive() throws InterruptedException {
 		clickAll();
+		Thread.sleep(2000);
+		new WebDriverWait(driver, Duration.ofSeconds(10));
 		clickVeryPositiveBox();
-		int n = checkNumberOfGames(storePage.getVeryPositive());
+		Thread.sleep(2000);
+		new WebDriverWait(driver, Duration.ofSeconds(10));
+		int n = checkNumberOfGames(storePage.getFilterGamesDisplayed(), storePage.getNextPageVeryPositive());
 		assertEquals(120, n);
 	}
 	
@@ -223,10 +246,14 @@ public class FilterRatingImpl {
 	}
 	
 	@Then("User should be able to view games that are Overwhelmingly Positive")
-	public void User_should_be_able_to_view_games_that_are_overwhelmingly_positive() {
+	public void User_should_be_able_to_view_games_that_are_overwhelmingly_positive() throws InterruptedException {
 		clickAll();
+		Thread.sleep(2000);
+		new WebDriverWait(driver, Duration.ofSeconds(10));
 		clickOverwhelminglyPositiveBox();
-		int n = checkNumberOfGames(storePage.getOverwhelminglyPositive());
+		Thread.sleep(2000);
+		new WebDriverWait(driver, Duration.ofSeconds(10));
+		int n = checkNumberOfGames(storePage.getFilterGamesDisplayed(), storePage.getNextPageOverPositive());
 		assertEquals(44, n);
 	}
 }
