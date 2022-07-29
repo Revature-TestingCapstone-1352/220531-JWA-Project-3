@@ -22,10 +22,6 @@ public class CartPage {
     private By addToCartButton = By.xpath("//*[@id=\"games\"]/div/div/div/div[4]/div/button[2]/span");
     public By cartTableFirstItem = By.xpath("/html/body/app-root/app-cart/div/div/div[2]/table/tbody/tr/td[2]/span[1]/b");
       
-  
-
-   
-
 	
 	public CartPage(WebDriver driver) {
 		this.driver = driver;
