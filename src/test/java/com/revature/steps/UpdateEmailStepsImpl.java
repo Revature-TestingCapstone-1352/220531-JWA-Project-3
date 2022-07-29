@@ -63,8 +63,9 @@ public class UpdateEmailStepsImpl {
     
     @When("the user enter the <{string}> and clicks the Update E-mail button")
     public void the_user_enter_the_and_clicks_the_update_e_mail_button(String newemail) {
-   		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		userInfoPage.EnterNewEmail.sendKeys(newemail); 
+   		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(userInfoPage.getEnterEmail()));
+   		//userInfoPage.EnterNewEmail.sendKeys(newemail); 
+   		driver.findElement(userInfoPage.getEnterEmail()).sendKeys(newemail);
 		driver.findElement(userInfoPage.editUserEmail).click();
 	}
 

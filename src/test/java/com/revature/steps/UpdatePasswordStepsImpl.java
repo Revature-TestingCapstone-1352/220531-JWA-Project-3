@@ -69,8 +69,10 @@ public class UpdatePasswordStepsImpl {
 	public void the_user_type_in_a_valid_and_confirm_same_password_and_clicks_on_update_password_button(String password) {
 		 driver.manage().window().maximize();
 		 JavascriptExecutor js = (JavascriptExecutor)driver; // To fix "Element Is Not Clickable at Point" error
-		userInfoPage.EnterNewPassword.sendKeys(password); 
-		userInfoPage.ConfirmNewPassword.sendKeys(password);
+//		userInfoPage.EnterNewPassword.sendKeys(password); 
+//		userInfoPage.ConfirmNewPassword.sendKeys(password);
+		 userInfoPage.enterNewPassword(password);
+	        userInfoPage.enterConfirmPass(password);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		WebElement button =driver.findElement(By.xpath("//*[@id=\"changepwdcard\"]/div/div[3]/button"));
 		js.executeScript("arguments[0].click();", button);
@@ -80,7 +82,7 @@ public class UpdatePasswordStepsImpl {
 	public void the_user_seccussfully_update_the_password() {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		JavascriptExecutor js = (JavascriptExecutor)driver; 
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		WebElement button =driver.findElement(By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[8]/a"));//logout
 		js.executeScript("arguments[0].click();", button);
 		new WebDriverWait(driver, Duration.ofSeconds(8));
@@ -104,8 +106,10 @@ public class UpdatePasswordStepsImpl {
 	@When("the user type in a <{string}> and confirm diff <{string}> and clicks on Update password button")
 	public void the_user_type_in_a_and_confirm_diff_and_clicks_on_update_password_button(String password, String confirmpassword) {
         JavascriptExecutor js = (JavascriptExecutor)driver; // To fix "Element Is Not Clickable at Point" error
-		userInfoPage.EnterNewPassword.sendKeys(password); 
-		userInfoPage.ConfirmNewPassword.sendKeys(confirmpassword);
+//		userInfoPage.EnterNewPassword.sendKeys(password); 
+//		userInfoPage.ConfirmNewPassword.sendKeys(confirmpassword);
+        userInfoPage.enterNewPassword(password);
+        userInfoPage.enterConfirmPass(confirmpassword);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		
 		WebElement button =driver.findElement(By.xpath("//*[@id=\"changepwdcard\"]/div/div[3]/button"));
