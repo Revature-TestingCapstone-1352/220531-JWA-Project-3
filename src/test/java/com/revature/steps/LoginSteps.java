@@ -97,6 +97,7 @@ public class LoginSteps {
 	@Then("the cart should be empty")
 	public void the_cart_should_be_empty() {
 		assertTrue(cartPage.isCartEmpty());
+		
 	}
 
 	@Given("a user has added a game to their wishlist")

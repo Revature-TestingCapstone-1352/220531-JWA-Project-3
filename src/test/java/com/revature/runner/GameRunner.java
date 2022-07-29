@@ -1,14 +1,24 @@
 package com.revature.runner;
 
+import com.revature.pages.*;
+import io.cucumber.java.AfterAll;
+import io.cucumber.java.BeforeAll;
 import java.io.File;
 //import io.cucumber.junit.*;
 import java.time.Duration;
+import java.util.logging.Level;
 
 import org.junit.platform.suite.api.IncludeTags;
 import org.junit.platform.suite.api.Suite;
-import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.io.File;
 
 import com.revature.pages.*;
 
@@ -40,24 +50,9 @@ public class GameRunner {
 	public static RegisterPage registerPage;
 	public static CartPage cartPage;
 	public static UserInfoPage userInfoPage;
+	public static StorePage storePage;
 
-	
-	public  WebDriver getDriver() 
-  {
-		
-		File chrome = new File("src/test/resources/chromedriver.exe");
-		System.setProperty("webdriver.chrome.driver",chrome.getAbsolutePath());
-		driver = new ChromeDriver();
-		
-		
-		return driver;
-	}
-	
-
-
-
-	
-	@BeforeAll //@BeforeClass is JUnit 4
+  @BeforeAll //@BeforeClass is JUnit 4
 	public static void setup() {
 		File chrome = new File("src/test/resources/chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver",chrome.getAbsolutePath());
@@ -68,17 +63,17 @@ public class GameRunner {
 		checkoutPage = new CheckoutPage(driver);
 		loginPage = new LoginPage(driver);
 		wishListPage = new WishListPage(driver);
-		homePage = new HomePage(driver);
 		registerPage = new RegisterPage(driver);
 		cartPage = new CartPage(driver);
 		userInfoPage = new UserInfoPage(driver);
+		storePage = new StorePage(driver);
 		
-		//ADD YOUR WEB PAGES HERE
+		
 	}
 	
 	@AfterAll
 	public static void teardown() 
-	{
+  	{
 		driver.quit();
 	}
 	

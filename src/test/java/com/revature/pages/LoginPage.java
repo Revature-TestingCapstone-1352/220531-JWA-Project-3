@@ -15,7 +15,7 @@ public class LoginPage
   protected WebDriver driver;
 	private By usernameBy = By.xpath("//*[@id=\"form1\"]/div/div[1]/input");
 	private By passwordBy = By.xpath("//*[@id=\"form1\"]/div/div[2]/input");
-	private By loginButtonBy = By.xpath("//*[@id=\"form1\"]/div/div[3]/button");
+	public By loginButtonBy = By.xpath("//*[@id=\"form1\"]/div/div[3]/button");
 	private By logoutButtonBy = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[8]/a");
 	private By loginPageButtonBy = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[6]/a");
 	private By storePageBy = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[1]/a");
@@ -26,15 +26,9 @@ public class LoginPage
 	private static HomePage homePage;
 	
 	
-	public LoginPage(WebDriver driver)
-	{
-		this.driver = driver;
-	}
-	
-	
 	public HomePage loginValidUser(String username, String password)
 	{
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(loginButtonBy));
+		new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(loginButtonBy));
 		driver.findElement(usernameBy).sendKeys(username);
 		driver.findElement(passwordBy).sendKeys(password);
 		driver.findElement(loginButtonBy).click();
@@ -43,7 +37,7 @@ public class LoginPage
 	}
 	
 	public RegisterPage loginInvalidUser(String username, String password) {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(loginButtonBy));
+		new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(loginButtonBy));
 		driver.findElement(usernameBy).sendKeys(username);
 		driver.findElement(passwordBy).sendKeys(password);
 		driver.findElement(loginButtonBy).click();
@@ -63,7 +57,7 @@ public class LoginPage
 	}
 	
 	public void toLoginPage() {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(loginPageButtonBy));
+		new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.elementToBeClickable(loginPageButtonBy));
 		driver.findElement(loginPageButtonBy).click();
 	}
 	
@@ -76,60 +70,65 @@ public class LoginPage
 	}
 	
 	public void logout() {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(loginPageButtonBy));
+		new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.elementToBeClickable(loginPageButtonBy));
 		driver.findElement(logoutButtonBy).click();
 	}
 	
 	public void initialLogin() {
 		driver.get("http://localhost:4200");
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(loginPageButtonBy));
+		new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.elementToBeClickable(loginPageButtonBy));
 		driver.findElement(loginPageButtonBy).click();
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(loginButtonBy));
+		new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(loginButtonBy));
 		driver.findElement(usernameBy).sendKeys("TestUser");
 		driver.findElement(passwordBy).sendKeys("TestPass");
 		driver.findElement(loginButtonBy).click();
 	}
 	
 	public HomePage toStorePage() {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(storePageBy));
+		new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.elementToBeClickable(storePageBy));
 		driver.findElement(storePageBy).click();
 		return GameRunner.homePage;
 	}
 	
 	public CartPage toCartPage() {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(cartPageBy));
+		new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.elementToBeClickable(cartPageBy));
 		driver.findElement(cartPageBy).click();
 		return GameRunner.cartPage;
 	}
 	
 	public WishListPage toWishlistPage() {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(wishlistPageBy));
+		new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.elementToBeClickable(wishlistPageBy));
 		driver.findElement(wishlistPageBy).click();
 		return GameRunner.wishListPage;
 	}
 	
 	public UserInfoPage toUserInfoPage() {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(userInfoPageBy));
+		new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.elementToBeClickable(userInfoPageBy));
 		driver.findElement(userInfoPageBy).click();
 		return GameRunner.userInfoPage;
 	}
 
-	public By getUsernameBy() {
-		return usernameBy;
-	}
 
-	public By getPasswordBy() {
-		return passwordBy;
-	}
+    public LoginPage(WebDriver driver) {
+        this.driver = driver;
+    }
 
-	public By getLoginButtonBy() {
-		return loginButtonBy;
-	}
+    // public HomePage loginValidUser(String username, String password) {
+    //     driver.findElement(usernameBy).sendKeys(username);
+    //     driver.findElement(passwordBy).sendKeys(password);
+    //     driver.findElement(loginButtonBy).click();
 
-	public WebDriver getDriver() {
-		return driver;
-	}
-  
+    //     return new HomePage(driver);
+    // }
+
+    public By getUsernameBy() {
+        return usernameBy;
+    }
 }
+	// public WebDriver getDriver() {
+	// 	return driver;
+	// }
+  
+// }
 
 
