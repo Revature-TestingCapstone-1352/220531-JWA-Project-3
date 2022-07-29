@@ -60,7 +60,7 @@ public class WishListPage {
 
     public String findGameName() {
         //new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(driver.findElement(getGameNameBy())));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         String gamename = driver.findElement(getGameNameBy()).getText();
         return gamename;
     }
@@ -82,14 +82,14 @@ public class WishListPage {
 	}
 	
 	public void clickRemoveButton(){
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getRemoveButton()));
 		driver.findElement(getRemoveButton()).click();
 	}
 	
 	public String findWishListNotPresent()
 	{
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		String notThere = driver.findElement(wishListNotThereText).getText();
 		return notThere;
 	}
