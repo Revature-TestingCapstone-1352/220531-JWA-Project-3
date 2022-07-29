@@ -11,6 +11,7 @@ import java.util.logging.Level;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -38,59 +39,54 @@ public class FilterRatingImpl {
 	private static HomePage homePage = GameRunner.homePage;
 	
 	public void clickAll() {
-		//driver.navigate().refresh();
+		driver.navigate().refresh();
 		new WebDriverWait(driver, Duration.ofSeconds(5));
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(storePage.getTickClass()));
-		List<WebElement> allChecks = driver.findElement(storePage.getTickClass()).findElements(By.className("check"));
-		for (int i = 0; i < allChecks.size(); i++) {
-			new WebDriverWait(driver, Duration.ofSeconds(4));
-			allChecks.get(i).click();
-			new WebDriverWait(driver, Duration.ofSeconds(2));
-		}
+		driver.findElement(storePage.getNegativeBox()).click();
+		new WebDriverWait(driver, Duration.ofSeconds(5));
+		driver.findElement(storePage.getMixedBox()).click();
+		new WebDriverWait(driver, Duration.ofSeconds(5));
+		driver.findElement(storePage.getPositiveBox()).click();
+		new WebDriverWait(driver, Duration.ofSeconds(5));
+		driver.findElement(storePage.getMostlyPositiveBox()).click();
+		new WebDriverWait(driver, Duration.ofSeconds(5));
+		driver.findElement(storePage.getVeryPositiveBox()).click();
+		new WebDriverWait(driver, Duration.ofSeconds(5));
+		driver.findElement(storePage.getOverwhelminglyPositiveBox()).click();
+		new WebDriverWait(driver, Duration.ofSeconds(10));
+		
 	}
 	
 	public int checkNumberOfGames(By whichFilter) {
 		int count = 0;
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(whichFilter));
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(whichFilter));
 		List<WebElement> initialGames = driver.findElement(whichFilter).findElements(By.xpath("./child::*"));
 		new WebDriverWait(driver, Duration.ofSeconds(10));
 		initialGames.remove(initialGames.size() - 1);
 		count += initialGames.size();
 		//new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(storePage.getNextPageSpan()));
 		//new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(storePage.getNextPage()));
-		if (driver.findElement(storePage.getNextPageSpan()).getAttribute("aria-disabled").equals("false")) {
-			new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(storePage.getNextPage()));
-			while (driver.findElement(storePage.getNextPageSpan()).getAttribute("aria-disabled").equals("false")) {
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(storePage.getNextPage()));
+		try {
+			while (driver.findElement(storePage.getNextPage()).isEnabled()) {
+				new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(whichFilter));
+				new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(storePage.getNextPage()));
 				new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(storePage.getNextPage()));
-				new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(whichFilter));
 				driver.findElement(storePage.getNextPage()).click();
-				new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(whichFilter));
+				new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(whichFilter));
 				new WebDriverWait(driver, Duration.ofSeconds(5));
 				List<WebElement> numberOfGames = driver.findElement(whichFilter).findElements(By.xpath("./child::*"));
 				new WebDriverWait(driver, Duration.ofSeconds(5));
 				numberOfGames.remove(numberOfGames.size() - 1);
 				count += numberOfGames.size();
-				assertTrue(driver.findElement(storePage.getNextPageSpan()).getAttribute("aria-disabled").equals("false"));
+				if (driver.findElement(storePage.getNextPageSpan()).getAttribute("class").equals("pagination-next disabled")) {
+					break;
+				}
 			}
+		} catch (NoSuchElementException e) {
+			return count;
 		}
 		return count;
 	}
-	
-	/*
-	public String getNumberOfGames() {
-		ChromeOptions options = new ChromeOptions();
-        LoggingPreferences logPrefs = new LoggingPreferences();
-        logPrefs.enable(LogType.BROWSER, Level.ALL);
-        driver = new ChromeDriver(options);
-		
-		LogEntries entries = driver.manage().logs().get(LogType.BROWSER);
-		List<LogEntry> logs = new ArrayList<>();
-		for (LogEntry entry : entries) {
-			logs.add(entry);
-		}
-		return logs.get(logs.size() - 1).getMessage();
-	}
-	*/
 	
 	public int clickForUnrated() {
 		new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -152,9 +148,8 @@ public class FilterRatingImpl {
 	@Then("User should be able to view games that have no rating")
 	public void user_should_be_able_to_view_games_filtered_by_rating() {
 		clickAll();
-		//assertTrue(getNumberOfGames().equals("filtered games count:6"));
 		int n = clickForUnrated();
-		assertEquals(n, 6);
+		assertEquals(6, n);
 	}
 	
 	@When("User selects Mostly Negative filter")
@@ -166,9 +161,8 @@ public class FilterRatingImpl {
 	public void User_should_be_able_to_view_games_that_are_mostly_negative() {
 		clickAll();
 		clickNegativeBox();
-		//assertTrue(getNumberOfGames().equals("filtered games count:13"));
 		int n = checkNumberOfGames(storePage.getMostlyNegative());
-		assertEquals(n, 13);
+		assertEquals(13, n);
 	}
 	
 	@When("User selects Mixed filter")
@@ -180,9 +174,8 @@ public class FilterRatingImpl {
 	public void User_should_be_able_to_view_games_that_are_Mixed() {
 		clickAll();
 		clickMixedBox();
-		//assertTrue(getNumberOfGames().equals("filtered games count:34"));
 		int n = checkNumberOfGames(storePage.getMixed());
-		assertEquals(n, 34);
+		assertEquals(34, n);
 	}
 	
 	@When("User selects Positive filter")
@@ -194,9 +187,8 @@ public class FilterRatingImpl {
 	public void User_should_be_able_to_view_games_that_are_Positive() {
 		clickAll();
 		clickPositiveBox();
-		//assertTrue(getNumberOfGames().equals("filtered games count:10"));
 		int n = checkNumberOfGames(storePage.getPositive());
-		assertEquals(n, 10);
+		assertEquals(10, n);
 	}
 	
 	@When("User selects Mostly Positive filter")
@@ -208,9 +200,8 @@ public class FilterRatingImpl {
 	public void User_should_be_able_to_view_games_that_are_mostly_positive() {
 		clickAll();
 		clickMostlyPositiveBox();
-		//assertTrue(getNumberOfGames().equals("filtered games count:30"));
 		int n = checkNumberOfGames(storePage.getMostlyPositive());
-		assertEquals(n, 30);
+		assertEquals(30, n);
 	}
 	
 	@When("User selects Very Positive filter")
@@ -222,9 +213,8 @@ public class FilterRatingImpl {
 	public void User_should_be_able_to_view_games_that_are_very_positive() {
 		clickAll();
 		clickVeryPositiveBox();
-		//assertTrue(getNumberOfGames().equals("filtered games count:120"));
 		int n = checkNumberOfGames(storePage.getVeryPositive());
-		assertEquals(n, 120);
+		assertEquals(120, n);
 	}
 	
 	@When("User selects Overwhelmingly Positive filter")
@@ -236,8 +226,7 @@ public class FilterRatingImpl {
 	public void User_should_be_able_to_view_games_that_are_overwhelmingly_positive() {
 		clickAll();
 		clickOverwhelminglyPositiveBox();
-		//assertTrue(getNumberOfGames().equals("filtered games count:44"));
 		int n = checkNumberOfGames(storePage.getOverwhelminglyPositive());
-		assertEquals(n, 44);
+		assertEquals(44, n);
 	}
 }

@@ -22,25 +22,25 @@ public class StorePage {
 		this.driver = driver;
 	}
 
-	private By negativeBox = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[1]/label/span");
-	private By mixedBox = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[2]/label/span");
-	private By positiveBox = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[3]/label/span");
-	private By mostlyPositiveBox = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[4]/label/span");
-	private By veryPositiveBox = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[5]/label/span");
-	private By overwhelminglyPositiveBox = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[6]/label/span");
-	private By nextPageSpan = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div/pagination-controls/pagination-template/nav/ul/li[4]/span");
-	private By nextPage = By.xpath("/html/body/app-root/app-store/div/pagination-controls/pagination-template/nav/ul/li[5]/a");
+	private By negativeBox = By.xpath("//*[@id=\"inner-box2\"]/div[1]/label/span");
+	private By mixedBox = By.xpath("//*[@id=\"inner-box2\"]/div[2]/label/span");
+	private By positiveBox = By.xpath("//*[@id=\"inner-box2\"]/div[3]/label/span");
+	private By mostlyPositiveBox = By.xpath("//*[@id=\"inner-box2\"]/div[4]/label/span");
+	private By veryPositiveBox = By.xpath("//*[@id=\"inner-box2\"]/div[5]/label/span");
+	private By overwhelminglyPositiveBox = By.xpath("//*[@id=\"inner-box2\"]/div[6]/label/span");
+	private By nextPageSpan = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[5]");
+	private By nextPage = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[10]/a");
 	
-	private By filterGamesDisplayed = By.xpath("/html/body/app-root/app-store/div/div/div[2]/div");
+	//private By filterGamesDisplayed = By.xpath("//*[@id=\"games\"]/div");
 	
-	private By mostlyNegative = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[1]");
-	private By mixed = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[2]");
-	private By positive = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[3]");
-	private By mostlyPositive = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[4]");
-	private By veryPositive = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[5]");
-	private By overwhelminglyPositive = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[6]");
-	private By unrated = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[0]");
-	
+	private By mostlyNegative = By.xpath("//*[@id=\"games\"]/div");
+	private By mixed = By.xpath("//*[@id=\"games\"]/div");
+	private By positive = By.xpath("//*[@id=\"games\"]/div");
+	private By mostlyPositive = By.xpath("//*[@id=\"games\"]/div");
+	private By veryPositive = By.xpath("//*[@id=\"games\"]/div");
+	private By overwhelminglyPositive = By.xpath("//*[@id=\"games\"]/div");
+	private By unrated = By.xpath("//*[@id=\"games\"]/div");
+	//*[@id="games"]/div
 	private By tickClass = By.xpath("//*[@id=\"inner-box2\"]");
 	
 	public By getTickClass() {
@@ -51,9 +51,11 @@ public class StorePage {
 		return nextPage;
 	}
 	
+	
 	public By getNextPageSpan() {
 		return nextPageSpan;
 	}
+	
 
 	public By getNegativeBox() {
 		return negativeBox;
@@ -79,9 +81,11 @@ public class StorePage {
 		return overwhelminglyPositiveBox;
 	}
 
+	/*
 	public By getFilterGamesDisplayed() {
 		return filterGamesDisplayed;
 	}
+	*/
 
 	public By getMostlyNegative() {
 		return mostlyNegative;
