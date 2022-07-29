@@ -22,7 +22,6 @@ import io.cucumber.java.BeforeAll;
 
 
 @Suite
-@IncludeTags("CucumberTests")
 public class GameRunner {
 
 	// we'll need a driver and an instance of our WikiPage POM
