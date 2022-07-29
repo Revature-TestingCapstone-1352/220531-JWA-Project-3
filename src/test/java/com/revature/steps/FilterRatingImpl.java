@@ -260,6 +260,6 @@ public class FilterRatingImpl {
 		WebElement card = driver.findElement(storePage.getOPositiveText());
 		
 		assertTrue(card.isDisplayed());
-		
+			
 	}
 }

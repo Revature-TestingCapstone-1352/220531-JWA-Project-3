@@ -21,11 +21,9 @@ import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
 
 
-//@Suite
-//@IncludeTags("CucumberTests")
+@Suite
+@IncludeTags("CucumberTests")
 public class GameRunner {
-
-
 
 	// we'll need a driver and an instance of our WikiPage POM
 	public static  WebDriver driver;
@@ -53,10 +51,8 @@ public class GameRunner {
 		cartPage = new CartPage(driver);
 		userInfoPage = new UserInfoPage(driver);
 		storePage = new StorePage(driver);
-		
-		
 	}
-	
+  
 	@AfterAll
 	public static void teardown()
   	{
