@@ -3,12 +3,18 @@ package com.revature.runner;
 import java.io.File;
 //import io.cucumber.junit.*;
 import java.time.Duration;
+import java.util.logging.Level;
 
 import org.junit.platform.suite.api.IncludeTags;
 import org.junit.platform.suite.api.Suite;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.revature.pages.*;
 
@@ -40,6 +46,7 @@ public class GameRunner {
 	public static RegisterPage registerPage;
 	public static CartPage cartPage;
 	public static UserInfoPage userInfoPage;
+	public static StorePage storePage;
 
 	
 	public  WebDriver getDriver() 
@@ -71,6 +78,7 @@ public class GameRunner {
 		registerPage = new RegisterPage(driver);
 		cartPage = new CartPage(driver);
 		userInfoPage = new UserInfoPage(driver);
+		storePage = new StorePage(driver);
 		
 		//ADD YOUR WEB PAGES HERE
 	}
