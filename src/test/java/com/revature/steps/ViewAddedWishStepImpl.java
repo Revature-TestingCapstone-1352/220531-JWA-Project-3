@@ -44,7 +44,7 @@ public class ViewAddedWishStepImpl
 	@When("they go to the Home Page they should be able to click add to wishlist on an item")
 	public void they_go_to_the_home_page_they_should_be_able_to_click_add_to_wishlist_on_an_item()
 	{
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		homePage.clickAdd();
 	}
 	

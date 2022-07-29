@@ -110,7 +110,7 @@ public class CheckoutPage {
     }
 
     public String getEmptyCartText() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         String emptyCartText = driver.findElement(getEmptyCart()).getText();
         return emptyCartText;
     }

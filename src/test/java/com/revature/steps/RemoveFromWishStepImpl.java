@@ -44,16 +44,16 @@ public class RemoveFromWishStepImpl
 	@When("a customer should be able to go to the Home Page and be able to click add to wishlist on an item")
 	public void a_customer_should_be_able_to_go_to_the_home_page_and_be_able_to_click_add_to_wishlist_on_an_item()
 	{
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		homePage.clickAdd();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		homePage.navigateToWishList();
 	}
 	
 	@When("a customer should be able to remove the wishlist item by pressing the remove from wishlist button")
 	public void a_customer_should_be_able_to_remove_the_wishlist_item_by_pressing_the_remove_from_wishlist_button()
 	{
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		wishListPage.clickRemoveButton();
 	}
 	

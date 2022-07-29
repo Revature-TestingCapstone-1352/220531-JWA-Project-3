@@ -34,8 +34,10 @@ public class UserInfoPage {
 	private By usernameInfoCard = By.xpath("//*[@id=\"userinfocard\"]/div/div[1]/span");
 	private By loggedOutText = By.xpath("/html/body/app-root/app-user-information/h4");
 	 
-	@FindBy(xpath  = "//*[@id=\"changeemailcard\"]/div/div[1]/input")
-	public WebElement EnterNewEmail;
+//	@FindBy(xpath  = "//*[@id=\"changeemailcard\"]/div/div[1]/input")
+//	public WebElement EnterNewEmail;
+	private By enterNewEmail = By.xpath("//*[@id=\"changeemailcard\"]/div/div[1]/input");
+	public By getEnterEmail() { return enterNewEmail; }
 	
 	private By editUserDetail = By.xpath("//*[@id=\"userinfocard\"]/div/div[3]/button");
 	public By geteditUserDetail() {
@@ -47,18 +49,30 @@ public class UserInfoPage {
 		driver.findElement(editUserEmail).click();
 	}	
 	
-	@FindBy(xpath  = "//*[@id=\"changepwdcard\"]/div/div[1]/input")
-	public WebElement EnterNewPassword;
-	@FindBy(xpath  = "//*[@id=\"changepwdcard\"]/div/div[2]/input")
-	public WebElement ConfirmNewPassword;
+//	@FindBy(xpath  = "//*[@id=\"changepwdcard\"]/div/div[1]/input")
+//	public WebElement EnterNewPassword;
+//	@FindBy(xpath  = "//*[@id=\"changepwdcard\"]/div/div[2]/input")
+//	public WebElement ConfirmNewPassword;
+	
+	private By newPassword = By.xpath("//*[@id=\"changepwdcard\"]/div/div[1]/input");
+	public void enterNewPassword(String pass) {
+		new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(newPassword));
+		driver.findElement(newPassword).sendKeys(pass);
+	}
+	
+	private By confirmPassword = By.xpath("//*[@id=\"changepwdcard\"]/div/div[2]/input");
+	public void enterConfirmPass(String pass) {
+		new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(confirmPassword));
+		driver.findElement(confirmPassword).sendKeys(pass);
+	}
 	
 	public By editUserPassword = By.xpath("/html/body/app-root/app-user-information/div/div[3]/div/div/div/div/div[3]/button");
 	public void getUserNewPasswordLink() {
 		driver.findElement(editUserPassword).click();
 	}
 	
-	@FindBy(xpath  = "//*[@id=\"changepwdcard\"]/div/label")
-	public WebElement passNotMatchDisplayed;
+//	@FindBy(xpath  = "//*[@id=\"changepwdcard\"]/div/label")
+//	public WebElement passNotMatchDisplayed;
 	
 	private By logoutSeccussLink = By.xpath("/html/body/app-root/app-logout/h4");
 	public By getLogoutSeccussLink() {

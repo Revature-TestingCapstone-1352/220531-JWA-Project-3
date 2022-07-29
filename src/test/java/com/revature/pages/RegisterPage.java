@@ -59,9 +59,8 @@ public class RegisterPage {
 	
 	public boolean isOnThePage() {
 		try {
-			new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(registerButtonBy));
+//			new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(registerButtonBy));
 			WebElement registerButton = driver.findElement(registerButtonBy);
-			
 			if (registerButton.getText().equals("Register")) {
 				return true;
 			}else {
