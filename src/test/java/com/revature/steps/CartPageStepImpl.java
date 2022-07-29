@@ -44,7 +44,7 @@ public class CartPageStepImpl {
 		@Given("User navigates to LoginPage")
 		public void user_navigates_to_login_page() {
 			homePage.navToLoginPage();
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
 		}
 
@@ -52,7 +52,7 @@ public class CartPageStepImpl {
 		@Given("User enters correct credentials and logs in")
 		public void user_enters_correct_credentials_and_logs_in() {
 			loginPage.loginValidUser("joshua_test", "test_joshua");
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		}
 		
 		
@@ -62,16 +62,16 @@ public class CartPageStepImpl {
 		@Given("User navigates to StorePage")
 		public void user_navigates_to_store_page() {
 		    homePage.navToStore();
-		    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		}
 		
 		
 		@When("User clicks the addToWishListButton")
 		public void user_clicks_the_add_to_wish_list_button() {
 	
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		    wishListPage.testStoreAddToWLButt();
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 			
 		}
 
@@ -84,18 +84,18 @@ public class CartPageStepImpl {
 			
 			
 		    homePage.navToWishListPage();
-		    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
+		    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		}
 		
 		
 		
 
 		
-		@Given("User clicks the addToCartButton")
+		@When("User clicks the addToCartButton")
 		public void user_clicks_the_add_to_cart_button() {
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 			cartPage.clickAddToCartButton();
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		  
 		}
 		
@@ -103,7 +103,7 @@ public class CartPageStepImpl {
 		public void user_navigates_to_cart() {
 			
 			homePage.clickNavToCart();
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		   
 		}
 		

@@ -24,7 +24,7 @@ Feature: Product Display
     Given a User is on the Store Page
     When the games are displayed
     Then there should be a maximum of twenty-four games displayed per page
-
+    
   @tag2
   Scenario: View Metacritic review
     Given a User is on the Store Page

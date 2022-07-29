@@ -24,6 +24,15 @@ public class HomePage {
 	private By uNameField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[1]/input");
 	private By pKeyField = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[2]/input");
 	private By loginButton = By.xpath("/html/body/app-root/app-login/div/div/div/div/div/div[3]/button");
+	
+// ============== Khellil code	
+	private By logoutLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[8]/a");
+
+	public By getLogoutLink() {
+		return logoutLink;
+	}
+//	 ==============
+	
 	private By wishListLink = By.xpath("/html/body/app-root/router-outlet/app-nav-bar/ul/li[2]/a");
 
 
@@ -212,13 +221,7 @@ public class HomePage {
 	// 	driver.findElement(getLoginLink()).click();
 	// }
 	
-	// public void clickAdd()
-	// {
-	// 	driver.findElement(getaddWishlistButton()).click();
-	// }
-	
-	public void navigateToWishList()
-	{
+	public void navigateToWishList() {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getWishListLink()));
 		driver.findElement(getWishListLink()).click();
 	}

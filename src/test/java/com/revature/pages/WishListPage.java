@@ -30,6 +30,7 @@ public class WishListPage {
 	private By removeButton = By.xpath("/html/body/app-root/app-wishlist/div/div/div/div/div[4]/div/button[1]");
 	private By wishListNotThereText = By.xpath("/html/body/app-root/app-wishlist/div/div/h5");
 
+
 	// STORE PAGE ITEMS
     private By storeWishListButton = By.xpath("//*[@id=\"games\"]/div/div[1]/div/div[4]/div/button[1]");
 	
@@ -59,7 +60,7 @@ public class WishListPage {
 
     public String findGameName() {
         //new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(driver.findElement(getGameNameBy())));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         String gamename = driver.findElement(getGameNameBy()).getText();
         return gamename;
     }
@@ -81,15 +82,15 @@ public class WishListPage {
 	}
 	
 	public void clickRemoveButton(){
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getRemoveButton()));
 		driver.findElement(getRemoveButton()).click();
 	}
 	
 	public String findWishListNotPresent()
 	{
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		String notThere = driver.findElement(getWishListNotThereText()).getText();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		String notThere = driver.findElement(wishListNotThereText).getText();
 		return notThere;
 	}
 

@@ -18,6 +18,8 @@
 #Sample Feature Definition Template
 @tag
 Feature: Cart
+
+	
  
 
 	@tag1
@@ -28,8 +30,8 @@ Feature: Cart
 		And User navigates to StorePage
 		And User clicks the addToWishListButton
 		And User navigates to wishListPage 
-		And User clicks the addToCartButton
-		When User navigates to cart
+		When User clicks the addToCartButton
+		And User navigates to cart
 		Then User should see the game in the cart
 
     

@@ -28,4 +28,4 @@ Feature: Register User Feature
 
     Examples: 
       |username| password | email       |
-      | Jac  |stephen | stephen@mail.com|
+      | Jact  |stephen1 | stephen@mailo.com|
