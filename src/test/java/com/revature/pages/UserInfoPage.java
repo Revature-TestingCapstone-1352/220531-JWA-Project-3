@@ -95,23 +95,7 @@ public class UserInfoPage {
 		String passwordErrorText = driver.findElement(getErrorPasswordLink()).getText();
 		
 		return passwordErrorText;
-    }
-
-		public By getUsernameInput() {
-			return usernameInput;
-		}
-		public By getPasswordInput() {
-			return passwordInput;
-		}
-		public By getLoginButton() {
-			return loginButton;
-		}
-		public By getUserInfoLink() {
-			return userInfoLink;
-		}
-		public By getUsernameInfoCard() {
-			return usernameInfoCard;
-		}
+	}
 		
 		public void waitForOrderHistoryHeader() {
 			new WebDriverWait(driver, Duration.ofSeconds(10))
@@ -124,6 +108,11 @@ public class UserInfoPage {
 		
 		driver.findElement(viewOrderHistoryButton).click();
 	}
+		
+		public void waitForOrderHistoryHeader() {
+			new WebDriverWait(driver, Duration.ofSeconds(10))
+				.until(ExpectedConditions.visibilityOf(driver.findElement(orderHistoryHeader)));
+		}
     
     public String getFirstOrderDate() {
 		return driver.findElement(firstOrderDate).getText();
