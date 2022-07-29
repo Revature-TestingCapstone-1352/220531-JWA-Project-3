@@ -17,16 +17,25 @@
 ## (Comments)
 #Sample Feature Definition Template
 @tag
-Feature: Product Display
+Feature: Remove Item From Cart
+  
 
-  @tag1
-  Scenario: Games per page
-    Given a User is on the Store Page
-    When the games are displayed
-    Then there should be a maximum of twenty-four games displayed per page
+
+	@tag1
+	Scenario: User adds game to wishlist while logged in
+		Given User has navigated to the LandingPage
+		And User navigates to LoginPage
+		And User enters correct credentials and logs in
+		And User navigates to StorePage
+		And User clicks the addToWishListButton
+		And User navigates to wishListPage 
+		And User clicks the addToCartButton
+		And User navigates to cart
+		When User clicks the removeGameButton
+		Then User should see the empty cart message
+		
+
+
     
-  @tag2
-  Scenario: View Metacritic review
-    Given a User is on the Store Page
-    When when the User clicks on the Metacritic link of a game
-    Then there is a valid Metacritic review displayed
+    
+

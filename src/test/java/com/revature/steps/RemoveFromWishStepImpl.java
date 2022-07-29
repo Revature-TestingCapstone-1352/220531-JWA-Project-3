@@ -60,7 +60,7 @@ public class RemoveFromWishStepImpl
 	@Then("be unable to see the wishlist item on the wishlist page")
 	public void be_unable_to_see_the_wishlist_item_on_the_wishlist_page()
 	{
-		new WebDriverWait(driver, Duration.ofSeconds(5));
+		new WebDriverWait(driver, Duration.ofSeconds(20));
 		
 		
 		boolean notThere = wishListPage.findWishListNotPresent().equals("Try to add game to the wishlist or login to see your wishlist!");
