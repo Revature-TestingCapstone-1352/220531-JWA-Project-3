@@ -64,7 +64,7 @@ public class LoginPage
 	public void initialLogout() {
 		driver.get("http://localhost:4200");
 		try {
-			new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.elementToBeClickable(logoutButtonBy));
+			//new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOfElementLocated(logoutButtonBy));
 			driver.findElement(logoutButtonBy).click();
 		} catch (Exception e) {};
 	}
