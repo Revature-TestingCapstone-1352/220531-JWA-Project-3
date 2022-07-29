@@ -108,11 +108,6 @@ public class UserInfoPage {
 		
 		driver.findElement(viewOrderHistoryButton).click();
 	}
-		
-		public void waitForOrderHistoryHeader() {
-			new WebDriverWait(driver, Duration.ofSeconds(10))
-				.until(ExpectedConditions.visibilityOf(driver.findElement(orderHistoryHeader)));
-		}
     
     public String getFirstOrderDate() {
 		return driver.findElement(firstOrderDate).getText();
