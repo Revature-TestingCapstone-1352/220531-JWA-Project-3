@@ -1,4 +1,4 @@
-package com.revature.controllers;
+package com.revature.controllerAndServiceTests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.controllers.UserController;
 import com.revature.models.User;
 import com.revature.services.UserService;
 

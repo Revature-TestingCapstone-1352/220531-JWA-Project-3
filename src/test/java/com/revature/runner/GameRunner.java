@@ -2,8 +2,7 @@ package com.revature.runner;
 
 import java.io.File;
 
-import org.junit.platform.suite.api.IncludeTags;
-import org.junit.platform.suite.api.SelectPackages;
+import org.junit.platform.suite.api.SelectClasspathResource;
 import org.junit.platform.suite.api.Suite;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,8 +19,8 @@ import com.revature.pages.WishListPage;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
 
-
 @Suite
+@SelectClasspathResource("features")
 public class GameRunner {
 
 	// we'll need a driver and an instance of our WikiPage POM

@@ -1,4 +1,4 @@
-package com.revature.controllers;
+package com.revature.controllerAndServiceTests;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
@@ -23,6 +23,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.controllers.CartController;
 import com.revature.models.Order;
 import com.revature.models.User;
 import com.revature.services.CartService;

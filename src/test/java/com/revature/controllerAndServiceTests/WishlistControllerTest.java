@@ -1,4 +1,4 @@
-package com.revature.controllers;
+package com.revature.controllerAndServiceTests;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
@@ -18,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
 
+import com.revature.controllers.WishListController;
 import com.revature.models.Game;
 import com.revature.models.User;
 import com.revature.models.WishList;
