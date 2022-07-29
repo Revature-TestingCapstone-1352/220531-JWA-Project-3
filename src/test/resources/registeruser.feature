@@ -19,13 +19,7 @@
 
 Feature: Register User Feature
 
-	Background:
-		Given A guest is on the home page
-
-  Scenario Outline: the guest should be able to click the register page
-    When a guest enters a "<username>" and "<password>" and "<email>"
+  Scenario: the guest should be able to click the register page
+    Given A guest is on the home page
+    When a guest enters a random user name email and password
     Then a guest can register by pressing the register button and be on the Homepage
-
-    Examples: 
-      |username| password | email       |
-      | Jact  |stephen1 | stephen@mailo.com|

@@ -19,9 +19,4 @@ public class GameGalaxyJUnitRunner {
 		
 	}
 	
-	@Test
-	public void sanityTest() {
-		
-		assertTrue(true);
-	}
 }

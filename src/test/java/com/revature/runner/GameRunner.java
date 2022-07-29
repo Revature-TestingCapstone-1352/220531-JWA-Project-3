@@ -1,45 +1,29 @@
 package com.revature.runner;
 
-import com.revature.pages.*;
-import io.cucumber.java.AfterAll;
-import io.cucumber.java.BeforeAll;
 import java.io.File;
-//import io.cucumber.junit.*;
-import java.time.Duration;
-import java.util.logging.Level;
 
 import org.junit.platform.suite.api.IncludeTags;
+import org.junit.platform.suite.api.SelectPackages;
 import org.junit.platform.suite.api.Suite;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.logging.LogType;
-import org.openqa.selenium.logging.LoggingPreferences;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.io.File;
-
-import com.revature.pages.*;
-
+import com.revature.pages.CartPage;
 import com.revature.pages.CheckoutPage;
 import com.revature.pages.HomePage;
 import com.revature.pages.LoginPage;
 import com.revature.pages.RegisterPage;
+import com.revature.pages.StorePage;
 import com.revature.pages.UserInfoPage;
 import com.revature.pages.WishListPage;
 
-
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
+
 
 @Suite
 @IncludeTags("CucumberTests")
 public class GameRunner {
-	
-	
 	
 	// we'll need a driver and an instance of our WikiPage POM
 	public static  WebDriver driver;
@@ -72,7 +56,7 @@ public class GameRunner {
 	}
 	
 	@AfterAll
-	public static void teardown() 
+	public static void teardown()
   	{
 		driver.quit();
 	}

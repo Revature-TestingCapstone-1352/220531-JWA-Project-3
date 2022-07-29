@@ -34,7 +34,11 @@ public class StorePage {
 	private By nextPageVeryPositive = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[8]/a");
 	private By nextPageOverPositive = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[5]/a");
 	private By filterGamesDisplayed = By.xpath("//*[@id=\"games\"]/div");
+	private By oPositiveText = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
 	
+	public By getOPositiveText() {
+		return oPositiveText;
+	}
 	public By getNextPageMixed() {
 		return nextPageMixed;
 	}

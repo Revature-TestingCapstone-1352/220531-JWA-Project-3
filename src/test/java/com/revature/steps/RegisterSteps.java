@@ -1,12 +1,11 @@
 package com.revature.steps;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.time.Duration;
+import java.util.Random;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -55,9 +54,17 @@ public class RegisterSteps
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(registerPage.getRegisterButton()));
 	}
 	
-	@When("a guest enters a {string} and {string} and {string}")
-	public void a_guest_enters_a_and_and(String username, String password, String email)
+	@When("a guest enters a random user name email and password")
+	public void a_guest_enters_a_random_user_name_email_and_password()
 	{
+		Random rand = new Random();
+		int upperbound = 1000000;
+		int random = rand.nextInt(upperbound);
+		
+		String email = String.valueOf(random) + "@gmail.com";
+		String username = String.valueOf(random);
+		String password = String.valueOf(random);
+	
 		new WebDriverWait(driver, Duration.ofSeconds(5));
 		registerPage.enterInformation(username, password, email);
 	}

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,7 @@ public class CartControllerTest {
 	private OrderService mockOs;
 	
 	@Test
+	@Tag("Controller Test")
 	public void should_getOrderHistory() {
 		//G
 		User mockUser = new User();

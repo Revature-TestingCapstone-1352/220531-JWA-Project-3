@@ -43,21 +43,22 @@ public class LogoutStepsImpl {
 	@Given("LoggedIn User is on the Home Page")
 	public void logged_in_user_is_on_the_home_page() {
 		driver.get("http://localhost:4200");
-		new WebDriverWait(driver, Duration.ofSeconds(3));
 		loginForHomePage("username", "password");
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 	}
 
 	@When("The User clicks on LogoutButton")
-	public void the_user_clicks_on_logout_button() {
-	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-	getLogoutLink();
+		public void the_user_clicks_on_logout_button() {
+		
+		
+		new WebDriverWait(driver, Duration.ofSeconds(10))
+		.until(ExpectedConditions.elementToBeClickable(homePage.getLoginLink()));
+		getLogoutLink();
 	}
 	
 	@Then("Logout seccussful")
 	public void logout_seccussful() {
 		
-	new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(userInfoPage.getLogoutSeccussLink()));
+	new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(userInfoPage.getLogoutSeccussLink()));
 		String logoutSeccussText = driver.findElement(userInfoPage.getLogoutSeccussLink()).getText();
 		assertEquals(logoutSeccussText, "Logout was successful.");
 	}

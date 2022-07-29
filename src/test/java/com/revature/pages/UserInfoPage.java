@@ -74,11 +74,13 @@ public class UserInfoPage {
 //	@FindBy(xpath  = "//*[@id=\"changepwdcard\"]/div/label")
 //	public WebElement passNotMatchDisplayed;
 	
-	private By logoutSeccussLink = By.xpath("/html/body/app-root/app-logout/h4");
+	private By logoutSeccussLink = By.xpath("/html/body/app-root/app-logout");
 	public By getLogoutSeccussLink() {
 		return logoutSeccussLink;
     }
 
+	
+	
 	//private By errorPasswordLink = By.xpath("//*[@id=\"changepwdcard\"]/div/label");
 	private By errorPasswordLink = By.xpath("/html/body/app-root/app-user-information/div/div[3]/div/div/div/div/label");
 	public By getErrorPasswordLink() {
