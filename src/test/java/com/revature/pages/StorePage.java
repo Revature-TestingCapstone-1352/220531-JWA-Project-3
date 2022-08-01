@@ -34,11 +34,24 @@ public class StorePage {
 	private By nextPageVeryPositive = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[8]/a");
 	private By nextPageOverPositive = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[5]/a");
 	private By filterGamesDisplayed = By.xpath("//*[@id=\"games\"]/div");
-	private By oPositiveText = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
+	public By sRowCard= By.xpath("//*[@id=\"games\"]/div/div[7]/div");
+	public By chopperCard = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
+
 	
-	public By getOPositiveText() {
-		return oPositiveText;
-	}
+	
+	//-----------------------Jf Code -----------------------
+	
+	//MOSTLY NEGATIVE REVIEWS
+	private By Dead_Mountaineer_Hotel = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
+	//MIXED REVIEWS
+	private By from_dust_game = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
+	// POSITIVE REVIEWS
+	private By race_injection = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
+	// MOSTLY POSITIVE
+	private By evochron_Mercenary_game = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
+	
+	
+
 	public By getNextPageMixed() {
 		return nextPageMixed;
 	}

@@ -39,21 +39,14 @@ public class FilterRatingImpl {
 	private static HomePage homePage = GameRunner.homePage;
 	
 	public void clickAll() throws InterruptedException {
+		
 		driver.navigate().refresh();
-		Thread.sleep(2000);
-		new WebDriverWait(driver, Duration.ofSeconds(5));
 		driver.findElement(storePage.getNegativeBox()).click();
-		new WebDriverWait(driver, Duration.ofSeconds(5));
 		driver.findElement(storePage.getMixedBox()).click();
-		new WebDriverWait(driver, Duration.ofSeconds(5));
 		driver.findElement(storePage.getPositiveBox()).click();
-		new WebDriverWait(driver, Duration.ofSeconds(5));
 		driver.findElement(storePage.getMostlyPositiveBox()).click();
-		new WebDriverWait(driver, Duration.ofSeconds(5));
 		driver.findElement(storePage.getVeryPositiveBox()).click();
-		new WebDriverWait(driver, Duration.ofSeconds(5));
 		driver.findElement(storePage.getOverwhelminglyPositiveBox()).click();
-		new WebDriverWait(driver, Duration.ofSeconds(10));
 		
 	}
 	
@@ -136,7 +129,6 @@ public class FilterRatingImpl {
 	@Given("User is on the HomePage")
 	public void user_is_on_the_home_page() {
 		driver.get("http://localhost:4200");
-		driver.manage().window().maximize();
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(homePage.getLoginLink()));
 		new WebDriverWait(driver, Duration.ofSeconds(5));
 	}
@@ -163,10 +155,10 @@ public class FilterRatingImpl {
 	@Then("User should be able to view games that are Mostly Negative")
 	public void User_should_be_able_to_view_games_that_are_mostly_negative() throws InterruptedException {
 		clickAll();
-		Thread.sleep(2000);
+//		Thread.sleep(2000);
 		new WebDriverWait(driver, Duration.ofSeconds(10));
 		clickNegativeBox();
-		Thread.sleep(2000);
+//		Thread.sleep(2000);
 		new WebDriverWait(driver, Duration.ofSeconds(10));
 		int n = checkNumberOfGames(storePage.getFilterGamesDisplayed(), storePage.getNextPageMixed());
 		assertEquals(13, n);
@@ -219,7 +211,7 @@ public class FilterRatingImpl {
 		clickMostlyPositiveBox();
 		Thread.sleep(2000);
 		new WebDriverWait(driver, Duration.ofSeconds(10));
-		int n = checkNumberOfGames(storePage.getFilterGamesDisplayed(), storePage.getNextPageMostlyPositive());
+		int n = checkNumberOfGames(storePage.getFilterGamesDisplayed(), storePage.chopperCard);
 		assertEquals(30, n);
 	}
 	
@@ -231,13 +223,21 @@ public class FilterRatingImpl {
 	@Then("User should be able to view games that are Very Positive")
 	public void User_should_be_able_to_view_games_that_are_very_positive() throws InterruptedException {
 		clickAll();
-		Thread.sleep(2000);
-		new WebDriverWait(driver, Duration.ofSeconds(10));
+
+
+//		new WebDriverWait(driver, Duration.ofSeconds(10));
+//		clickVeryPositiveBox();
+//		new WebDriverWait(driver, Duration.ofSeconds(10));
+//		int n = checkNumberOfGames(storePage.getFilterGamesDisplayed(), storePage.getNextPageVeryPositive());
+//		assertEquals(120, n);
+
 		clickVeryPositiveBox();
-		Thread.sleep(2000);
-		new WebDriverWait(driver, Duration.ofSeconds(10));
-		int n = checkNumberOfGames(storePage.getFilterGamesDisplayed(), storePage.getNextPageVeryPositive());
-		assertEquals(120, n);
+		
+		new WebDriverWait(driver, Duration.ofSeconds(15))
+		.until(ExpectedConditions.visibilityOfElementLocated(storePage.chopperCard));
+		WebElement card = driver.findElement(storePage.chopperCard);
+		
+		assertTrue(card.isDisplayed());
 	}
 	
 	@When("User selects Overwhelmingly Positive filter")
@@ -248,18 +248,17 @@ public class FilterRatingImpl {
 	@Then("User should be able to view games that are Overwhelmingly Positive")
 	public void User_should_be_able_to_view_games_that_are_overwhelmingly_positive() throws InterruptedException {
 		clickAll();
-		
 		clickOverwhelminglyPositiveBox();
+		
 //		Thread.sleep(2000);
 //		new WebDriverWait(driver, Duration.ofSeconds(10));
 //		int n = checkNumberOfGames(storePage.getFilterGamesDisplayed(), storePage.getNextPageOverPositive());
 //		assertEquals(44, n);
 		
 		new WebDriverWait(driver, Duration.ofSeconds(15))
-		.until(ExpectedConditions.visibilityOfElementLocated(storePage.getOPositiveText()));
-		WebElement card = driver.findElement(storePage.getOPositiveText());
+		.until(ExpectedConditions.visibilityOfElementLocated(storePage.sRowCard));
+		WebElement card = driver.findElement(storePage.sRowCard);
 		
 		assertTrue(card.isDisplayed());
-		
 	}
 }
