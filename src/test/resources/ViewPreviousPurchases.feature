@@ -1,7 +1,13 @@
 Feature: View Previous Purchases
 
-  Scenario: View Purchases Made Earlier
-    Given a User is logged in and has made a previous purchase
+  Scenario Outline: View Purchase Made Earlier
+    Given a User enters their "<username>" and "<password>" in the login form and click the login button
     When they click on the User Information button
     And then they click on the View Previous Orders button
-    Then they can see previous purchases they have made
+    Then "<username>" can see a previous purchase they have made
+
+	Examples:
+		| username   | password    |
+		|	Testing123 | Orders      |
+		| Multiple   | Past Orders |
+		

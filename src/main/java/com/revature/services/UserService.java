@@ -10,36 +10,38 @@ import com.revature.repositories.UserDAO;
 
 @Service
 public class UserService {
-	
+
 	protected UserDAO userDAO;
-	
+
 	@Autowired
 	public UserService(UserDAO userDAO) {
 		super();
 		this.userDAO = userDAO;
 	}
-	
+
 	public boolean register(User user) {
 		if(user!=null) {
 			user.setId(0);
 			userDAO.save(user);
 			return true;
-		}
-		return false;
+		} else {
+      return false;
+    }
 	}
-	
+
 	public User login(User user) {
-		Optional<User> dbUser = userDAO.getUserByUsername(user.getUsername());
-		if(dbUser.isPresent()) {
-			return dbUser.get();
-		}
-		return null;
+		User dbUser = userDAO.getUserByUsername(user.getUsername());
+		if(dbUser != null) {
+			return dbUser;
+		} else {
+      return null;
+    }
 	}
-	
+
 	public User update(User user) {
-		Optional<User> dbUser = userDAO.getUserByUsername(user.getUsername());
-		if(dbUser.isPresent()) {
-			User updatedUser = dbUser.get();
+		User dbUser = userDAO.getUserByUsername(user.getUsername());
+		if(dbUser != null) {
+			User updatedUser = userDAO.getUserByUsername(dbUser.getUsername());
 			updatedUser.seteMail(user.geteMail());
 			updatedUser.setPassword(user.getPassword());
 			userDAO.save(updatedUser);
@@ -49,7 +51,12 @@ public class UserService {
 	}
 
 	public User getUserByUsername(String username) {
-		return userDAO.getUserByUsername(username).get();
+    User user = userDAO.getUserByUsername(username);
+    if(user != null){
+      return user;
+    } else {
+      return null;
+    }
 	}
 
 }

@@ -14,10 +14,19 @@ node_modules
 .idea/*
 .classpath
 application.properties
+<<<<<<< HEAD
 .settings
 ##############################
 ## Java
 ##############################
+=======
+bin/
+.metadata/
+.vscode/
+.idea/
+.apt_generated/
+.apt_generated_tests/
+>>>>>>> origin/staging
 .mtj.tmp/
 *.class
 *.jar
@@ -25,10 +34,13 @@ application.properties
 *.ear
 *.nar
 hs_err_pid*
+<<<<<<< HEAD
 
 ##############################
 ## Maven
 ##############################
+=======
+>>>>>>> origin/staging
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -40,30 +52,39 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
+<<<<<<< HEAD
 
 ##############################
 ## Gradle
 ##############################
+=======
+>>>>>>> origin/staging
 bin/
 build/
 .gradle
 .gradletasknamecache
 gradle-app.setting
 !gradle-wrapper.jar
+<<<<<<< HEAD
 
 ##############################
 ## IntelliJ
 ##############################
+=======
+>>>>>>> origin/staging
 out/
 .idea/
 .idea_modules/
 *.iml
 *.ipr
 *.iws
+<<<<<<< HEAD
 
 ##############################
 ## Eclipse
 ##############################
+=======
+>>>>>>> origin/staging
 .settings/
 bin/
 tmp/
@@ -77,10 +98,13 @@ tmp/
 local.properties
 .loadpath
 .factorypath
+<<<<<<< HEAD
 
 ##############################
 ## NetBeans
 ##############################
+=======
+>>>>>>> origin/staging
 nbproject/private/
 build/
 nbbuild/
@@ -88,6 +112,7 @@ dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
+<<<<<<< HEAD
 
 ##############################
 ## Visual Studio Code
@@ -102,3 +127,8 @@ nb-configuration.xml
 
 
 
+=======
+.vscode/
+.code-workspace
+.DS_Store
+>>>>>>> origin/staging
