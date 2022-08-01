@@ -22,6 +22,7 @@ public class StorePage {
 		this.driver = driver;
 	}
 
+	public By card = By.className("card");
 	private By negativeBox = By.xpath("//*[@id=\"inner-box2\"]/div[1]/label/span");
 	private By mixedBox = By.xpath("//*[@id=\"inner-box2\"]/div[2]/label/span");
 	private By positiveBox = By.xpath("//*[@id=\"inner-box2\"]/div[3]/label/span");
@@ -38,17 +39,19 @@ public class StorePage {
 	public By chopperCard = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
 	public By evoCard = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
 	
+	public By pageFive = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[7]/a/span[2]");
+	public By nextBtn = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[4]/span");
+	
 	
 	//-----------------------Jf Code -----------------------
 	
 	//MOSTLY NEGATIVE REVIEWS
-	private By Dead_Mountaineer_Hotel = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
+	public By dead_Mountaineer_Hotel = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
 	//MIXED REVIEWS
-	private By from_dust_game = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
+	public By from_dust_game = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
 	// POSITIVE REVIEWS
-	private By race_injection = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
-	// MOSTLY POSITIVE
-	private By evochron_Mercenary_game = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
+	public By race_injection = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
+	
 	
 	
 
