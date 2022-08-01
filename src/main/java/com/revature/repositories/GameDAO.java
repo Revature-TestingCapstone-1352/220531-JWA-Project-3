@@ -9,3 +9,4 @@ import com.revature.models.Game;
 public interface GameDAO extends JpaRepository<Game, Integer>{
 	Optional<List<Game>> findByName(String name);
 }
+

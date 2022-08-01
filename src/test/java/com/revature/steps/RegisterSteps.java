@@ -1,11 +1,11 @@
 package com.revature.steps;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.time.Duration;
+import java.util.Random;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -21,9 +21,10 @@ import io.cucumber.java.en.When;
 public class RegisterSteps 
 {
 	private WebDriver driver = GameRunner.driver;
-	private HomePage homePage = GameRunner.homePage;
 	private RegisterPage registerPage = GameRunner.registerPage;
 	private LoginPage loginPage = GameRunner.loginPage;
+	private HomePage homePage = GameRunner.homePage;
+
 	
 	public void enterInformation(String username, String password, String email)
 	{
@@ -49,28 +50,34 @@ public class RegisterSteps
 	{
 		driver.get("http://localhost:4200");
 		new WebDriverWait(driver, Duration.ofSeconds(3));
-		clickRegister();
+		registerPage.clickRegister();
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(registerPage.getRegisterButton()));
 	}
 	
-	@When("a guest enters a {string} and {string} and {string}")
-	public void a_guest_enters_a_and_and(String username, String password, String email)
+	@When("a guest enters a random user name email and password")
+	public void a_guest_enters_a_random_user_name_email_and_password()
 	{
+		Random rand = new Random();
+		int upperbound = 1000000;
+		int random = rand.nextInt(upperbound);
 		
+		String email = String.valueOf(random) + "@gmail.com";
+		String username = String.valueOf(random);
+		String password = String.valueOf(random);
+	
 		new WebDriverWait(driver, Duration.ofSeconds(5));
-		enterInformation(username, password, email);
+		registerPage.enterInformation(username, password, email);
 	}
 	
 	@Then("a guest can register by pressing the register button and be on the Homepage")
 	public void a_guest_can_register_by_pressing_the_register_button_and_be_on_the_homepage()
 	{
-		new WebDriverWait(driver, Duration.ofSeconds(5));
 		
-		WebElement userInput = driver.findElement(loginPage.getUsernameBy());
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(loginPage.loginButtonBy));
+
+		boolean buttonIsThere = driver.findElement(loginPage.loginButtonBy).isDisplayed();
 		
-		boolean isSearchBar = userInput.isDisplayed();
-		
-		assertEquals(isSearchBar,true);
+		assertTrue(buttonIsThere);
 	}
 
 }

@@ -9,7 +9,4 @@ public class GameGalaxyBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GameGalaxyBackendApplication.class, args);
 	}
-
 }
-
-//WOWROEJQWTGRWAOT$@#!%!$TWQEF

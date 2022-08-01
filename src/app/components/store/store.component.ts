@@ -164,6 +164,8 @@ export class StoreComponent implements OnInit {
         }
       }
       console.log("filtered games count:" + this.games.length);
+      //below is a custom line for saving filtered item count
+      localStorage.setItem("filteredItemCount", JSON.stringify(this.games.length));
 
     }else{
       console.log("Removing " + event.target.value + " games");
@@ -180,6 +182,8 @@ export class StoreComponent implements OnInit {
         }
       }
       console.log("filtered games count:" + this.games.length);
+            //below is a custom line for saving filtered item count
+      localStorage.setItem("filteredItemCount", JSON.stringify(this.games.length));
     }
 
   }
