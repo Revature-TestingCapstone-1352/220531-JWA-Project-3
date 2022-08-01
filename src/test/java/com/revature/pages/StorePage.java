@@ -9,6 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.paulhammant.ngwebdriver.ByAngular;
+
 public class StorePage {
 	private WebDriver driver;
 	
@@ -25,9 +27,9 @@ public class StorePage {
 	private By overwhelminglypositive = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[6]");
 	
 	
-	
 	private By allgames = By.className("card");
-	
+
+
 	
 	private By mostlynegativebox = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[1]/label/span");
 	private By mixedbox = By.xpath("/html/body/app-root/app-store/div/div/div[1]/div/div[2]/div[2]/label/span");
@@ -47,8 +49,12 @@ public class StorePage {
 	}
 	
 	public int checkNumberOfGames() {
-		List<WebElement> gamesdivunchecked = driver.findElements(allgames);
-		return gamesdivunchecked.size();
+		
+		WebElement gamesdivunchecked = driver.findElement(By.xpath("//*[@id=\"games\"]/div"));
+		List<WebElement> games = gamesdivunchecked.findElements(By.xpath("./child::*"));
+//		List<WebElement> gamesdivunchecked = driver.findElements(allgames);
+		//driver.navigate().to("http://localhost:4200/");
+		return games.size();
 	}
 	
 	public void clickMostlyNegativeBox() {

@@ -5,10 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.List;
 
+import com.paulhammant.ngwebdriver.NgWebDriver;
 import com.revature.pages.CartPage;
 import com.revature.pages.StorePage;
 import com.revature.runner.GameRunner;
@@ -25,19 +29,27 @@ public class FilterRatingImpl {
 	
 	@Given("User will end up in the HomePage")
 	public void user_will_end_up_in_the_home_page() {
-		driver.get("http://localhost:4200");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		driver.get("http://localhost:4200/store");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(6));
 	}
 	
 	@When("User clicks each rating")
 	public void user_clicks_each_rating() {
 		storePage.clickAdd();
+		
 	}
 	
 	@Then("User should be able to view games that have no rating")
 	public void user_should_be_able_to_view_games_filtered_by_rating() {
 		
-		assertEquals(6, storePage.checkNumberOfGames());
+		
+		NgWebDriver ng = new NgWebDriver((JavascriptExecutor) driver);
+		//new WebDriverWait(driver, Duration.ofSeconds(10));
+		ng.waitForAngularRequestsToFinish();
+		WebElement gamesdivunchecked = driver.findElement(By.xpath("//*[@id=\"games\"]/div"));
+		List<WebElement> games = gamesdivunchecked.findElements(By.xpath("./child::*"));
+		
+		assertEquals(6, games.size());
 	}
 	
 	@When("User selects Mostly Negative filter")
