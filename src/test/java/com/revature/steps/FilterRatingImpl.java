@@ -136,7 +136,6 @@ public class FilterRatingImpl {
 	@Given("User is on the HomePage")
 	public void user_is_on_the_home_page() {
 		driver.get("http://localhost:4200");
-		driver.manage().window().maximize();
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(homePage.getLoginLink()));
 		new WebDriverWait(driver, Duration.ofSeconds(5));
 	}
@@ -163,10 +162,10 @@ public class FilterRatingImpl {
 	@Then("User should be able to view games that are Mostly Negative")
 	public void User_should_be_able_to_view_games_that_are_mostly_negative() throws InterruptedException {
 		clickAll();
-		Thread.sleep(2000);
+//		Thread.sleep(2000);
 		new WebDriverWait(driver, Duration.ofSeconds(10));
 		clickNegativeBox();
-		Thread.sleep(2000);
+//		Thread.sleep(2000);
 		new WebDriverWait(driver, Duration.ofSeconds(10));
 		int n = checkNumberOfGames(storePage.getFilterGamesDisplayed(), storePage.getNextPageMixed());
 		assertEquals(13, n);
@@ -231,10 +230,10 @@ public class FilterRatingImpl {
 	@Then("User should be able to view games that are Very Positive")
 	public void User_should_be_able_to_view_games_that_are_very_positive() throws InterruptedException {
 		clickAll();
-		Thread.sleep(2000);
+//		Thread.sleep(2000);
 		new WebDriverWait(driver, Duration.ofSeconds(10));
 		clickVeryPositiveBox();
-		Thread.sleep(2000);
+//		Thread.sleep(2000);
 		new WebDriverWait(driver, Duration.ofSeconds(10));
 		int n = checkNumberOfGames(storePage.getFilterGamesDisplayed(), storePage.getNextPageVeryPositive());
 		assertEquals(120, n);
