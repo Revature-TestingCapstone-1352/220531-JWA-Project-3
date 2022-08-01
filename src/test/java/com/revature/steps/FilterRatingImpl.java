@@ -206,13 +206,12 @@ public class FilterRatingImpl {
 	@Then("User should be able to view games that are Mostly Positive")
 	public void User_should_be_able_to_view_games_that_are_mostly_positive() throws InterruptedException {
 		clickAll();
-		Thread.sleep(2000);
-		new WebDriverWait(driver, Duration.ofSeconds(10));
 		clickMostlyPositiveBox();
-		Thread.sleep(2000);
-		new WebDriverWait(driver, Duration.ofSeconds(10));
-		int n = checkNumberOfGames(storePage.getFilterGamesDisplayed(), storePage.chopperCard);
-		assertEquals(30, n);
+
+		new WebDriverWait(driver, Duration.ofSeconds(15))
+		.until(ExpectedConditions.visibilityOfElementLocated(storePage.chopperCard));
+		WebElement card = driver.findElement(storePage.chopperCard);
+		assertTrue(card.isDisplayed());
 	}
 	
 	@When("User selects Very Positive filter")

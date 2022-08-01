@@ -36,7 +36,7 @@ public class StorePage {
 	private By filterGamesDisplayed = By.xpath("//*[@id=\"games\"]/div");
 	public By sRowCard= By.xpath("//*[@id=\"games\"]/div/div[7]/div");
 	public By chopperCard = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
-
+	public By evoCard = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
 	
 	public By getNextPageMixed() {
 		return nextPageMixed;

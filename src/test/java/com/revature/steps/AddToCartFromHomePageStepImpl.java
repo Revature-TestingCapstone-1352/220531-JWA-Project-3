@@ -32,7 +32,9 @@ public class AddToCartFromHomePageStepImpl {
 	
 	@When("the User clicks on Add To Cart on a game")
 	public void the_user_clicks_on_add_to_cart_on_a_game() {
-	   homePage.clickFirstAddToCartButtion();
+		new WebDriverWait(driver, Duration.ofSeconds(10))
+		.until(ExpectedConditions.elementToBeClickable(homePage.getfirstAddToCartButton()));
+	    homePage.clickFirstAddToCartButtion();
 	}
 
 	@When("the User clicks on the Cart button")
