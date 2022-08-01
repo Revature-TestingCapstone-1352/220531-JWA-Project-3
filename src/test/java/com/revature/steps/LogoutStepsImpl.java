@@ -47,11 +47,11 @@ public class LogoutStepsImpl {
 	}
 
 	@When("The User clicks on LogoutButton")
-		public void the_user_clicks_on_logout_button() {
-		
+		public void the_user_clicks_on_logout_button() throws InterruptedException {
+		Thread.sleep(2000);
 		
 		new WebDriverWait(driver, Duration.ofSeconds(10))
-		.until(ExpectedConditions.elementToBeClickable(homePage.getLoginLink()));
+		.until(ExpectedConditions.elementToBeClickable(homePage.getLogoutLink()));
 		getLogoutLink();
 	}
 	
