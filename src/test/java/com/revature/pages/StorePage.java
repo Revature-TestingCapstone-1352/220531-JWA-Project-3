@@ -38,6 +38,20 @@ public class StorePage {
 	public By chopperCard = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
 	public By evoCard = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
 	
+	
+	//-----------------------Jf Code -----------------------
+	
+	//MOSTLY NEGATIVE REVIEWS
+	private By Dead_Mountaineer_Hotel = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
+	//MIXED REVIEWS
+	private By from_dust_game = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
+	// POSITIVE REVIEWS
+	private By race_injection = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
+	// MOSTLY POSITIVE
+	private By evochron_Mercenary_game = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
+	
+	
+
 	public By getNextPageMixed() {
 		return nextPageMixed;
 	}
