@@ -214,9 +214,7 @@ public class HomePage {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(addWishListButton));
 		driver.findElement(addWishListButton).click();
 
-<<<<<<< HEAD
-    
-=======
+
 	}
 	
 	// public void navigateToLoginPage() {
@@ -228,5 +226,5 @@ public class HomePage {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getWishListLink()));
 		driver.findElement(getWishListLink()).click();
 	}
->>>>>>> origin/staging
+
 }
