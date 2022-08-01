@@ -2,6 +2,7 @@ package com.revature.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -100,6 +101,7 @@ public class CheckoutPage {
     public void viewCart() {
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(getViewCart()));
         driver.findElement(getViewCart()).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.urlToBe("http://localhost:4200/cart"));
     }
 
     public void proceedToCheckout() {
