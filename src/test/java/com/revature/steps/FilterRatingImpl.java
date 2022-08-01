@@ -1,18 +1,21 @@
 package com.revature.steps;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.revature.pages.HomePage;
@@ -27,6 +30,8 @@ public class FilterRatingImpl {
 	private static WebDriver driver = GameRunner.driver;
 	private static StorePage storePage = GameRunner.storePage;
 	private static HomePage homePage = GameRunner.homePage;
+	private static JavascriptExecutor jsExec;
+	private static WebDriverWait jsWait;
 	
 	public void clickAll() throws InterruptedException {
 		
@@ -76,10 +81,9 @@ public class FilterRatingImpl {
 	
 	public long getFiltGamesCount() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-//		int count = (int) js.executeScript("return document.games.length");
 		
-		long count = (long) js.executeScript("return arguments[0].length", "games");
-		return count;
+		return (long) js.executeScript("return JSON.parse(localStorage.getItem(arguments[0]))", "filteredItemCount");
+
 	}
 	
 	public int clickForUnrated() {
@@ -124,6 +128,7 @@ public class FilterRatingImpl {
 		new WebDriverWait(driver, Duration.ofSeconds(5));
 	}
 	
+	
 	@Given("User is on the HomePage")
 	public void user_is_on_the_home_page() {
 		driver.get("http://localhost:4200");
@@ -136,12 +141,46 @@ public class FilterRatingImpl {
 		new WebDriverWait(driver, Duration.ofSeconds(3));
 	}
 	
+	 private void waitForAngularLoad() {
+	        String angularReadyScript = "return angular.element(document).injector().get('$http').pendingRequests.length === 0";
+	        angularLoads(angularReadyScript);
+	    }
+	 
+	 private void angularLoads(String angularReadyScript) {
+	        try {
+	            ExpectedCondition<Boolean> angularLoad = driver -> Boolean.valueOf(((JavascriptExecutor) driver)
+	                .executeScript(angularReadyScript).toString());
+	            boolean angularReady = Boolean.valueOf(jsExec.executeScript(angularReadyScript).toString());
+	            if (!angularReady) {
+	                jsWait.until(angularLoad);
+	            }
+	        } catch (WebDriverException ignored) {
+	        }
+	    }
+	 
+	 public void waitUntilAngularReady() {
+	        try {
+	            Boolean angularUnDefined = (Boolean) jsExec.executeScript("return window.angular === undefined");
+	            if (!angularUnDefined) {
+	                Boolean angularInjectorUnDefined = (Boolean) jsExec.executeScript("return angular.element(document).injector() === undefined");
+	                if (!angularInjectorUnDefined) {
+	                    waitForAngularLoad();
+	                }
+	            }
+	        } catch (WebDriverException ignored) {
+	        }
+	    }
+	
 	@Then("User should be able to view games that have no rating")
 	public void user_should_be_able_to_view_games_filtered_by_rating() throws InterruptedException {
 		clickAll();
 		
-		new WebDriverWait(driver, Duration.ofSeconds(10))
-		.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(storePage.nextBtn)));
+//		FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver);
+//		wait.withTimeout(Duration.ofSeconds(20));
+//		wait.pollingEvery(Duration.ofMillis(250));
+//		wait.until(ExpectedConditions);
+		
+		waitForAngularLoad();
 		
 		long n = getFiltGamesCount();
 		assertEquals(6, n);
@@ -149,21 +188,21 @@ public class FilterRatingImpl {
 	
 	@When("User selects Mostly Negative filter")
 	public void user_selects_mostly_negative_filter() {
+
+		
 		new WebDriverWait(driver, Duration.ofSeconds(3));
 	}
 	
 	@Then("User should be able to view games that are Mostly Negative")
 	public void User_should_be_able_to_view_games_that_are_mostly_negative() throws InterruptedException {
-		clickAll();
-//		Thread.sleep(2000);
-		clickNegativeBox();
-//		Thread.sleep(2000);.
 		
-		new WebDriverWait(driver, Duration.ofSeconds(10))
-		.until(ExpectedConditions.elementToBeClickable(storePage.nextBtn));
+		clickAll();
+		clickNegativeBox();
+		
+		
 		
 		long n = getFiltGamesCount();
-		assertEquals(13, n+1);
+		assertEquals(13, n);
 	}
 	
 	@When("User selects Mixed filter")
@@ -175,12 +214,10 @@ public class FilterRatingImpl {
 	public void User_should_be_able_to_view_games_that_are_Mixed() throws InterruptedException {
 		clickAll();
 		clickMixedBox();
-
-		new WebDriverWait(driver, Duration.ofSeconds(10))
-		.until(ExpectedConditions.elementToBeClickable(storePage.nextBtn));
+		waitForAngularLoad();
 		
 		long n = getFiltGamesCount();
-		assertEquals(34, n+1);
+		assertEquals(34, n);
 	}
 	
 	@When("User selects Positive filter")
@@ -193,8 +230,7 @@ public class FilterRatingImpl {
 		clickAll();
 		clickPositiveBox();
 
-		new WebDriverWait(driver, Duration.ofSeconds(10))
-		.until(ExpectedConditions.elementToBeClickable(storePage.nextBtn));
+		waitForAngularLoad();
 		
 		long n = getFiltGamesCount();
 		assertEquals(10, n+1);
@@ -210,8 +246,7 @@ public class FilterRatingImpl {
 		clickAll();
 		clickMostlyPositiveBox();
 
-		new WebDriverWait(driver, Duration.ofSeconds(10))
-		.until(ExpectedConditions.elementToBeClickable(storePage.nextBtn));
+		waitForAngularLoad();
 		
 		long n = getFiltGamesCount();
 		assertEquals(30, n);
@@ -232,8 +267,7 @@ public class FilterRatingImpl {
 //		assertEquals(120, n);
 		clickVeryPositiveBox();
 		
-		new WebDriverWait(driver, Duration.ofSeconds(10))
-		.until(ExpectedConditions.elementToBeClickable(storePage.nextBtn));
+		waitForAngularLoad();
 		
 		long n = getFiltGamesCount();
 		assertEquals(120, n);
@@ -254,8 +288,7 @@ public class FilterRatingImpl {
 //		int n = checkNumberOfGames(storePage.getFilterGamesDisplayed(), storePage.getNextPageOverPositive());
 //		assertEquals(44, n);
 		
-		new WebDriverWait(driver, Duration.ofSeconds(10))
-		.until(ExpectedConditions.elementToBeClickable(storePage.nextBtn));
+		waitForAngularLoad();
 		
 		long n = getFiltGamesCount();
 		assertEquals(44, n);
