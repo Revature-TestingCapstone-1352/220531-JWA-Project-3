@@ -248,7 +248,7 @@ public class FilterRatingImpl {
 	@Then("User should be able to view games that are Overwhelmingly Positive")
 	public void User_should_be_able_to_view_games_that_are_overwhelmingly_positive() throws InterruptedException {
 		clickAll();
-
+		
 		clickOverwhelminglyPositiveBox();
 //		Thread.sleep(2000);
 //		new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -260,6 +260,6 @@ public class FilterRatingImpl {
 		WebElement card = driver.findElement(storePage.getOPositiveText());
 		
 		assertTrue(card.isDisplayed());
-			
+		
 	}
 }
