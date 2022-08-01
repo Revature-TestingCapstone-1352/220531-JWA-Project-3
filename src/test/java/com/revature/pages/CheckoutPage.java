@@ -110,7 +110,7 @@ public class CheckoutPage {
     }
 
     public String getEmptyCartText() {
-        new WebDriverWait(driver,Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(getEmptyCart()));
+        new WebDriverWait(driver,Duration.ofSeconds(10)).until(ExpectedConditions.textToBePresentInElementLocated(getEmptyCart(), "Your shopping cart is empty!"));
         String emptyCartText = driver.findElement(getEmptyCart()).getText();
         return emptyCartText;
     }

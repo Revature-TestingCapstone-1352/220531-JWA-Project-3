@@ -67,7 +67,7 @@ public class UpdatePasswordStepsImpl {
 
 	@When("the user type in a valid <{string}> and confirm same password and clicks on Update password button")
 	public void the_user_type_in_a_valid_and_confirm_same_password_and_clicks_on_update_password_button(String password) {
-		 driver.manage().window().maximize();
+
 		 JavascriptExecutor js = (JavascriptExecutor)driver; // To fix "Element Is Not Clickable at Point" error
 //		userInfoPage.EnterNewPassword.sendKeys(password); 
 //		userInfoPage.ConfirmNewPassword.sendKeys(password);

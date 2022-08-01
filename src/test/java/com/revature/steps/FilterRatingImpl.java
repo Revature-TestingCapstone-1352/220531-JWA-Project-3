@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -36,12 +37,19 @@ public class FilterRatingImpl {
 	public void clickAll() throws InterruptedException {
 		
 		driver.navigate().refresh();
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(storePage.firstCard));
 		driver.findElement(storePage.getNegativeBox()).click();
+		waitForPage(214);
 		driver.findElement(storePage.getMixedBox()).click();
+		waitForPage(186);
 		driver.findElement(storePage.getPositiveBox()).click();
+		waitForPage(182);
 		driver.findElement(storePage.getMostlyPositiveBox()).click();
+		waitForPage(158);
 		driver.findElement(storePage.getVeryPositiveBox()).click();
+		waitForPage(44);
 		driver.findElement(storePage.getOverwhelminglyPositiveBox()).click();
+		waitForPage(6); 
 		
 	}
 	
@@ -95,37 +103,57 @@ public class FilterRatingImpl {
 	public void clickNegativeBox() {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(storePage.getNegativeBox()));
 		driver.findElement(storePage.getNegativeBox()).click();
-		new WebDriverWait(driver, Duration.ofSeconds(5));
+		waitForPage(13);
 	}
 	
 	public void clickMixedBox() {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(storePage.getMixedBox()));
 		driver.findElement(storePage.getMixedBox()).click();
-		new WebDriverWait(driver, Duration.ofSeconds(5));
+		waitForPage(34);
 	}
 	
 	public void clickPositiveBox() {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(storePage.getPositiveBox()));
 		driver.findElement(storePage.getPositiveBox()).click();
-		new WebDriverWait(driver, Duration.ofSeconds(5));
+		waitForPage(10);
 	}
 	
 	public void clickMostlyPositiveBox() {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(storePage.getMostlyPositiveBox()));
 		driver.findElement(storePage.getMostlyPositiveBox()).click();
-		new WebDriverWait(driver, Duration.ofSeconds(5));
+		waitForPage(30);
 	}
 	
 	public void clickVeryPositiveBox() {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(storePage.getVeryPositiveBox()));
 		driver.findElement(storePage.getVeryPositiveBox()).click();
-		new WebDriverWait(driver, Duration.ofSeconds(5));
+		waitForPage(120);
 	}
 	
 	public void clickOverwhelminglyPositiveBox() {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(storePage.getOverwhelminglyPositiveBox()));
 		driver.findElement(storePage.getOverwhelminglyPositiveBox()).click();
-		new WebDriverWait(driver, Duration.ofSeconds(5));
+		waitForPage(44);
+	}
+	
+	public void waitForPage(int expected)
+	{
+		FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+				.withTimeout(Duration.ofSeconds(20))
+				.pollingEvery(Duration.ofMillis(250))
+				.ignoring(NoSuchElementException.class);
+				
+		wait.until(new Function<WebDriver, Boolean>(){
+			public Boolean apply(WebDriver driver) {
+				if(getFiltGamesCount() == expected) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+		});
+				
 	}
 	
 	
@@ -141,46 +169,10 @@ public class FilterRatingImpl {
 		new WebDriverWait(driver, Duration.ofSeconds(3));
 	}
 	
-	 private void waitForAngularLoad() {
-	        String angularReadyScript = "return angular.element(document).injector().get('$http').pendingRequests.length === 0";
-	        angularLoads(angularReadyScript);
-	    }
-	 
-	 private void angularLoads(String angularReadyScript) {
-	        try {
-	            ExpectedCondition<Boolean> angularLoad = driver -> Boolean.valueOf(((JavascriptExecutor) driver)
-	                .executeScript(angularReadyScript).toString());
-	            boolean angularReady = Boolean.valueOf(jsExec.executeScript(angularReadyScript).toString());
-	            if (!angularReady) {
-	                jsWait.until(angularLoad);
-	            }
-	        } catch (WebDriverException ignored) {
-	        }
-	    }
-	 
-	 public void waitUntilAngularReady() {
-	        try {
-	            Boolean angularUnDefined = (Boolean) jsExec.executeScript("return window.angular === undefined");
-	            if (!angularUnDefined) {
-	                Boolean angularInjectorUnDefined = (Boolean) jsExec.executeScript("return angular.element(document).injector() === undefined");
-	                if (!angularInjectorUnDefined) {
-	                    waitForAngularLoad();
-	                }
-	            }
-	        } catch (WebDriverException ignored) {
-	        }
-	    }
 	
 	@Then("User should be able to view games that have no rating")
 	public void user_should_be_able_to_view_games_filtered_by_rating() throws InterruptedException {
 		clickAll();
-		
-//		FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver);
-//		wait.withTimeout(Duration.ofSeconds(20));
-//		wait.pollingEvery(Duration.ofMillis(250));
-//		wait.until(ExpectedConditions);
-		
-		waitForAngularLoad();
 		
 		long n = getFiltGamesCount();
 		assertEquals(6, n);
@@ -199,8 +191,6 @@ public class FilterRatingImpl {
 		clickAll();
 		clickNegativeBox();
 		
-		
-		
 		long n = getFiltGamesCount();
 		assertEquals(13, n);
 	}
@@ -214,7 +204,6 @@ public class FilterRatingImpl {
 	public void User_should_be_able_to_view_games_that_are_Mixed() throws InterruptedException {
 		clickAll();
 		clickMixedBox();
-		waitForAngularLoad();
 		
 		long n = getFiltGamesCount();
 		assertEquals(34, n);
@@ -230,10 +219,10 @@ public class FilterRatingImpl {
 		clickAll();
 		clickPositiveBox();
 
-		waitForAngularLoad();
+
 		
 		long n = getFiltGamesCount();
-		assertEquals(10, n+1);
+		assertEquals(10, n);
 	}
 	
 	@When("User selects Mostly Positive filter")
@@ -246,7 +235,7 @@ public class FilterRatingImpl {
 		clickAll();
 		clickMostlyPositiveBox();
 
-		waitForAngularLoad();
+
 		
 		long n = getFiltGamesCount();
 		assertEquals(30, n);
@@ -267,7 +256,7 @@ public class FilterRatingImpl {
 //		assertEquals(120, n);
 		clickVeryPositiveBox();
 		
-		waitForAngularLoad();
+
 		
 		long n = getFiltGamesCount();
 		assertEquals(120, n);
@@ -288,7 +277,7 @@ public class FilterRatingImpl {
 //		int n = checkNumberOfGames(storePage.getFilterGamesDisplayed(), storePage.getNextPageOverPositive());
 //		assertEquals(44, n);
 		
-		waitForAngularLoad();
+
 		
 		long n = getFiltGamesCount();
 		assertEquals(44, n);

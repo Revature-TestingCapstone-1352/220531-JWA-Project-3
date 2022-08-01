@@ -41,6 +41,7 @@ public class StorePage {
 	
 	public By pageFive = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[7]/a/span[2]");
 	public By nextBtn = By.xpath("//*[@id=\"basicPaginate\"]/pagination-template/nav/ul/li[4]/span");
+	public By firstCard = By.xpath("//*[@id=\"games\"]/div/div[1]/div");
 	
 	
 	//-----------------------Jf Code -----------------------
