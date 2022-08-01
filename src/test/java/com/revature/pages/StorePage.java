@@ -36,6 +36,18 @@ public class StorePage {
 	private By filterGamesDisplayed = By.xpath("//*[@id=\"games\"]/div");
 	private By oPositiveText = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
 	
+	
+	//-----------------------Jf Code -----------------------
+	
+	private By Dead_Mountaineer_Hotel = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
+	
+	private By from_dust_game = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
+	
+	private By race_injection = By.xpath("//*[@id=\"games\"]/div/div[7]/div");
+	
+	
+	
+	
 	public By getOPositiveText() {
 		return oPositiveText;
 	}
