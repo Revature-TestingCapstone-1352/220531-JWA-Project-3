@@ -45,8 +45,9 @@ public class OrderService {
 
 
 	public Order addOrder(Order newOrder, User user) {
-
-		newOrder.setUser(user);
+		
+		newOrder.setUser(user); //this is what causes the null pointer exception; 
+		//when the order is null, setUser will throw an execepti
 		return orderDao.save(newOrder);
 	}
 
