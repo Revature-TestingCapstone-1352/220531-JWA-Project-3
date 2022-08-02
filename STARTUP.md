@@ -38,4 +38,31 @@ The first thing to do is to install gitbash on your local machine and clone the 
 7.	We used pagination to show only a limited number of products. You will have to run the following CLI command: npm install ngx-pagination.
 8.	In the end you just need to run ng serve -o to run the application on the server.
 
-
+## Setting up your own instance of the database
+​
+1. You will need access to the database creation CSV files to create your own database instance
+2. Open up DBeaver
+3. Have a connection to your own database instance and insure there is a empty schema. 
+   * Right click Schemas tab underneath your database > Create New Schema > Name Schema and Create
+4. Now on your database right click the tables tab within your database schema and click Import Data
+5. Import source should be CSV and click Next
+6. Select all the CSV files for the database and click Next
+7. On the third page, at the top there will be a target container, click the Choose button and then navigate to your schema you want to copy this too and select it
+8. Ensure that every row in the mapping column says create
+9. Click Next on the next 2 pages
+10. On the last page click proceed
+11. You should now have your own database instance you can connect to
+	* Must change database URL, username and password in application.properties
+​
+## Running Angular Server
+​
+1. Install the following if you don't already have it
+	* Node.js
+	* npm
+	* VSCode
+2. Open up Project 3 folder in VSCode
+3. Open up a terminal in VSCode
+4. We will now use the npm i command to install dependencies for the Angular application
+5. After the dependencies install, we will do npm install -g @angular/cli to install the Angular CLI globally
+6. After this installs, you can run npm start to startup the frontend
+7. Make sure backend is running so the data can be displayed in the frontend

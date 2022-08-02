@@ -245,10 +245,14 @@ public class OrderServiceTest {
 		Order order = null;
 		
 		when(MockOrderDao.save(order)).thenReturn(null);
+		Order ActualOrder;
+		try {
+			 ActualOrder = orderService.addOrder(order, user);
+		} catch(NullPointerException e) {
+			ActualOrder = null;
+			assertEquals(ActualOrder, null);
+		}
 		
-		Order ActualOrder = orderService.addOrder(order, user);
-		
-		assertEquals(ActualOrder, null);
 		
 		
 	}
